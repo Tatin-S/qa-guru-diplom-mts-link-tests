@@ -28,7 +28,7 @@ public class EventTests extends TestBaseApi{
         CreateEventTemplateRequestModel createEventTemplateRequest = new CreateEventTemplateRequestModel(testData.eventName, accessSettings);
         CreateEventTemplateResponseModel response = step("Создать шаблон для мероприятия", () ->
                 given(requestSpecEvent)
-                        .contentType("application/x-www-form-urlencoded")
+                        .contentType("application/json")
                         .body(createEventTemplateRequest)
                         .when()
                         .post("/events")
