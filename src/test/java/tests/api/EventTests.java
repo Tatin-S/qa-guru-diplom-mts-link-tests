@@ -28,8 +28,7 @@ public class EventTests extends TestBaseApi{
         CreateEventTemplateRequestModel createEventTemplateRequest = new CreateEventTemplateRequestModel(testData.eventName, accessSettings);
         CreateEventTemplateResponseModel response = step("Создать шаблон для мероприятия", () ->
                 given(requestSpecEvent)
-                        .cookie("sessionId=40fc08aa81997ba1fe383422964048bd; expires=Sun, 22-Sep-2024 15:43:24 GMT; Max-Age=2419200; path=/; SameSite=None; secure; httponly; samesite=None; SameSite=None")
-                        .contentType("application/json")
+                        .contentType("application/x-www-form-urlencoded")
                         .body(createEventTemplateRequest)
                         .when()
                         .post("/events")

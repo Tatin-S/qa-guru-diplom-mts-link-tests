@@ -1,9 +1,11 @@
 package api.specs;
 
 import common.config.ApiConfig;
+import common.config.AuthDataConfig;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
+import io.restassured.internal.http.AuthConfig;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.aeonbits.owner.ConfigFactory;
@@ -18,12 +20,14 @@ public class Specs {
             .baseUri(apiConfig.authBaseURI())
             .basePath(apiConfig.authBasePath())
             .log().all();
+    static final AuthDataConfig authConfig = ConfigFactory.create(AuthDataConfig.class, System.getProperties());
     public static RequestSpecification requestSpecEvent = with()
             .filter(withCustomTemplates())
             .contentType(ContentType.JSON)
             .log().all()
             .baseUri(apiConfig.baseURI())
-            .basePath(apiConfig.basePath());
+            .basePath(apiConfig.basePath())
+            .header("x-auth-token",authConfig.userToken());
 
     public static ResponseSpecification responseSpecStatusCode200 = new ResponseSpecBuilder()
             .expectStatusCode(200)

@@ -15,4 +15,6 @@ public interface AuthDataConfig extends Config {
 
     String password();
     Boolean rememberMe();
+    @Key("user_token")
+    String userToken();
 }
