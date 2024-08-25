@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class LoginResponseModel {
-    String sessionId;
+    private Boolean success;
 }

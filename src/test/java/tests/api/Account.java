@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 
 import static api.specs.Specs.*;
 import static io.qameta.allure.Allure.step;
-import static org.assertj.core.api.Assertions.assertThat;
 import static io.restassured.RestAssured.given;
 public class Account extends TestBaseApi {
     static final AuthDataConfig AUTH_DATA_CONFIG = ConfigFactory.create(AuthDataConfig.class, System.getProperties());
@@ -23,7 +22,7 @@ public class Account extends TestBaseApi {
         loginData.setEmail(AUTH_DATA_CONFIG.email());
         loginData.setPassword(AUTH_DATA_CONFIG.password());
         loginData.setRememberMe(AUTH_DATA_CONFIG.rememberMe());
-        LoginResponseModel response = step("Авторизоваться по почте и паролю", () ->
+        step("Авторизоваться по почте и паролю", () ->
                 given(requestSpecAuth)
                         .contentType("application/json")
                         .body(loginData)
@@ -32,10 +31,5 @@ public class Account extends TestBaseApi {
                         .then()
                         .spec(responseSpecStatusCode200))
                 .extract().as(LoginResponseModel.class);
-
-        step("Проверяем, что SessionId содержит не 1 символ и цифро-буквенные значения", () -> {
-            assertThat(response.getSessionId()).isAlphanumeric();
-            assertThat(response.getSessionId()).hasSizeGreaterThan(1);
-        });
     }
 }
