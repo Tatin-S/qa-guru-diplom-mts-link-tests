@@ -36,7 +36,7 @@ public class EventTests extends TestBaseApi{
             assertThat(response.getEventId()).hasSizeGreaterThan(1);
     });
         step("Проверяем, что Link содержит EventId", () -> {
-            assertThat(response.getLink()).contains("https://my.mts-link.ru/j/106104753/"+response.getEventId());
+            assertThat(response.getLink()).contains("https://my.mts-link.ru/j/106104753/" + response.getEventId());
         });
     }
 }

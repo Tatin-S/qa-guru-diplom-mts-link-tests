@@ -1,3 +1,4 @@
+/*
 package api.authorization;
 
 import api.models.account.LoginResponseModel;
@@ -6,7 +7,9 @@ import common.config.AuthDataConfig;
 import io.qameta.allure.Step;
 import api.models.account.LoginRequestModel;
 import org.aeonbits.owner.ConfigFactory;
-import org.openqa.selenium.Cookie;
+import org.openqa.selenium.Cookie;*/
+/**//*
+
 
 import static api.specs.Specs.*;
 import static com.codeborne.selenide.Selenide.open;
@@ -41,3 +44,4 @@ public class AuthorizationApi {
         return cookieValue;
     }
 }
+*/
