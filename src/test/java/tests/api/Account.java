@@ -25,7 +25,7 @@ public class Account extends TestBaseApi {
         loginData.setRememberMe(AUTH_DATA_CONFIG.rememberMe());
         LoginResponseModel response = step("Авторизоваться по почте и паролю", () ->
                 given(requestSpecAuth)
-                        .contentType("application/x-www-form-urlencoded; charset=utf-8")
+                        .contentType("application/json")
                         .body(loginData)
                         .when()
                         .post("/login")
