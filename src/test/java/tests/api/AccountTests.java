@@ -14,7 +14,7 @@ import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Account extends TestBaseApi {
+public class AccountTests extends TestBaseApi {
     static final AuthDataConfig AUTH_DATA_CONFIG = ConfigFactory.create(AuthDataConfig.class, System.getProperties());
 
     @Test
@@ -25,7 +25,7 @@ public class Account extends TestBaseApi {
         loginData.setEmail(AUTH_DATA_CONFIG.email());
         loginData.setPassword(AUTH_DATA_CONFIG.password());
         loginData.setRememberMe(AUTH_DATA_CONFIG.rememberMe());
-        step("Авторизоваться по почте и паролю", () ->
+        step("Авторизуемся по почте и паролю", () ->
                 given(requestSpecAuth)
                         .contentType("application/json")
                         .body(loginData)
@@ -46,7 +46,7 @@ public class Account extends TestBaseApi {
         loginData.setEmail(testEmail);
         loginData.setPassword(testPassword);
         loginData.setRememberMe(AUTH_DATA_CONFIG.rememberMe());
-        ErrorResponseModel response = step("Авторизоваться по некорректным почте и паролю", () ->
+        ErrorResponseModel response = step("Авторизуемся по некорректным почте и паролю", () ->
                 given(requestSpecAuth)
                         .contentType("application/json")
                         .body(loginData)
