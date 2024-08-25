@@ -1,3 +1,4 @@
+/*
 package api.extensions;
 
 import api.authorization.AuthorizationApi;
@@ -16,4 +17,5 @@ public class LoginExtension implements BeforeEachCallback {
     public void beforeEach(ExtensionContext context) {
         AuthorizationApi.setCookiesInBrowser(AuthorizationApi.login());
     }
-}
+}*/
+/**/
