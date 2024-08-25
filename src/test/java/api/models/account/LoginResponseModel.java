@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class LoginResponseModel {
-    private Boolean success;
+   // private Boolean success;
 }

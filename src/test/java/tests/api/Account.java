@@ -29,7 +29,6 @@ public class Account extends TestBaseApi {
                         .when()
                         .post("/login")
                         .then()
-                        .spec(responseSpecStatusCode200))
-                .extract().as(LoginResponseModel.class);
+                        .spec(responseSpecStatusCode200));
     }
 }
