@@ -5,6 +5,7 @@ import io.qameta.allure.selenide.AllureSelenide;
 import io.restassured.RestAssured;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 
 public class TestBaseApi {
     static final ApiConfig apiConfig = ConfigFactory.create(ApiConfig.class, System.getProperties());
@@ -12,5 +13,10 @@ public class TestBaseApi {
     public static void beforeAll() {
         RestAssured.baseURI = apiConfig.baseURI();
         RestAssured.basePath = apiConfig.basePath();
+    }
+
+    @BeforeEach
+    void beforeEach(){
+        SelenideLogger.addListener("allure", new AllureSelenide());
     }
 }

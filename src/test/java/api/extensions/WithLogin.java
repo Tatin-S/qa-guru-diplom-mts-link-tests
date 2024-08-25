@@ -1,6 +1,5 @@
 package api.extensions;
 
-import api.extensions.LoginExtension;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.lang.annotation.ElementType;
