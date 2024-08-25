@@ -13,9 +13,9 @@ public class AuthorizationApi {
     public String getSessionId(LoginRequestModel loginRequest) {
         return given(requestSpec)
                 .contentType("application/x-www-form-urlencoded; charset=utf-8")
-                .body(loginRequest.loginBodyModel())
+                .body(loginRequest)
                 .when()
-                .post("/login")
+                .post("https://my.mts-link.ru/api/login")
                 .then()
                 .spec(responseSpecStatusCode200)
                 .extract().cookie("sessionId");
