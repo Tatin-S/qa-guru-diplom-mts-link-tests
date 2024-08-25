@@ -1,5 +1,7 @@
 package tests.api;
 
+import api.authorization.AuthorizationApi;
+import api.models.account.LoginRequestModel;
 import api.models.event.CreateEventTemplateRequestModel;
 import api.models.event.CreateEventTemplateResponseModel;
 import common.data.TestData;
@@ -16,6 +18,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import static io.restassured.RestAssured.given;
 public class EventTests extends TestBaseApi{
     TestData testData = new TestData();
+   // LoginRequestModel loginRequest = new LoginRequestModel(testData.email, testData.password, true);
+  //  String sessionId = AuthorizationApi.getSessionId(loginRequest);
 
     @Test
     @DisplayName("Создание шаблона для мероприятия")
