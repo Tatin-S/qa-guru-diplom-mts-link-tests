@@ -1,5 +1,6 @@
 package api.authorization;
 
+import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Step;
 import api.models.account.LoginRequestModel;
 
@@ -19,5 +20,10 @@ public class AuthorizationApi {
                 .then()
                 .spec(responseSpecStatusCode200)
                 .extract().cookie("sessionId");
+    }
+
+    public static String extactValueFromCookieString(String value) {
+        String cookieValue = String.valueOf(WebDriverRunner.getWebDriver().manage().getCookieNamed(value));
+        return cookieValue;
     }
 }

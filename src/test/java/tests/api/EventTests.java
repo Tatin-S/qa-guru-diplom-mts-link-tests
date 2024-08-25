@@ -19,7 +19,7 @@ import static io.restassured.RestAssured.given;
 public class EventTests extends TestBaseApi{
     TestData testData = new TestData();
    // LoginRequestModel loginRequest = new LoginRequestModel(testData.email, testData.password, true);
-  //  String sessionId = AuthorizationApi.getSessionId(loginRequest);
+    String sessionId = AuthorizationApi.extactValueFromCookieString("sessionId");
 
     @Test
     @DisplayName("Создание шаблона для мероприятия")
