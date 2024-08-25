@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CreateEventTemplateResponseModel {
-    String name, type;
+    String eventId, link;
 }

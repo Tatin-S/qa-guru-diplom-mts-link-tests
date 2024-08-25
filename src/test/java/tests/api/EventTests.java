@@ -7,12 +7,16 @@ import api.models.event.CreateEventTemplateResponseModel;
 import common.data.TestData;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static api.specs.Specs.*;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.sessionId;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.jupiter.api.Assertions.*;
 import static io.restassured.RestAssured.given;
 public class EventTests extends TestBaseApi{
@@ -36,9 +40,11 @@ public class EventTests extends TestBaseApi{
                         .spec(responseSpecStatusCode201))
                 .extract().as(CreateEventTemplateResponseModel.class);
 
-        step("Проверить данные в ответе", () -> {
-            assertEquals(testData.eventName, response.getName());
-         //   assertEquals("meeting", response.getType());
+        step("Проверяем, что EventId не пустой", () ->
+                assertThat(response.getEventId(), notNullValue()));
+        step("Проверяем, что Link содержит EventId", () -> {
+            Assertions.assertThat(response.getLink()).contains("https://my.mts-link.ru/j/106104753/"+response.getEventId());
         });
+
     }
 }
