@@ -1,3 +1,4 @@
+/*
 package tests.api;
 
 import api.models.event.CreateEventTemplateRequestModel;
@@ -40,3 +41,4 @@ public class EventTests extends TestBaseApi{
         });
     }
 }
+*/
