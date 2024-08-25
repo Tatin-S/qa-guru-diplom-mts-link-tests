@@ -9,14 +9,14 @@ import org.junit.jupiter.api.BeforeEach;
 
 public class TestBaseApi {
   //  static final ApiConfig apiConfig = ConfigFactory.create(ApiConfig.class, System.getProperties());
-    @BeforeAll
+/*    @BeforeAll
     public static void beforeAll() {
         RestAssured.baseURI = "https://userapi.mts-link.ru/v3";
      //   RestAssured.basePath = apiConfig.basePath();
-    }
+    }*/
 
     @BeforeEach
-    void beforeEach(){
+    void setUp() {
         SelenideLogger.addListener("allure", new AllureSelenide());
     }
 }

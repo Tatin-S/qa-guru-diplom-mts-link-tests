@@ -2,15 +2,24 @@ package common.config;
 
 import org.aeonbits.owner.Config;
 
+@Config.LoadPolicy(Config.LoadType.FIRST)
 @Config.Sources({
-        "classpath:config/api.properties"
+        "system:properties",
+        "classpath:config/api.properties",
+        "file:~/api.properties",
+        "file:./api.properties"
 })
 
 public interface ApiConfig extends Config {
 
-    @DefaultValue("https://my.mts-link.ru")
+    @DefaultValue("https://userapi.mts-link.ru")
     String baseURI();
 
-    @DefaultValue("/api")
+    @DefaultValue("/v3")
     String basePath();
+    @DefaultValue("https://my.mts-link.ru")
+    String authBaseURI();
+
+    @DefaultValue("/api")
+    String authBasePath();
 }

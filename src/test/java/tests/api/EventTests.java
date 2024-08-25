@@ -10,8 +10,7 @@ import io.qameta.allure.SeverityLevel;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static api.specs.Specs.requestSpec;
-import static api.specs.Specs.responseSpecStatusCode201;
+import static api.specs.Specs.*;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.sessionId;
 import static org.junit.jupiter.api.Assertions.*;
@@ -19,7 +18,7 @@ import static io.restassured.RestAssured.given;
 public class EventTests extends TestBaseApi{
     TestData testData = new TestData();
    // LoginRequestModel loginRequest = new LoginRequestModel(testData.email, testData.password, true);
-    String sessionId = AuthorizationApi.extactValueFromCookieString("sessionId");
+    String sessionId = "993cca74680d9256eb49196815a89634";
 
     @Test
     @DisplayName("Создание шаблона для мероприятия")
@@ -27,9 +26,8 @@ public class EventTests extends TestBaseApi{
     void createEventTemplateTest() {
         CreateEventTemplateRequestModel.AccessSettingsModel accessSettings = new CreateEventTemplateRequestModel.AccessSettingsModel(false, false, false);
         CreateEventTemplateRequestModel createEventTemplateRequest = new CreateEventTemplateRequestModel(testData.eventName, accessSettings);
-
         CreateEventTemplateResponseModel response = step("Создать шаблон для мероприятия", () ->
-                given(requestSpec)
+                given(requestSpecEvent)
                         .cookie("sessionId", sessionId)
                         .contentType("application/json")
                         .body(createEventTemplateRequest)

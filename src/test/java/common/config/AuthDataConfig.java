@@ -2,7 +2,13 @@ package common.config;
 
 import org.aeonbits.owner.Config;
 
-@Config.Sources({"classpath:config/authData.properties"})
+@Config.LoadPolicy(Config.LoadType.FIRST)
+@Config.Sources({
+        "system:properties",
+        "classpath:config/authData.properties",
+        "file:~/authData.properties",
+        "file:./authData.properties"
+})
 
 public interface AuthDataConfig extends Config {
     String email();
