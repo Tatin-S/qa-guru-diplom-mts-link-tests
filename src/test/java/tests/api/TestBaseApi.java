@@ -11,8 +11,8 @@ public class TestBaseApi {
     static final ApiConfig apiConfig = ConfigFactory.create(ApiConfig.class, System.getProperties());
     @BeforeAll
     public static void beforeAll() {
-        RestAssured.baseURI = apiConfig.baseURI();
-        RestAssured.basePath = apiConfig.basePath();
+        RestAssured.baseURI = "https://userapi.mts-link.ru/v3";
+     //   RestAssured.basePath = apiConfig.basePath();
     }
 
     @BeforeEach

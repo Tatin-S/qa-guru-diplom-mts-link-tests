@@ -2,7 +2,7 @@ package common.config;
 
 import org.aeonbits.owner.Config;
 
-@Config.Sources({"classpath:config/authdata.properties"})
+@Config.Sources({"classpath:config/authData.properties"})
 
 public interface AuthDataConfig extends Config {
     String email();
