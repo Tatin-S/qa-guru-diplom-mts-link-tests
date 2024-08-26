@@ -10,6 +10,7 @@ import lombok.Data;
 public class GetEventResponseModel {
     Integer id;
     String name;
+    String status;
     AccessSettingsModel accessSettings;
 
     @AllArgsConstructor

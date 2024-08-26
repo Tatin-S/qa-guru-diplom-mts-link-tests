@@ -19,16 +19,13 @@ import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class TestSteps {
-    TestData testData = new TestData();
-    CreateEventTemplateRequestModel.AccessSettingsModel accessSettings = new CreateEventTemplateRequestModel.AccessSettingsModel(false, false, false);
-    CreateEventTemplateRequestModel createEventTemplateRequest = new CreateEventTemplateRequestModel(testData.eventName, accessSettings);
     static final AuthDataConfig AUTH_DATA_CONFIG = ConfigFactory.create(AuthDataConfig.class, System.getProperties());
     Faker faker = new Faker();
     String testEmail = faker.internet().emailAddress();
     String testPassword = faker.internet().password(6, 10, true, true, true);
 
     @Step("Создаем шаблон для мероприятия")
-    public CreateEventTemplateResponseModel createEventTemplate (){
+    public CreateEventTemplateResponseModel createEventTemplate (CreateEventTemplateRequestModel createEventTemplateRequest){
         return given(requestSpecEvent)
                         .contentType("application/json")
                         .body(createEventTemplateRequest)
@@ -152,8 +149,9 @@ public class TestSteps {
     }
 
     @Step("Проверяем, что полученные параметры мероприятия соответствуют переданным при создании")
-    public void checkEventSettings(GetEventResponseModel getResponseEvent, String eventSessionId){
+    public void checkEventSettings(GetEventResponseModel getResponseEvent, String eventSessionId, CreateEventTemplateRequestModel createEventTemplateRequest){
         assertThat(getResponseEvent.getId()).isEqualTo(eventSessionId);
+        assertThat(getResponseEvent.getStatus()).isEqualTo("ACTIVE");
         assertThat(getResponseEvent.getName()).isEqualTo(createEventTemplateRequest.getName());
         assertThat(getResponseEvent.getAccessSettings().getIsPasswordRequired()).isEqualTo(createEventTemplateRequest.getAccessSettings().getIsPasswordRequired());
         assertThat(getResponseEvent.getAccessSettings().getIsRegistrationRequired()).isEqualTo(createEventTemplateRequest.getAccessSettings().getIsRegistrationRequired());
