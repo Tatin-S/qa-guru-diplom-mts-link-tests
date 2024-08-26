@@ -1,0 +1,28 @@
+{
+    "chat": {
+        "premoderation": false,
+        "show": true,
+        "showMiniChat": true
+    },
+    "question": {
+        "show": true
+    },
+    "eventsession": {
+        "vcsSizeRatio": 0.25,
+        "record": true,
+        "mediaControlsShow": true,
+        "allowManageFilesForGuest": false,
+        "allowScreensharing": false,
+        "background": null,
+        "agendaEditType": "owner",
+        "allowPresentationFilesForGuest": false,
+        "autoclearChatAndQuestions": false,
+        "liteVersion": false,
+        "allowManageOtherPeoplesPresentation": true
+    },
+    "conference": {
+        "show": true,
+        "mode": "webrtc",
+        "maxConferences": 30
+    }
+}

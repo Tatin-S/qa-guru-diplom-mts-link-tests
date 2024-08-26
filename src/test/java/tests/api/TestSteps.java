@@ -1,14 +1,16 @@
 package tests.api;
 
-import api.models.account.ErrorResponseModel;
-import api.models.account.LoginRequestModel;
-import api.models.event.CreateEventTemplateRequestModel;
-import api.models.event.CreateEventTemplateResponseModel;
+import api.models.account.*;
+import api.models.event.*;
 import com.github.javafaker.Faker;
 import common.config.AuthDataConfig;
 import common.data.TestData;
 import io.qameta.allure.Step;
 import org.aeonbits.owner.ConfigFactory;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.IOException;
+import java.io.File;
 
 import static api.specs.Specs.*;
 import static api.specs.Specs.responseSpecStatusCode200;
@@ -31,22 +33,22 @@ public class TestSteps {
                         .contentType("application/json")
                         .body(createEventTemplateRequest)
                         .when()
-                        .post("/events")
+                        .post("")
                         .then()
                         .spec(responseSpecStatusCode201)
                 .extract().as(CreateEventTemplateResponseModel.class);
     }
-    @Step("Проверяем, что EventId содержит не 1 символ и цифро-буквенные значения")
+    @Step("Проверяем, что eventId содержит не 1 символ и цифро-буквенные значения")
     public void checkEventId(CreateEventTemplateResponseModel response){
         assertThat(response.getEventId()).isAlphanumeric();
         assertThat(response.getEventId()).hasSizeGreaterThan(1);
     }
 
-    @Step("Проверяем, что Link содержит EventId")
+    @Step("Проверяем, что link содержит eventId")
     public void checkLinkContainsEventId(CreateEventTemplateResponseModel response){
         assertThat(response.getLink()).contains("https://my.mts-link.ru/j/106104753/" + response.getEventId());
     }
-    @Step("Авторизуемся c валидными почте и паролю")
+    @Step("Авторизуемся c валидными почтой и паролем")
     public void getSuccessAuthorization() {
         LoginRequestModel loginData = new LoginRequestModel();
         loginData.setEmail(AUTH_DATA_CONFIG.email());
@@ -61,6 +63,7 @@ public class TestSteps {
                         .then()
                         .spec(responseSpecStatusCode200));
     }
+    @Step("Авторизуемся c невалидными почтой и паролем")
     public ErrorResponseModel getBadAuthorization(){
         LoginRequestModel loginData = new LoginRequestModel();
         loginData.setEmail(testEmail);
@@ -80,5 +83,32 @@ public class TestSteps {
     public void checkWrongCredentials(ErrorResponseModel response){
         assertThat(response.getError().getMessage()).isEqualTo("Wrong credentials");
     }
+    @Step("Создаем мероприятие по шаблону")
+    public CreateEventResponseModel createEvent (String eventId) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        CreateEventRequestModel[] request = objectMapper.readValue(
+                new File("src/test/resources/data/CreateEventRequestBody.json"),
+                CreateEventRequestModel[].class
+        );
+        return given(requestSpecEvent)
+                .contentType("application/json")
+                .body(request)
+                .when()
+                .post("/" + eventId + "/sessions")
+                .then()
+                .spec(responseSpecStatusCode201)
+                .extract().as(CreateEventResponseModel.class);
+    }
 
+    @Step("Проверяем, что eventSessionId содержит не 1 символ и цифро-буквенные значения")
+    public void checkEventSessionId(CreateEventResponseModel response){
+        assertThat(response.getEventSessionId()).isAlphanumeric();
+        assertThat(response.getEventSessionId()).hasSizeGreaterThan(1);
+    }
+
+    @Step("Проверяем, что link содержит eventId и eventSessionId")
+    public void checkLinkContainsEventSessionId(CreateEventResponseModel responseEvent, CreateEventTemplateResponseModel responseTemplate){
+        assertThat(responseEvent.getLink()).contains("https://my.mts-link.ru/j/106104753/" + responseTemplate.getEventId()
+                + "/session/" +  responseEvent.getEventSessionId());
+    }
 }
