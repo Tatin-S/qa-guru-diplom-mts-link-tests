@@ -143,6 +143,7 @@ public class TestSteps {
     public GetEventResponseModel GetEvent (String eventSessionId){
         return given(requestSpecEvent)
                 .contentType("application/json")
+                .body("{}")
                 .when()
                 .get("/eventsessions/" + eventSessionId)
                 .then()
