@@ -164,6 +164,6 @@ public class TestSteps {
                 .when()
                 .delete("/eventsessions/" + eventSessionId)
                 .then()
-                .spec(responseSpecStatusCode200);
+                .spec(responseSpecStatusCode204);
     }
 }
