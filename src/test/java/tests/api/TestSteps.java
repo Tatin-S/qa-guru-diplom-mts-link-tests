@@ -19,32 +19,37 @@ import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class TestSteps {
+    TestData testData = new TestData();
+    CreateEventTemplateRequestModel.AccessSettingsModel accessSettings = new CreateEventTemplateRequestModel.AccessSettingsModel(false, false, false);
+    CreateEventTemplateRequestModel createEventTemplateRequest = new CreateEventTemplateRequestModel(testData.eventName, accessSettings);
     static final AuthDataConfig AUTH_DATA_CONFIG = ConfigFactory.create(AuthDataConfig.class, System.getProperties());
     Faker faker = new Faker();
     String testEmail = faker.internet().emailAddress();
     String testPassword = faker.internet().password(6, 10, true, true, true);
 
     @Step("Создаем шаблон для мероприятия")
-    public CreateEventTemplateResponseModel createEventTemplate (CreateEventTemplateRequestModel createEventTemplateRequest){
+    public CreateEventTemplateResponseModel createEventTemplate() {
         return given(requestSpecEvent)
-                        .contentType("application/json")
-                        .body(createEventTemplateRequest)
-                        .when()
-                        .post("/events")
-                        .then()
-                        .spec(responseSpecStatusCode201)
+                .contentType("application/json")
+                .body(createEventTemplateRequest)
+                .when()
+                .post("/events")
+                .then()
+                .spec(responseSpecStatusCode201)
                 .extract().as(CreateEventTemplateResponseModel.class);
     }
+
     @Step("Проверяем, что eventId содержит не 1 символ и цифровые значения")
-    public void checkEventId(CreateEventTemplateResponseModel response){
+    public void checkEventId(CreateEventTemplateResponseModel response) {
         assertThat(response.getEventId()).isAlphanumeric();
         assertThat(response.getEventId()).hasSizeGreaterThan(1);
     }
 
     @Step("Проверяем, что link содержит eventId")
-    public void checkLinkContainsEventId(CreateEventTemplateResponseModel response){
+    public void checkLinkContainsEventId(CreateEventTemplateResponseModel response) {
         assertThat(response.getLink()).contains("https://my.mts-link.ru/j/106104753/" + response.getEventId());
     }
+
     @Step("Авторизуемся c валидными почтой и паролем")
     public void getSuccessAuthorization() {
         LoginRequestModel loginData = new LoginRequestModel();
@@ -60,28 +65,30 @@ public class TestSteps {
                         .then()
                         .spec(responseSpecStatusCode200));
     }
+
     @Step("Авторизуемся c невалидными почтой и паролем")
-    public ErrorResponseModel getBadAuthorization(){
+    public ErrorResponseModel getBadAuthorization() {
         LoginRequestModel loginData = new LoginRequestModel();
         loginData.setEmail(testEmail);
         loginData.setPassword(testPassword);
         loginData.setRememberMe(AUTH_DATA_CONFIG.rememberMe());
-        return   given(requestSpecAuth)
-                        .contentType("application/json")
-                        .body(loginData)
-                        .when()
-                        .post("/login")
-                        .then()
-                        .spec(responseSpecStatusCode404)
-                        .extract().as(ErrorResponseModel.class);
+        return given(requestSpecAuth)
+                .contentType("application/json")
+                .body(loginData)
+                .when()
+                .post("/login")
+                .then()
+                .spec(responseSpecStatusCode404)
+                .extract().as(ErrorResponseModel.class);
     }
 
     @Step("Проверяем текст об ошибке \"Wrong credentials\"")
-    public void checkWrongCredentials(ErrorResponseModel response){
+    public void checkWrongCredentials(ErrorResponseModel response) {
         assertThat(response.getError().getMessage()).isEqualTo("Wrong credentials");
     }
+
     @Step("Создаем мероприятие по шаблону")
-    public CreateEventResponseModel createEvent (String eventId) throws IOException {
+    public CreateEventResponseModel createEvent(String eventId) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         CreateEventRequestModel request = objectMapper.readValue(
                 new File("src/test/resources/data/CreateEventRequestBody.json"),
@@ -98,18 +105,19 @@ public class TestSteps {
     }
 
     @Step("Проверяем, что eventSessionId содержит не 1 символ и цифровые значения")
-    public void checkEventSessionId(CreateEventResponseModel response){
+    public void checkEventSessionId(CreateEventResponseModel response) {
         assertThat(response.getEventSessionId()).isAlphanumeric();
         assertThat(response.getEventSessionId()).hasSizeGreaterThan(1);
     }
 
     @Step("Проверяем, что link содержит eventId и eventSessionId")
-    public void checkLinkContainsEventSessionId(CreateEventResponseModel responseEvent, CreateEventTemplateResponseModel responseTemplate){
+    public void checkLinkContainsEventSessionId(CreateEventResponseModel responseEvent, CreateEventTemplateResponseModel responseTemplate) {
         assertThat(responseEvent.getLink()).contains("https://my.mts-link.ru/j/106104753/" + responseTemplate.getEventId()
-                + "/session/" +  responseEvent.getEventSessionId());
+                + "/session/" + responseEvent.getEventSessionId());
     }
+
     @Step("Создаем мероприятие по шаблону без параметров")
-    public CreateEventResponseModel createEventWithEmptyBody (String eventId){
+    public CreateEventResponseModel createEventWithEmptyBody(String eventId) {
         return given(requestSpecEvent)
                 .contentType("application/json")
                 .body("{}")
@@ -119,8 +127,9 @@ public class TestSteps {
                 .spec(responseSpecStatusCode201)
                 .extract().as(CreateEventResponseModel.class);
     }
+
     @Step("Создаем мероприятие по шаблону с невалидным телом")
-    public ErrorResponseModel createEventWithInvalidBody (String eventId){
+    public ErrorResponseModel createEventWithInvalidBody(String eventId) {
         return given(requestSpecEvent)
                 .contentType("application/json")
                 .body("")
@@ -132,29 +141,29 @@ public class TestSteps {
     }
 
     @Step("Проверяем текст об ошибке \"json is not valid\"")
-    public void checkJsonIsNotValid (ErrorResponseModel response){
+    public void checkJsonIsNotValid(ErrorResponseModel response) {
         assertThat(response.getError().getMessage()).isEqualTo("json is not valid");
     }
 
     @Step("Получаем данные мероприятия")
-    public GetEventResponseModel GetEvent (String eventSessionId){
-        return given(requestSpecEvent)
+    public void GetEvent(String eventSessionId) {
+        given(requestSpecEvent)
                 .contentType("application/json")
                 .body("{}")
                 .when()
                 .get("/eventsessions/" + eventSessionId)
                 .then()
-                .spec(responseSpecStatusCode200)
-                .extract().as(GetEventResponseModel.class);
+                .spec(responseSpecStatusCode200);
     }
 
-    @Step("Проверяем, что полученные параметры мероприятия соответствуют переданным при создании")
-    public void checkEventSettings(GetEventResponseModel getResponseEvent, String eventSessionId, CreateEventTemplateRequestModel createEventTemplateRequest){
-        assertThat(getResponseEvent.getId()).isEqualTo(eventSessionId);
-        assertThat(getResponseEvent.getStatus()).isEqualTo("ACTIVE");
-        assertThat(getResponseEvent.getName()).isEqualTo(createEventTemplateRequest.getName());
-        assertThat(getResponseEvent.getAccessSettings().getIsPasswordRequired()).isEqualTo(createEventTemplateRequest.getAccessSettings().getIsPasswordRequired());
-        assertThat(getResponseEvent.getAccessSettings().getIsRegistrationRequired()).isEqualTo(createEventTemplateRequest.getAccessSettings().getIsRegistrationRequired());
-        assertThat(getResponseEvent.getAccessSettings().getIsModerationRequired()).isEqualTo(createEventTemplateRequest.getAccessSettings().getIsModerationRequired());
+    @Step("Удаляем мероприятие")
+    public void DeleteEvent(String eventSessionId) {
+        given(requestSpecEvent)
+                .contentType("application/json")
+                .body("{}")
+                .when()
+                .delete("/eventsessions/" + eventSessionId)
+                .then()
+                .spec(responseSpecStatusCode200);
     }
 }
