@@ -15,7 +15,7 @@ public interface ApiConfig extends Config {
     @DefaultValue("https://userapi.mts-link.ru")
     String baseURI();
 
-    @DefaultValue("/v3/events")
+    @DefaultValue("/v3")
     String basePath();
     @DefaultValue("https://my.mts-link.ru")
     String authBaseURI();

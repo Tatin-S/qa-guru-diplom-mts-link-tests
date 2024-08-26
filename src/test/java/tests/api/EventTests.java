@@ -3,6 +3,7 @@ package tests.api;
 import api.models.account.ErrorResponseModel;
 import api.models.event.CreateEventResponseModel;
 import api.models.event.CreateEventTemplateResponseModel;
+import api.models.event.GetEventResponseModel;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
@@ -26,7 +27,7 @@ public class EventTests extends TestBaseApi {
         testSteps.checkLinkContainsEventId(response);
     }*/
 
-    @Test
+/*    @Test
     @DisplayName("Создание мероприятия по шаблону")
     @Severity(SeverityLevel.BLOCKER)
     void createEventTest() throws IOException {
@@ -34,7 +35,7 @@ public class EventTests extends TestBaseApi {
         CreateEventResponseModel responseEvent = testSteps.createEvent(responseTemplate.getEventId());
         testSteps.checkEventSessionId(responseEvent);
         testSteps.checkLinkContainsEventSessionId(responseEvent, responseTemplate);
-    }
+    }*/
 
 /*    @Test
     @DisplayName("Создание мероприятия по шаблону без параметров")
@@ -54,4 +55,14 @@ public class EventTests extends TestBaseApi {
         ErrorResponseModel responseErrorEvent = testSteps.createEventWithInvalidBody(responseTemplate.getEventId());
         testSteps.checkJsonIsNotValid(responseErrorEvent);
     }*/
+
+    @Test
+    @DisplayName("Проверка параметров мероприятия")
+    @Severity(SeverityLevel.CRITICAL)
+    void createEventTest() throws IOException {
+        CreateEventTemplateResponseModel responseTemplate = testSteps.createEventTemplate();
+        CreateEventResponseModel responseEvent = testSteps.createEvent(responseTemplate.getEventId());
+        GetEventResponseModel getResponseEvent = testSteps.GetEvent(responseEvent.getEventSessionId());
+        testSteps.checkEventSettings(getResponseEvent, responseEvent.getEventSessionId());
+    }
 }

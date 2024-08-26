@@ -33,12 +33,12 @@ public class TestSteps {
                         .contentType("application/json")
                         .body(createEventTemplateRequest)
                         .when()
-                        .post("")
+                        .post("/events")
                         .then()
                         .spec(responseSpecStatusCode201)
                 .extract().as(CreateEventTemplateResponseModel.class);
     }
-    @Step("Проверяем, что eventId содержит не 1 символ и цифро-буквенные значения")
+    @Step("Проверяем, что eventId содержит не 1 символ и цифровые значения")
     public void checkEventId(CreateEventTemplateResponseModel response){
         assertThat(response.getEventId()).isAlphanumeric();
         assertThat(response.getEventId()).hasSizeGreaterThan(1);
@@ -94,13 +94,13 @@ public class TestSteps {
                 .contentType("application/json")
                 .body(request)
                 .when()
-                .post("/" + eventId + "/sessions")
+                .post("/events/" + eventId + "/sessions")
                 .then()
                 .spec(responseSpecStatusCode201)
                 .extract().as(CreateEventResponseModel.class);
     }
 
-    @Step("Проверяем, что eventSessionId содержит не 1 символ и цифро-буквенные значения")
+    @Step("Проверяем, что eventSessionId содержит не 1 символ и цифровые значения")
     public void checkEventSessionId(CreateEventResponseModel response){
         assertThat(response.getEventSessionId()).isAlphanumeric();
         assertThat(response.getEventSessionId()).hasSizeGreaterThan(1);
@@ -117,7 +117,7 @@ public class TestSteps {
                 .contentType("application/json")
                 .body("{}")
                 .when()
-                .post("/" + eventId + "/sessions")
+                .post("/events/" + eventId + "/sessions")
                 .then()
                 .spec(responseSpecStatusCode201)
                 .extract().as(CreateEventResponseModel.class);
@@ -128,7 +128,7 @@ public class TestSteps {
                 .contentType("application/json")
                 .body("")
                 .when()
-                .post("/" + eventId + "/sessions")
+                .post("/events/" + eventId + "/sessions")
                 .then()
                 .spec(responseSpecStatusCode400)
                 .extract().as(ErrorResponseModel.class);
@@ -137,5 +137,25 @@ public class TestSteps {
     @Step("Проверяем текст об ошибке \"json is not valid\"")
     public void checkJsonIsNotValid (ErrorResponseModel response){
         assertThat(response.getError().getMessage()).isEqualTo("json is not valid");
+    }
+
+    @Step("Получаем данные мероприятия")
+    public GetEventResponseModel GetEvent (String eventSessionId){
+        return given(requestSpecEvent)
+                .contentType("application/json")
+                .when()
+                .get("/eventsessions/" + eventSessionId)
+                .then()
+                .spec(responseSpecStatusCode200)
+                .extract().as(GetEventResponseModel.class);
+    }
+
+    @Step("Проверяем, что полученные параметры мероприятия соответствуют переданным при создании")
+    public void checkEventSettings(GetEventResponseModel getResponseEvent, String eventSessionId){
+        assertThat(getResponseEvent.getId()).isEqualTo(eventSessionId);
+        assertThat(getResponseEvent.getName()).isEqualTo(createEventTemplateRequest.getName());
+        assertThat(getResponseEvent.getAccessSettings().getIsPasswordRequired()).isEqualTo(createEventTemplateRequest.getAccessSettings().getIsPasswordRequired());
+        assertThat(getResponseEvent.getAccessSettings().getIsRegistrationRequired()).isEqualTo(createEventTemplateRequest.getAccessSettings().getIsRegistrationRequired());
+        assertThat(getResponseEvent.getAccessSettings().getIsModerationRequired()).isEqualTo(createEventTemplateRequest.getAccessSettings().getIsModerationRequired());
     }
 }
