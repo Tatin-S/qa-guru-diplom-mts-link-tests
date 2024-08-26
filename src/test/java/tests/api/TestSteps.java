@@ -85,14 +85,14 @@ public class TestSteps {
     }
     @Step("Создаем мероприятие по шаблону")
     public CreateEventResponseModel createEvent (String eventId) throws IOException {
-  /*      ObjectMapper objectMapper = new ObjectMapper();
-        CreateEventRequestModel[] request = objectMapper.readValue(
+        ObjectMapper objectMapper = new ObjectMapper();
+        CreateEventRequestModel request = objectMapper.readValue(
                 new File("src/test/resources/data/CreateEventRequestBody.json"),
-                CreateEventRequestModel[].class
-        );*/
+                CreateEventRequestModel.class
+        );
         return given(requestSpecEvent)
                 .contentType("application/json")
-                .body("{}")
+                .body(request)
                 .when()
                 .post("/" + eventId + "/sessions")
                 .then()

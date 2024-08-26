@@ -1,7 +1,21 @@
 {
-    "chat": {
-        "premoderation": false,
-        "show": true,
-        "showMiniChat": true
-    }
+  "description": "test",
+  "lang": "RU",
+  "timezoneId": 1,
+  "organizationId": 12604677,
+  "type": "webinar",
+  "chat": {
+    "show": true
+  },
+  "question": {
+    "show": true
+  },
+  "eventsession": {
+    "allowScreensharing": false
+  },
+  "conference": {
+    "show": true,
+    "mode": "webrtc",
+    "maxConferences": 30
+  }
 }

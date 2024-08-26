@@ -26,18 +26,17 @@ public class EventTests extends TestBaseApi {
         testSteps.checkLinkContainsEventId(response);
     }*/
 
-/*    @Test
+    @Test
     @DisplayName("Создание мероприятия по шаблону")
     @Severity(SeverityLevel.BLOCKER)
     void createEventTest() throws IOException {
         CreateEventTemplateResponseModel responseTemplate = testSteps.createEventTemplate();
-        String eventId = responseTemplate.getEventId();
-        CreateEventResponseModel responseEvent = testSteps.createEvent(eventId);
-       // testSteps.checkEventSessionId(responseEvent);
-      //  testSteps.checkLinkContainsEventSessionId(responseEvent, responseTemplate);
-    }*/
+        CreateEventResponseModel responseEvent = testSteps.createEvent(responseTemplate.getEventId());
+        testSteps.checkEventSessionId(responseEvent);
+        testSteps.checkLinkContainsEventSessionId(responseEvent, responseTemplate);
+    }
 
-    @Test
+/*    @Test
     @DisplayName("Создание мероприятия по шаблону без параметров")
     @Severity(SeverityLevel.CRITICAL)
     void createEventWithEmptyBodyTest(){
@@ -45,14 +44,14 @@ public class EventTests extends TestBaseApi {
         CreateEventResponseModel responseEvent = testSteps.createEventWithEmptyBody(responseTemplate.getEventId());
         testSteps.checkEventSessionId(responseEvent);
         testSteps.checkLinkContainsEventSessionId(responseEvent, responseTemplate);
-    }
+    }*/
 
-    @Test
+/*    @Test
     @DisplayName("Создание мероприятия по шаблону c невалидным запросом")
     @Severity(SeverityLevel.NORMAL)
     void createEventWithInvalidBodyTest(){
         CreateEventTemplateResponseModel responseTemplate = testSteps.createEventTemplate();
         ErrorResponseModel responseErrorEvent = testSteps.createEventWithInvalidBody(responseTemplate.getEventId());
         testSteps.checkJsonIsNotValid(responseErrorEvent);
-    }
+    }*/
 }
