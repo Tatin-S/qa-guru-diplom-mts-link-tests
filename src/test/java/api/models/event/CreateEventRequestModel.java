@@ -9,9 +9,9 @@ import java.util.Date;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CreateEventRequestModel {
     private Chat chat;
-    private Question question;
+/*    private Question question;
     private Eventsession eventsession;
-    private Conference conference;
+    private Conference conference;*/
 
     @Data
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -20,7 +20,7 @@ public class CreateEventRequestModel {
         private Boolean show;
         private Boolean showMiniChat;
     }
-
+/*
     @Data
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Question{
@@ -49,5 +49,5 @@ public class CreateEventRequestModel {
         private Boolean show;
         private String mode;
         private Integer maxConferences;
-    }
+    }*/
 }

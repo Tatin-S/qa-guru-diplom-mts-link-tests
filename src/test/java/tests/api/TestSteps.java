@@ -87,7 +87,7 @@ public class TestSteps {
     public CreateEventResponseModel createEvent (String eventId) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         CreateEventRequestModel[] request = objectMapper.readValue(
-                new File("src/test/resources/data/CreateEventRequestBody.json"),
+                new File("data/CreateEventRequestBody.json"),
                 CreateEventRequestModel[].class
         );
         return given(requestSpecEvent)
