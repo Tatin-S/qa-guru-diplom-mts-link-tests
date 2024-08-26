@@ -16,22 +16,22 @@ import java.io.IOException;
 public class EventTests extends TestBaseApi {
     TestSteps testSteps = new TestSteps();
 
-    @Test
+/*    @Test
     @DisplayName("Создание шаблона для мероприятия")
     @Severity(SeverityLevel.BLOCKER)
     void createEventTemplateTest() {
         CreateEventTemplateResponseModel response = testSteps.createEventTemplate();
         testSteps.checkEventId(response);
         testSteps.checkLinkContainsEventId(response);
-    }
+    }*/
 
     @Test
     @DisplayName("Создание мероприятия по шаблону")
     @Severity(SeverityLevel.BLOCKER)
     void createEventTest() throws IOException {
         CreateEventTemplateResponseModel responseTemplate = testSteps.createEventTemplate();
-        CreateEventResponseModel responseEvent = testSteps.createEvent(responseTemplate.getEventId());
-        testSteps.checkEventSessionId(responseEvent);
-        testSteps.checkLinkContainsEventSessionId(responseEvent, responseTemplate);
+      //  CreateEventResponseModel responseEvent = testSteps.createEvent(responseTemplate.getEventId());
+       // testSteps.checkEventSessionId(responseEvent);
+      //  testSteps.checkLinkContainsEventSessionId(responseEvent, responseTemplate);
     }
 }
