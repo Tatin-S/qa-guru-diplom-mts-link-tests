@@ -42,4 +42,9 @@ public class Specs {
             .expectStatusCode(404)
             .log(LogDetail.ALL)
             .build();
+
+    public static ResponseSpecification responseSpecStatusCode400 = new ResponseSpecBuilder()
+            .expectStatusCode(400)
+            .log(LogDetail.ALL)
+            .build();
 }

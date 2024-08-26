@@ -111,4 +111,31 @@ public class TestSteps {
         assertThat(responseEvent.getLink()).contains("https://my.mts-link.ru/j/106104753/" + responseTemplate.getEventId()
                 + "/session/" +  responseEvent.getEventSessionId());
     }
+    @Step("Создаем мероприятие по шаблону без параметров")
+    public CreateEventResponseModel createEventWithEmptyBody (String eventId){
+        return given(requestSpecEvent)
+                .contentType("application/json")
+                .body("{}")
+                .when()
+                .post("/" + eventId + "/sessions")
+                .then()
+                .spec(responseSpecStatusCode201)
+                .extract().as(CreateEventResponseModel.class);
+    }
+    @Step("Создаем мероприятие по шаблону с невалидным телом")
+    public ErrorResponseModel createEventWithInvalidBody (String eventId){
+        return given(requestSpecEvent)
+                .contentType("application/json")
+                .body("")
+                .when()
+                .post("/" + eventId + "/sessions")
+                .then()
+                .spec(responseSpecStatusCode400)
+                .extract().as(ErrorResponseModel.class);
+    }
+
+    @Step("Проверяем текст об ошибке \"json is not valid\"")
+    public void checkJsonIsNotValid (ErrorResponseModel response){
+        assertThat(response.getError().getMessage()).isEqualTo("json is not valid");
+    }
 }
