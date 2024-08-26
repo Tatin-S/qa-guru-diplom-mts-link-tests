@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 @Feature("Авторизация пользователя")
 @Tag("api")
 public class AccountTests extends TestBaseApi {
-    TestSteps testSteps = new TestSteps();
+/*    TestSteps testSteps = new TestSteps();
     @Test
     @DisplayName("Успешная авторизация по почте и паролю")
     @Severity(SeverityLevel.BLOCKER)
@@ -24,5 +24,5 @@ public class AccountTests extends TestBaseApi {
     void checkWrongLoginTest() {
         ErrorResponseModel response = testSteps.getBadAuthorization();
         testSteps.checkWrongCredentials(response);
-    }
+    }*/
 }

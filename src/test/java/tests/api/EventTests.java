@@ -30,7 +30,8 @@ public class EventTests extends TestBaseApi {
     @Severity(SeverityLevel.BLOCKER)
     void createEventTest() throws IOException {
         CreateEventTemplateResponseModel responseTemplate = testSteps.createEventTemplate();
-      //  CreateEventResponseModel responseEvent = testSteps.createEvent(responseTemplate.getEventId());
+        String eventId = responseTemplate.getEventId();
+        CreateEventResponseModel responseEvent = testSteps.createEvent(eventId);
        // testSteps.checkEventSessionId(responseEvent);
       //  testSteps.checkLinkContainsEventSessionId(responseEvent, responseTemplate);
     }
