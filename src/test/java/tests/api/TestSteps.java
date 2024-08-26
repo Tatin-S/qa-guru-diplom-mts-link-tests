@@ -92,7 +92,7 @@ public class TestSteps {
         );*/
         return given(requestSpecEvent)
                 .contentType("application/json")
-                .body("")
+                //.body("")
                 .when()
                 .post("/" + eventId + "/sessions")
                 .then()
