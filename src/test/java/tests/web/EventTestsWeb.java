@@ -16,12 +16,12 @@ import static com.codeborne.selenide.Selenide.sleep;
 @Feature("Мероприятие")
 public class EventTestsWeb extends TestBaseWeb {
     TestData testData = new TestData();
-  //  @WithLogin
+    @WithLogin
     @Test
     @DisplayName("Создание быстрой встречи")
     @Severity(SeverityLevel.BLOCKER)
     void createFastMeetingTest() {
-        authorizationPage.openPage().setEmail().setPassword().clickSubmit();
+       // authorizationPage.openPage().setEmail().setPassword().clickSubmit();
         eventPage.clickStartFastMeetingButton()
                 .clickJoinMeetingButton()
                 .checkVCSVisible();

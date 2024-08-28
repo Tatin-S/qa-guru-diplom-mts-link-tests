@@ -50,4 +50,8 @@ public class Specs {
             .expectStatusCode(204)
             .log(LogDetail.ALL)
             .build();
+
+    public static RequestSpecification requestSpec = with()
+            .log().all()
+            .filter(withCustomTemplates());
 }

@@ -13,18 +13,20 @@ public class AuthorizationApi {
     static final AuthDataConfig AUTH_DATA_CONFIG = ConfigFactory.create(AuthDataConfig.class, System.getProperties());
 
     @Step("Авторизация на сайте")
-    public static void getSuccessfulAuthorization() {
+    public String getSessionId(LoginRequestModel loginRequest) {
         LoginRequestModel loginData = new LoginRequestModel();
         loginData.setEmail(AUTH_DATA_CONFIG.email());
         loginData.setPassword(AUTH_DATA_CONFIG.password());
         loginData.setRememberMe(AUTH_DATA_CONFIG.rememberMe());
-        step("Авторизуемся по почте и паролю", () ->
-                given(requestSpecAuth)
-                        .contentType("application/json")
-                        .body(loginData)
-                        .when()
-                        .post("/login")
-                        .then()
-                        .spec(responseSpecStatusCode200));
+        return given(requestSpec)
+                .contentType("application/x-www-form-urlencoded; charset=utf-8")
+                .body(loginData)
+                .when()
+                .post("/login")
+                .then()
+                .spec(responseSpecStatusCode200)
+                .extract().cookie("sessionId");
     }
+
+
 }
