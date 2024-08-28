@@ -121,17 +121,17 @@ public class EventPage {
         return this;
     }
 
-    @Step("Нажимаем кнопку Удалить")
+    @Step("Нажимаем кнопку Удалить мероприятие")
     public EventPage clickDeleteButton() {
         deleteButton.click();
         return this;
     }
 
-    @Step("Нажимаем кнопку меню на странице редактирования мероприятия")
+/*    @Step("Нажимаем кнопку меню на странице редактирования мероприятия")
     public EventPage clickEditorTopbarMenuButton() {
         meetingsEditorTopbarMenu.click();
         return this;
-    }
+    }*/
 
     @Step("Нажимаем кнопку Удалить встречу")
     public EventPage clickDeleteMeetingButton() {
