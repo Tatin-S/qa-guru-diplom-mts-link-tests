@@ -11,6 +11,8 @@ import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selenide.back;
 import static com.codeborne.selenide.Selenide.sleep;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static common.helpers.ConverterUrl.getEventSessionIdFromUrl;
 
 @Tag("web")
 @Feature("Мероприятие")
@@ -21,11 +23,11 @@ public class EventTestsWeb extends TestBaseWeb {
     @DisplayName("Создание быстрой встречи")
     @Severity(SeverityLevel.BLOCKER)
     void createFastMeetingTest() {
-       // authorizationPage.openPage().setEmail().setPassword().clickSubmit();
         eventPage.openPage()
                 .clickStartFastMeetingButton()
                 .clickJoinMeetingButton()
                 .checkVCSVisible();
+        testSteps.DeleteEvent(getEventSessionIdFromUrl(getWebDriver().getCurrentUrl()));
     }
 /*
     @Test
