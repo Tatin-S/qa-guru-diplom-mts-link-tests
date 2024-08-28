@@ -22,7 +22,7 @@ import static common.helpers.ConverterUrl.getEventSessionIdFromUrl;
 public class EventTestsWeb extends TestBaseWeb {
     TestData testData = new TestData();
 
-    @WithLogin
+  //  @WithLogin
     @Test
     @DisplayName("Создание быстрой встречи")
     @Severity(SeverityLevel.BLOCKER)
