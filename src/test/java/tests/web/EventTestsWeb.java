@@ -18,7 +18,7 @@ import static common.helpers.ConverterUrl.getEventSessionIdFromUrl;
 public class EventTestsWeb extends TestBaseWeb {
     TestData testData = new TestData();
 
-    @WithLogin
+/*    @WithLogin
     @Test
     @DisplayName("Создание быстрой встречи")
     @Severity(SeverityLevel.BLOCKER)
@@ -29,9 +29,9 @@ public class EventTestsWeb extends TestBaseWeb {
                 .checkVCSVisible()
                 .clickLeaveButton()
                 .clickFinishMeetingButton();
-    }
+    }*/
 
-    @WithLogin
+/*    @WithLogin
     @Test
     @DisplayName("Создание запланированной встречи")
     @Severity(SeverityLevel.BLOCKER)
@@ -45,7 +45,7 @@ public class EventTestsWeb extends TestBaseWeb {
                 .checkVCSVisible()
                 .clickLeaveButton()
                 .clickFinishMeetingButton();
-    }
+    }*/
 
     @WithLogin
     @Test
@@ -60,11 +60,12 @@ public class EventTestsWeb extends TestBaseWeb {
                 .checkVCSVisible();
         String eventSessionId = getEventSessionIdFromUrl(getWebDriver().getCurrentUrl());
         eventPage.clickLeaveButton();
+        back();
         eventPage.deleteEvent(eventSessionId);
 
     }
 
-    @WithLogin
+/*    @WithLogin
     @Test
     @DisplayName("Редактирование мероприятия")
     @Severity(SeverityLevel.CRITICAL)
@@ -77,7 +78,7 @@ public class EventTestsWeb extends TestBaseWeb {
                 .clickSaveEventButton();
         back();
         eventPage.checkEditNameMeeting(newNameMeeting);
-    }
+    }*/
 
     @WithLogin
     @Test

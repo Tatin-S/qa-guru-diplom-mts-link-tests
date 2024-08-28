@@ -32,8 +32,8 @@ public class EventPage {
             meetingsEditorTopbarMenu = $(byAttribute("data-testid", "MeetingsEditor.Topbar.menu")),
             leaveButton = $(byAttribute("data-testid", "LeaveButtonDropdown.LeaveButton.Button")),
             finishMeetingButton = $(byAttribute("data-testid", "LeaveButton.FinishMeeting")),
-            deleteButton = $(byText("Удалить")),
-            deleteMeetingButton = $(byText("Удалить встречу"));
+            deleteButton = $(byText("Удалить мероприятие")),
+            deleteMeetingButton = $(byText("Удалить мероприятие"));
     TestSteps testSteps = new TestSteps();
 
     @Step("Открываем страницу")
@@ -62,7 +62,7 @@ public class EventPage {
 
     @Step("Открываем мероприятие по названию в списке запланированных")
     public EventPage openNameEvent(String eventName) {
-        $$(byText(eventName)).last().click();
+        $$(byText(eventName)).first().click();
         return this;
     }
 
