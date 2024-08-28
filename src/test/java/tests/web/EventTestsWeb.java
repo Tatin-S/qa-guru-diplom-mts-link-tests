@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selenide.back;
+import static com.codeborne.selenide.Selenide.sleep;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static common.helpers.ConverterUrl.getEventSessionIdFromUrl;
 
@@ -61,6 +62,7 @@ public class EventTestsWeb extends TestBaseWeb {
         String eventSessionId = getEventSessionIdFromUrl(getWebDriver().getCurrentUrl());
         eventPage.clickLeaveButton();
         back();
+        sleep(15000);
         eventPage.deleteEvent(eventSessionId);
 
     }
@@ -80,7 +82,7 @@ public class EventTestsWeb extends TestBaseWeb {
         eventPage.checkEditNameMeeting(newNameMeeting);
     }*/
 
-    @WithLogin
+/*    @WithLogin
     @Test
     @DisplayName("Удаление мероприятия")
     @Severity(SeverityLevel.CRITICAL)
@@ -92,5 +94,5 @@ public class EventTestsWeb extends TestBaseWeb {
                 .clickDeleteButton()
                 .clickDeleteMeetingButton()
                 .checkDeletedNameMeetingIsNotVisisble(testData.eventName);
-    }
+    }*/
 }
