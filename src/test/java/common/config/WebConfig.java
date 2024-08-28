@@ -2,9 +2,9 @@ package common.config;
 
 import org.aeonbits.owner.Config;
 
-/*@Config.Sources({
-        "classpath:config/${env}.properties"
-})*/
+@Config.Sources({
+        "system.properties"
+})
 public interface WebConfig extends Config {
     @DefaultValue("https://my.mts-link.ru")
     String baseUrl();
