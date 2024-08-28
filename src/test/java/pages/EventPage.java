@@ -25,12 +25,12 @@ public class EventPage {
             goToEventButton = $(byAttribute("data-testid", "MeetingsEditor.Topbar.goToEvent")),
             startMeetingButton = $(byText("Начать встречу")),
             nameMeetingInput = $(byAttribute("data-testid", "MeetingsEditor.Hero.Body.Title.textarea")),
-            dateMeetingInput = $(byAttribute("data-testid", "Meetings.Editor.SettingsSidebar.Date.date")),
-            timeMeetingInput = $(byAttribute("data-testid", "Meetings.Editor.SettingsSidebar.Date.time")),
             saveEventButton = $(byAttribute("data-testid", "MeetingsEditor.Topbar.saveEvent")),
             joinMeetingButton = $(byText("Присоединиться к встрече")),
             vcs = $(byAttribute("data-testid", "Stream.Vcs.MyConference")),
             meetingsEditorTopbarMenu = $(byAttribute("data-testid", "MeetingsEditor.Topbar.menu")),
+            leaveButton = $(byAttribute("data-testid", "LeaveButtonDropdown.LeaveButton.Button")),
+            finishMeetingButton = $(byAttribute("data-testid", "LeaveButton.FinishMeeting")),
             deleteButton = $(byText("Удалить")),
             deleteMeetingButton = $(byText("Удалить встречу"));
 
@@ -139,6 +139,19 @@ public class EventPage {
 
     @Step("Удаляем встречу с помощью API")
     public void deleteEvent(String EventSessionId) {
+
         testSteps.DeleteEvent(EventSessionId);
     }
+    @Step("Нажимаем кнопку Завершить встречу")
+    public EventPage clickLeaveButton() {
+        leaveButton.click();
+        return this;
+    }
+
+    @Step("Нажимаем кнопку Завершить встречу")
+    public EventPage clickFinishMeetingButton() {
+        finishMeetingButton.click();
+        return this;
+    }
+
 }

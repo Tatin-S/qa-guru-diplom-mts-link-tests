@@ -26,6 +26,8 @@ public class EventTestsWeb extends TestBaseWeb {
                 .clickStartFastMeetingButton()
                 .clickJoinMeetingButton()
                 .checkVCSVisible()
+                .clickLeaveButton()
+                .clickFinishMeetingButton()
                 .deleteEvent(getEventSessionIdFromUrl(getWebDriver().getCurrentUrl()));
     }
 /*
