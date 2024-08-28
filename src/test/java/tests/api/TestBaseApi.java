@@ -8,12 +8,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
 public class TestBaseApi {
-  //  static final ApiConfig apiConfig = ConfigFactory.create(ApiConfig.class, System.getProperties());
-/*    @BeforeAll
-    public static void beforeAll() {
-        RestAssured.baseURI = "https://userapi.mts-link.ru/v3";
-     //   RestAssured.basePath = apiConfig.basePath();
-    }*/
+    TestSteps testSteps = new TestSteps();
 
     @BeforeEach
     void setUp() {
