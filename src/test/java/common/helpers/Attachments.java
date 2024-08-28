@@ -1,11 +1,15 @@
 package common.helpers;
 
 import com.codeborne.selenide.Selenide;
+import common.config.WebConfig;
 import io.qameta.allure.Attachment;
+import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
@@ -14,6 +18,8 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static org.openqa.selenium.logging.LogType.BROWSER;
 
 public class Attachments {
+    static final WebConfig config = ConfigFactory.create(WebConfig.class, System.getProperties());
+
     @Attachment(value = "{attachName}", type = "image/png")
     public static byte[] screenshotAs(String attachName) {
         return ((TakesScreenshot) getWebDriver()).getScreenshotAs(OutputType.BYTES);
@@ -44,11 +50,13 @@ public class Attachments {
     }
 
     public static URL getVideoUrl() {
-        String videoUrl = "https://" + System.getProperty("selenoid","selenoid.autotests.cloud")+"/video/" + sessionId() + ".mp4";
-        try {
-            return new URL(videoUrl);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
+        if (config.isRemote()) {
+            String videoUrl = "https://" + config.remoteUrl() + "/video/" + sessionId() + ".mp4";
+            try {
+                return new URI(videoUrl).toURL();
+            } catch (MalformedURLException | URISyntaxException e) {
+                throw new RuntimeException(e);
+            }
         }
         return null;
     }

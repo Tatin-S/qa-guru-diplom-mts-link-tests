@@ -27,9 +27,10 @@ public class TestBaseWeb {
         AuthDataConfig authConfig = ConfigFactory.create(AuthDataConfig.class, System.getProperties());
         WebConfig webConfig = ConfigFactory.create(WebConfig.class, System.getProperties());
         SelenideLogger.addListener("allure", new AllureSelenide());
-        Configuration.baseUrl = "https://my.mts-link.ru";
+        Configuration.baseUrl = webConfig.baseUrl();
         Configuration.browser = webConfig.browser();
         Configuration.browserSize = webConfig.browserSize();
+        Configuration.browserVersion = webConfig.browserVersion();
         Configuration.pageLoadStrategy = "eager";
         Configuration.timeout = 15000;
 
@@ -37,10 +38,14 @@ public class TestBaseWeb {
         options.addArguments("use-fake-device-for-media-stream");
         options.addArguments("use-fake-ui-for-media-stream");
 
-        if (System.getProperty("browserHost", "selenoid").equals("selenoid")) {
-            Configuration.browserVersion = webConfig.browserVersion();
-            Configuration.remote = authConfig.selenoidUrl();
+        if (webConfig.isRemote()) {
+            Configuration.remote = "https://" + webConfig.selenoidUser() + ":"
+                    + webConfig.selenoidPass() +
+                    "@" + webConfig.remoteUrl()
+                    + "/wd/hub";
+        }
 
+            Configuration.pageLoadStrategy = "eager";
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setCapability(ChromeOptions.CAPABILITY, options);
             Configuration.browserCapabilities = capabilities;
@@ -49,7 +54,6 @@ public class TestBaseWeb {
                     "enableVideo", true
             ));
             Configuration.browserCapabilities = capabilities;
-        }
     }
 
     @BeforeEach
@@ -62,9 +66,7 @@ public class TestBaseWeb {
         Attachments.screenshotAs("Last screenshot");
         Attachments.pageSource();
         Attachments.browserConsoleLogs();
-        if (System.getProperty("browserHost", "selenoid").equals("selenoid")) {
-            Attachments.addVideo();
-        }
+        Attachments.addVideo();
         Selenide.closeWebDriver();
     }
 }

@@ -2,9 +2,13 @@ package common.config;
 
 import org.aeonbits.owner.Config;
 
-/*@Config.Sources({
-        "system.properties"
-})*/
+@Config.LoadPolicy(Config.LoadType.MERGE)
+@Config.Sources({
+        "system:properties",
+        "classpath:config/${env}.properties",
+        "file:~/${env}.properties",
+        "file:./${env}.properties"
+})
 public interface WebConfig extends Config {
     @DefaultValue("https://my.mts-link.ru")
     String baseUrl();
@@ -17,4 +21,13 @@ public interface WebConfig extends Config {
 
     @DefaultValue("1920x1080")
     String browserSize();
+
+    @DefaultValue("false")
+    boolean isRemote();
+
+    String selenoidUser();
+
+    String selenoidPass();
+
+    String remoteUrl();
 }
