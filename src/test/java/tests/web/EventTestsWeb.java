@@ -88,7 +88,7 @@ public class EventTestsWeb extends TestBaseWeb {
         eventPage.createEventApi(testData.eventName)
                 .openPage()
                 .openNameEvent(testData.eventName)
-                .clickEditorTopbarMenuButton()
+                //.clickEditorTopbarMenuButton()
                 .clickDeleteButton()
                 .clickDeleteMeetingButton()
                 .checkDeletedNameMeetingIsNotVisisble(testData.eventName);
