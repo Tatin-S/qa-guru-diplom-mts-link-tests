@@ -9,6 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+import static com.codeborne.selenide.Selenide.back;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static common.helpers.ConverterUrl.getEventSessionIdFromUrl;
 
@@ -27,8 +28,9 @@ public class EventTestsWeb extends TestBaseWeb {
                 .clickJoinMeetingButton()
                 .checkVCSVisible()
                 .clickLeaveButton()
-                .clickFinishMeetingButton()
-                .deleteEvent(getEventSessionIdFromUrl(getWebDriver().getCurrentUrl()));
+                .clickFinishMeetingButton();
+        back();
+        eventPage.deleteEvent(getEventSessionIdFromUrl(getWebDriver().getCurrentUrl()));
     }
 /*
     @Test

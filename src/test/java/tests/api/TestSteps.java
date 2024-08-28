@@ -79,7 +79,7 @@ public class TestSteps {
                 .extract().as(ErrorResponseModel.class);
     }
 
-    @Step("Проверяем текст об ошибке \"Wrong credentials\"")
+    @Step("Проверяем текст об ошибке Wrong credentials")
     public void checkWrongCredentials(ErrorResponseModel response) {
         assertThat(response.getError().getMessage()).isEqualTo("Wrong credentials");
     }

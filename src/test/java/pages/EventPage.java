@@ -16,7 +16,6 @@ import static com.codeborne.selenide.Selenide.open;
 @Feature("Мероприятие")
 @Tag("web")
 public class EventPage {
-    TestSteps testSteps = new TestSteps();
     private final SelenideElement
             startFastMeetingButton = $(byAttribute("data-testid", "Meetings.Toolbar.startMeeting")),
             scheduleButton = $(byAttribute("data-testid", "Meetings.Toolbar.schedule")),
@@ -33,6 +32,7 @@ public class EventPage {
             finishMeetingButton = $(byAttribute("data-testid", "LeaveButton.FinishMeeting")),
             deleteButton = $(byText("Удалить")),
             deleteMeetingButton = $(byText("Удалить встречу"));
+    TestSteps testSteps = new TestSteps();
 
     @Step("Открываем страницу")
     public EventPage openPage() {
@@ -139,16 +139,16 @@ public class EventPage {
 
     @Step("Удаляем встречу с помощью API")
     public void deleteEvent(String EventSessionId) {
-
         testSteps.DeleteEvent(EventSessionId);
     }
+
     @Step("Нажимаем кнопку Завершить встречу")
     public EventPage clickLeaveButton() {
         leaveButton.click();
         return this;
     }
 
-    @Step("Нажимаем кнопку Завершить встречу")
+    @Step("Нажимаем кнопку Завершить встречу для всех")
     public EventPage clickFinishMeetingButton() {
         finishMeetingButton.click();
         return this;
