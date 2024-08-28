@@ -21,7 +21,7 @@ public class EventTestsWeb extends TestBaseWeb {
     @DisplayName("Создание быстрой встречи")
     @Severity(SeverityLevel.BLOCKER)
     void createFastMeetingTest() {
-        authorizationPage.setEmail().setPassword();
+        authorizationPage.openPage().setEmail().setPassword();
         eventPage.clickStartFastMeetingButton()
                 .clickJoinMeetingButton()
                 .checkVCSVisible();
