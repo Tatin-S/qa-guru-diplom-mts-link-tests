@@ -29,74 +29,68 @@ public class EventTestsWeb extends TestBaseWeb {
                 .checkVCSVisible()
                 .clickLeaveButton()
                 .clickFinishMeetingButton();
-        String eventSessionId = getEventSessionIdFromUrl(getWebDriver().getCurrentUrl());
-        back();
-        eventPage.deleteEvent(eventSessionId);
     }
-/*
+
+    @WithLogin
     @Test
     @DisplayName("Создание запланированной встречи")
     @Severity(SeverityLevel.BLOCKER)
     void createScheduleMeetingTest() {
-        authorizationPage.openPage()
-                .setEmail()
-                .setPassword()
-                .clickSubmit();
         eventPage.openPage()
                 .clickScheduleButton()
                 .clickScheduleMeetingButton()
                 .clickGoToEventButton()
                 .clickStartMeetingButton()
                 .clickJoinMeetingButton()
-                .checkVCSVisible();
+                .checkVCSVisible()
+                .clickLeaveButton()
+                .clickFinishMeetingButton();
     }
 
+    @WithLogin
     @Test
     @DisplayName("Создание постоянной встречи")
     @Severity(SeverityLevel.BLOCKER)
     void createRegularMeetingTest() {
-        authorizationPage.openPage()
-                .setEmail()
-                .setPassword()
-                .clickSubmit();
         eventPage.openPage()
                 .clickScheduleButton()
                 .clickScheduleEndlessMeetingButton()
                 .clickGoToEventButton()
                 .clickJoinMeetingButton()
                 .checkVCSVisible();
+        String eventSessionId = getEventSessionIdFromUrl(getWebDriver().getCurrentUrl());
+        eventPage.clickLeaveButton()
+                .clickFinishMeetingButton();
+        eventPage.deleteEvent(eventSessionId);
+
     }
 
+    @WithLogin
     @Test
     @DisplayName("Редактирование мероприятия")
     @Severity(SeverityLevel.CRITICAL)
     void editMeetingTest() {
         String newNameMeeting = "test edit name";
-        authorizationPage.openPage()
-                .setEmail()
-                .setPassword()
-                .clickSubmit();
-        eventPage.openPage()
-                .openNameEvent("Новое мероприятие сегодня")
+        eventPage.createEventApi(testData.eventName)
+                .openPage()
+                .openNameEvent(testData.eventName)
                 .editNameMeeting(newNameMeeting)
                 .clickSaveEventButton();
         back();
         eventPage.checkEditNameMeeting(newNameMeeting);
     }
 
+    @WithLogin
     @Test
     @DisplayName("Удаление мероприятия")
     @Severity(SeverityLevel.CRITICAL)
     void deleteMeetingTest() {
-        authorizationPage.openPage()
-                .setEmail()
-                .setPassword()
-                .clickSubmit();
-        eventPage.openPage()
-                .openNameEvent("Новое мероприятие сегодня")
+        eventPage.createEventApi(testData.eventName)
+                .openPage()
+                .openNameEvent(testData.eventName)
                 .clickEditorTopbarMenuButton()
                 .clickDeleteButton()
                 .clickDeleteMeetingButton()
-                .checkDeletedNameMeetingIsNotVisisble("Новое мероприятие сегодня");
-    }*/
+                .checkDeletedNameMeetingIsNotVisisble(testData.eventName);
+    }
 }

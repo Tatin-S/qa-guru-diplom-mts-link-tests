@@ -1,5 +1,8 @@
 package pages;
 
+import api.models.event.CreateEventResponseModel;
+import api.models.event.CreateEventTemplateRequestModel;
+import api.models.event.CreateEventTemplateResponseModel;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Feature;
@@ -140,6 +143,15 @@ public class EventPage {
     @Step("Удаляем встречу с помощью API")
     public void deleteEvent(String EventSessionId) {
         testSteps.DeleteEvent(EventSessionId);
+    }
+
+    @Step("Создаем встречу с помощью API")
+    public EventPage createEventApi(String nameEvent) {
+        CreateEventTemplateRequestModel.AccessSettingsModel accessSettings = new CreateEventTemplateRequestModel.AccessSettingsModel(false, false, false);
+        CreateEventTemplateRequestModel createEventTemplateRequest = new CreateEventTemplateRequestModel(nameEvent, accessSettings);
+        CreateEventTemplateResponseModel responseTemplate = testSteps.createEventTemplate(createEventTemplateRequest);
+        testSteps.createEventWithEmptyBody(responseTemplate.getEventId());
+        return this;
     }
 
     @Step("Нажимаем кнопку Завершить встречу")
