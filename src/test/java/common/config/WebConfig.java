@@ -2,7 +2,7 @@ package common.config;
 
 import org.aeonbits.owner.Config;
 
-@Config.LoadPolicy(Config.LoadType.MERGE)
+@Config.LoadPolicy(Config.LoadType.FIRST)
 @Config.Sources({
         "system:properties",
         "classpath:config/${env}.properties",
