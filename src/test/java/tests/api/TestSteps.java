@@ -167,7 +167,7 @@ public class TestSteps {
     @Step("Изменяем статус мероприятия")
     public void editEvent(String eventSessionId) {
         EditEventRequestModel editEventRequestModel = new EditEventRequestModel();
-        editEventRequestModel.setStatus("STOP");
+        editEventRequestModel.setStatus("IDLE");
         given(requestSpecEvent)
                 .contentType("application/json")
                 .body(editEventRequestModel)
