@@ -13,8 +13,7 @@ import tests.api.TestSteps;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.*;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 @Feature("Мероприятие")
 @Tag("web")
@@ -63,19 +62,19 @@ public class EventPage {
 
     @Step("Открываем мероприятие по названию в списке запланированных")
     public EventPage openNameEvent(String eventName) {
-        $(byText(eventName)).click();
+        $$(byText(eventName)).last().click();
         return this;
     }
 
     @Step("Проверяем, что изменилось название мероприятия в списке запланированных")
     public EventPage checkEditNameMeeting(String newNameMeeting) {
-        $(".MuiList-root", 0).$$("li").findBy(Condition.text(newNameMeeting)).shouldBe(visible);
+        $$(byText(newNameMeeting)).last().shouldBe(visible);
         return this;
     }
 
     @Step("Проверяем, что удаленное мероприятие не отображается в списке запланированных")
     public EventPage checkDeletedNameMeetingIsNotVisisble(String newNameMeeting) {
-        $(".MuiList-root", 0).$$("li").findBy(Condition.text(newNameMeeting)).shouldNotBe(visible);
+        $$(byText(newNameMeeting)).last().shouldNotBe(visible);
         return this;
     }
 
