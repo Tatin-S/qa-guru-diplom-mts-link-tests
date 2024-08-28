@@ -27,7 +27,7 @@ public class TestBaseWeb {
         AuthDataConfig authConfig = ConfigFactory.create(AuthDataConfig.class, System.getProperties());
         WebConfig webConfig = ConfigFactory.create(WebConfig.class, System.getProperties());
         SelenideLogger.addListener("allure", new AllureSelenide());
-        Configuration.baseUrl = "https://my.mts-link.ru";
+        Configuration.baseUrl = webConfig.baseUrl();
         Configuration.browser = webConfig.browser();
         Configuration.browserSize = webConfig.browserSize();
         Configuration.pageLoadStrategy = "eager";
@@ -37,9 +37,9 @@ public class TestBaseWeb {
         options.addArguments("use-fake-device-for-media-stream");
         options.addArguments("use-fake-ui-for-media-stream");
 
-       // if (System.getProperty("browserHost", "selenoid").equals("selenoid")) {
+        if (System.getProperty("browserHost", "selenoid").equals("selenoid")) {
             Configuration.browserVersion = webConfig.browserVersion();
-            Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+            Configuration.remote = authConfig.selenoidUrl();
 
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setCapability(ChromeOptions.CAPABILITY, options);
@@ -49,7 +49,7 @@ public class TestBaseWeb {
                     "enableVideo", true
             ));
             Configuration.browserCapabilities = capabilities;
-       // }
+        }
     }
 
     @BeforeEach

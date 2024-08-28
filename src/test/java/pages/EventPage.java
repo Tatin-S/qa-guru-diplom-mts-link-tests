@@ -30,11 +30,11 @@ public class EventPage {
             meetingsEditorTopbarMenu = $(byAttribute("data-testid", "MeetingsEditor.Topbar.menu")),
             leaveButton = $(byAttribute("data-testid", "LeaveButtonDropdown.LeaveButton.Button")),
             finishMeetingButton = $(byAttribute("data-testid", "LeaveButton.FinishMeeting")),
-            deleteButton = $(byText("Удалить мероприятие")),
-            deleteMeetingButton = $(byText("Удалить мероприятие")),
-            endlessMeetingCardMenu = $(byAttribute("data-testid", "EndlessMeetingCard.menu")),
-            deleteEndlessMeetingButton = $(byAttribute("data-testid", "EndlessMeetingCard.menu.delete")),
-            deleteEndlessMeetingButtonInWindow = $(byText("Удалить"));
+            deleteButton = $(byText("Удалить")),
+            deleteMeetingButton = $(byText("Удалить встречу"));
+          //  endlessMeetingCardMenu = $(byAttribute("data-testid", "EndlessMeetingCard.menu")),
+          //  deleteEndlessMeetingButton = $(byAttribute("data-testid", "EndlessMeetingCard.menu.delete")),
+         //   deleteEndlessMeetingButtonInWindow = $(byText("Удалить"));
     TestSteps testSteps = new TestSteps();
 
     @Step("Открываем страницу")
@@ -69,13 +69,13 @@ public class EventPage {
 
     @Step("Проверяем, что изменилось название мероприятия в списке запланированных")
     public EventPage checkEditNameMeeting(String newNameMeeting) {
-        $$(byText(newNameMeeting)).last().shouldBe(visible);
+        $$(byText(newNameMeeting)).first().shouldBe(visible);
         return this;
     }
 
     @Step("Проверяем, что удаленное мероприятие не отображается в списке запланированных")
     public EventPage checkDeletedNameMeetingIsNotVisisble(String newNameMeeting) {
-        $$(byText(newNameMeeting)).last().shouldNotBe(visible);
+        $$(byText(newNameMeeting)).first().shouldNotBe(visible);
         return this;
     }
 
@@ -122,18 +122,18 @@ public class EventPage {
         return this;
     }
 
-    @Step("Нажимаем кнопку Удалить мероприятие")
+    @Step("Нажимаем кнопку Удалить")
     public EventPage clickDeleteButton() {
         deleteButton.click();
         return this;
     }
-
+/*
     @Step("Нажимаем кнопку меню мероприятия")
     public EventPage clickEndlessMeetingCardMenu() {
         endlessMeetingCardMenu.click();
         return this;
-    }
-
+    }*/
+/*
     @Step("Нажимаем кнопку Удалить в меню")
     public EventPage clickEndlessMeetingButton() {
         deleteEndlessMeetingButton.click();
@@ -144,13 +144,13 @@ public class EventPage {
     public EventPage clickEndlessMeetingButtonInWindow() {
         deleteEndlessMeetingButtonInWindow.click();
         return this;
-    }
+    }*/
 
-/*    @Step("Нажимаем кнопку меню на странице редактирования мероприятия")
+    @Step("Нажимаем кнопку меню на странице редактирования мероприятия")
     public EventPage clickEditorTopbarMenuButton() {
         meetingsEditorTopbarMenu.click();
         return this;
-    }*/
+    }
 
     @Step("Нажимаем кнопку Удалить встречу")
     public EventPage clickDeleteMeetingButton() {
@@ -158,10 +158,10 @@ public class EventPage {
         return this;
     }
 
-    @Step("Удаляем встречу с помощью API")
+/*    @Step("Удаляем встречу с помощью API")
     public void deleteEvent(String eventSessionId) {
         testSteps.deleteEvent(eventSessionId);
-    }
+    }*/
 
     @Step("Создаем встречу с помощью API")
     public EventPage createEventApi(String nameEvent) {
@@ -172,11 +172,11 @@ public class EventPage {
         return this;
     }
 
-    @Step("Изменяем статус встречи с помощью API")
+/*    @Step("Изменяем статус встречи с помощью API")
     public EventPage editEventStatusApi(String eventSessionId) {
         testSteps.editEvent(eventSessionId);
         return this;
-    }
+    }*/
 
     @Step("Нажимаем кнопку Завершить встречу")
     public EventPage clickLeaveButton() {
