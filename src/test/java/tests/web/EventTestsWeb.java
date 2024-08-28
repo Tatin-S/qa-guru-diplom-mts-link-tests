@@ -61,7 +61,7 @@ public class EventTestsWeb extends TestBaseWeb {
                 .clickJoinMeetingButton()
                 .checkVCSVisible()
                 .clickLeaveButton()
-                .clickEndlessMeetingCardMenu()
+             //   .clickEndlessMeetingCardMenu()
                 .clickEndlessMeetingButton()
                 .clickEndlessMeetingButtonInWindow();
 
