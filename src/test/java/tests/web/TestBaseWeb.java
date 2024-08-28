@@ -38,9 +38,9 @@ public class TestBaseWeb {
         options.addArguments("use-fake-device-for-media-stream");
         options.addArguments("use-fake-ui-for-media-stream");
 
-        if (System.getProperty("browserHost", "selenoid").equals("selenoid")) {
+       // if (System.getProperty("browserHost", "selenoid").equals("selenoid")) {
             Configuration.browserVersion = webConfig.browserVersion();
-            Configuration.remote = authConfig.selenoidUrl();
+            Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
 
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setCapability(ChromeOptions.CAPABILITY, options);
@@ -50,7 +50,7 @@ public class TestBaseWeb {
                     "enableVideo", true
             ));
             Configuration.browserCapabilities = capabilities;
-        }
+       // }
     }
 
     @BeforeEach
