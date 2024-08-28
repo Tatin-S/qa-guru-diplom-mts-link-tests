@@ -32,7 +32,7 @@ public class EventPage {
             finishMeetingButton = $(byAttribute("data-testid", "LeaveButton.FinishMeeting")),
             deleteButton = $(byText("Удалить мероприятие")),
             deleteMeetingButton = $(byText("Удалить мероприятие")),
-            endlessMeetingCardMenu = $$(byAttribute("data-testid", "EndlessMeetingCard.menu")).first(),
+            endlessMeetingCardMenu = $(byAttribute("data-testid", "EndlessMeetingCard.menu")),
             deleteEndlessMeetingButton = $(byAttribute("data-testid", "EndlessMeetingCard.menu.delete")),
             deleteEndlessMeetingButtonInWindow = $(byText("Удалить"));
     TestSteps testSteps = new TestSteps();
