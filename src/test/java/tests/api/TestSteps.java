@@ -44,7 +44,7 @@ public class TestSteps {
 
     @Step("Проверяем, что link содержит eventId")
     public void checkLinkContainsEventId(CreateEventTemplateResponseModel response) {
-        assertThat(response.getLink()).contains("https://my.mts-link.ru/j/106104753/" + response.getEventId());
+        assertThat(response.getLink()).contains("https://my.mts-link.ru/j/106400841/" + response.getEventId());
     }
 
     @Step("Авторизуемся c валидными почтой и паролем")
@@ -109,7 +109,7 @@ public class TestSteps {
 
     @Step("Проверяем, что link содержит eventId и eventSessionId")
     public void checkLinkContainsEventSessionId(CreateEventResponseModel responseEvent, CreateEventTemplateResponseModel responseTemplate) {
-        assertThat(responseEvent.getLink()).contains("https://my.mts-link.ru/j/106104753/" + responseTemplate.getEventId()
+        assertThat(responseEvent.getLink()).contains("https://my.mts-link.ru/j/106400841/" + responseTemplate.getEventId()
                 + "/session/" + responseEvent.getEventSessionId());
     }
 
