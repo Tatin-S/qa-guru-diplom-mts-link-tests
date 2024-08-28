@@ -30,9 +30,11 @@ public class EventTestsWeb extends TestBaseWeb {
         eventPage.openPage()
                 .clickStartFastMeetingButton()
                 .clickJoinMeetingButton()
-                .checkVCSVisible()
-                .clickLeaveButton()
-                .clickFinishMeetingButton();
+                .checkVCSVisible();
+        String eventSessionId = getEventSessionIdFromUrl(getWebDriver().getCurrentUrl());
+        eventPage.clickLeaveButton()
+                .clickFinishMeetingButton()
+                .deleteEvent(eventSessionId);
     }
 
     @WithLogin
@@ -46,9 +48,11 @@ public class EventTestsWeb extends TestBaseWeb {
                 .clickGoToEventButton()
                 .clickStartMeetingButton()
                 .clickJoinMeetingButton()
-                .checkVCSVisible()
-                .clickLeaveButton()
-                .clickFinishMeetingButton();
+                .checkVCSVisible();
+        String eventSessionId = getEventSessionIdFromUrl(getWebDriver().getCurrentUrl());
+        eventPage.clickLeaveButton()
+                .clickFinishMeetingButton()
+                .deleteEvent(eventSessionId);
     }
 
     @WithLogin
@@ -76,8 +80,11 @@ public class EventTestsWeb extends TestBaseWeb {
                 .openNameEvent(testData.eventName)
                 .editNameMeeting(newNameMeeting)
                 .clickSaveEventButton();
+        String eventSessionId = getEventSessionIdFromUrl(getWebDriver().getCurrentUrl());
         back();
-        eventPage.checkEditNameMeeting(newNameMeeting);
+        eventPage.checkEditNameMeeting(newNameMeeting)
+                .deleteEvent(eventSessionId);
+
     }
 
     @WithLogin

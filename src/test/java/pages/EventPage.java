@@ -158,10 +158,10 @@ public class EventPage {
         return this;
     }
 
-/*    @Step("Удаляем встречу с помощью API")
+    @Step("Удаляем встречу с помощью API")
     public void deleteEvent(String eventSessionId) {
         testSteps.deleteEvent(eventSessionId);
-    }*/
+    }
 
     @Step("Создаем встречу с помощью API")
     public EventPage createEventApi(String nameEvent) {
