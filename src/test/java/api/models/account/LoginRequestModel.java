@@ -7,7 +7,7 @@ public class LoginRequestModel {
     private String email, password;
     Boolean rememberMe;
 
-   // public String loginBodyModel() {
-      //  return "email=" + email + "&password=" + password + "&rememberMe=" + rememberMe;
-  //  }
+    public String loginBodyModel() {
+        return "email=" + email + "&password=" + password + "&rememberMe=" + rememberMe;
+    }
 }

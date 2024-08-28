@@ -20,7 +20,7 @@ public class AuthorizationApi {
         loginData.setRememberMe(AUTH_DATA_CONFIG.rememberMe());
         return given(requestSpec)
                 .contentType("application/x-www-form-urlencoded; charset=utf-8")
-                .body(loginData)
+                .body(loginData.loginBodyModel())
                 .when()
                 .post("/login")
                 .then()
