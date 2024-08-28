@@ -140,8 +140,8 @@ public class EventPage {
     }
 
     @Step("Удаляем встречу с помощью API")
-    public void deleteEvent(String EventSessionId) {
-        testSteps.deleteEvent(EventSessionId);
+    public void deleteEvent(String eventSessionId) {
+        testSteps.deleteEvent(eventSessionId);
     }
 
     @Step("Создаем встречу с помощью API")
@@ -154,8 +154,8 @@ public class EventPage {
     }
 
     @Step("Изменяем статус встречи с помощью API")
-    public EventPage editEventStatusApi(String EventSessionId) {
-        testSteps.editEvent(EventSessionId);
+    public EventPage editEventStatusApi(String eventSessionId) {
+        testSteps.editEvent(eventSessionId);
         return this;
     }
 
