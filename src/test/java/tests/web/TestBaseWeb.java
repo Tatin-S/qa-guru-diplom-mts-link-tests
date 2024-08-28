@@ -28,7 +28,7 @@ public class TestBaseWeb {
         AuthDataConfig authConfig = ConfigFactory.create(AuthDataConfig.class, System.getProperties());
         WebConfig webConfig = ConfigFactory.create(WebConfig.class, System.getProperties());
         SelenideLogger.addListener("allure", new AllureSelenide());
-        Configuration.baseUrl = webConfig.baseUrl();
+        Configuration.baseUrl = "https://my.mts-link.ru";
         Configuration.browser = webConfig.browser();
         Configuration.browserSize = webConfig.browserSize();
         Configuration.pageLoadStrategy = "eager";
