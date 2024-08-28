@@ -8,6 +8,7 @@ import io.qameta.allure.SeverityLevel;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import tests.api.TestSteps;
 
 import static com.codeborne.selenide.Selenide.back;
 import static com.codeborne.selenide.Selenide.sleep;
@@ -53,6 +54,7 @@ public class EventTestsWeb extends TestBaseWeb {
     @DisplayName("Создание постоянной встречи")
     @Severity(SeverityLevel.BLOCKER)
     void createRegularMeetingTest() {
+        TestSteps testSteps = new TestSteps();
         eventPage.openPage()
                 .clickScheduleButton()
                 .clickScheduleEndlessMeetingButton()
@@ -63,7 +65,7 @@ public class EventTestsWeb extends TestBaseWeb {
         eventPage.clickLeaveButton();
       //  back();
         sleep(15000);
-        eventPage.deleteEvent(eventSessionId);
+        testSteps.DeleteEvent(eventSessionId);
 
     }
 
