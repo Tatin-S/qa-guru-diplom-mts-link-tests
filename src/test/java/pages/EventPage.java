@@ -5,6 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Step;
 import org.junit.jupiter.api.Tag;
+import tests.api.TestSteps;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
@@ -15,6 +16,7 @@ import static com.codeborne.selenide.Selenide.open;
 @Feature("Мероприятие")
 @Tag("web")
 public class EventPage {
+    TestSteps testSteps = new TestSteps();
     private final SelenideElement
             startFastMeetingButton = $(byAttribute("data-testid", "Meetings.Toolbar.startMeeting")),
             scheduleButton = $(byAttribute("data-testid", "Meetings.Toolbar.schedule")),
@@ -110,14 +112,6 @@ public class EventPage {
         return this;
     }
 
-/*    @Step("Редактируем дату встречи")
-    public EventPage editDateMeeting() {
-        timeMeetingInput.click();
-        $(".MuiButtonBase-root").$$("li").("10:10").click();
-        timeMeetingInput.setValue("10:10");
-        return this;
-    }*/
-
     @Step("Нажимаем кнопку Сохранить")
     public EventPage clickSaveEventButton() {
         saveEventButton.click();
@@ -141,5 +135,10 @@ public class EventPage {
     public EventPage clickDeleteMeetingButton() {
         deleteMeetingButton.click();
         return this;
+    }
+
+    @Step("Удаляем встречу с помощью API")
+    public void deleteEvent(String EventSessionId) {
+        testSteps.DeleteEvent(EventSessionId);
     }
 }

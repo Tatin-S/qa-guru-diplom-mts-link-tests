@@ -21,8 +21,7 @@ import java.util.Map;
 
 public class TestBaseWeb {
     EventPage eventPage = new EventPage();
-    TestSteps testSteps = new TestSteps();
-    AuthorizationPage authorizationPage = new AuthorizationPage();
+
     @BeforeAll
     static void beforeAll() {
         AuthDataConfig authConfig = ConfigFactory.create(AuthDataConfig.class, System.getProperties());
