@@ -61,7 +61,7 @@ public class EventTestsWeb extends TestBaseWeb {
                 .checkVCSVisible();
         String eventSessionId = getEventSessionIdFromUrl(getWebDriver().getCurrentUrl());
         eventPage.clickLeaveButton();
-        back();
+      //  back();
         sleep(15000);
         eventPage.deleteEvent(eventSessionId);
 
