@@ -40,7 +40,7 @@ public class TestBaseWeb {
 
         if (System.getProperty("browserHost", "selenoid").equals("selenoid")) {
             Configuration.browserVersion = webConfig.browserVersion();
-            Configuration.remote = webConfig.selenoidUrl();
+            Configuration.remote = authConfig.selenoidUrl();
 
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setCapability(ChromeOptions.CAPABILITY, options);

@@ -17,4 +17,6 @@ public interface AuthDataConfig extends Config {
     Boolean rememberMe();
     @Key("user_token")
     String userToken();
+
+    String selenoidUrl();
 }

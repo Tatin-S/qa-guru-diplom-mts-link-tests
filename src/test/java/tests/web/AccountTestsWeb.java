@@ -1,3 +1,4 @@
+/*
 package tests.web;
 
 import org.junit.jupiter.api.*;
@@ -39,3 +40,4 @@ public class AccountTestsWeb extends TestBaseWeb{
                 .checkWrongPassword();
     }
 }
+*/

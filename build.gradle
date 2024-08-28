@@ -70,12 +70,12 @@ tasks.withType(Test) {
         }
     }
 }
-tasks.register('web', Test) {
+tasks.register("web", Test) {
     useJUnitPlatform {
         includeTags("web")
     }
 }
-tasks.register('api', Test) {
+tasks.register("api", Test) {
     useJUnitPlatform {
         includeTags("api")
     }
