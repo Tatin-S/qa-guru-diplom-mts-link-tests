@@ -2,12 +2,12 @@ package common.config;
 
 import org.aeonbits.owner.Config;
 
-@Config.LoadPolicy(Config.LoadType.MERGE)
+//@Config.LoadPolicy(Config.LoadType.MERGE)
 @Config.Sources({
-        "system:properties",
+      //  "system:properties",
         "classpath:config/authData.properties",
-        "file:~/authData.properties",
-        "file:./authData.properties"
+      //  "file:~/authData.properties",
+        //"file:./authData.properties"
 })
 
 public interface AuthDataConfig extends Config {
