@@ -1,18 +1,16 @@
 package pages;
 
-import static com.codeborne.selenide.Condition.text;
-
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Step;
 import org.junit.jupiter.api.Tag;
-import pages.components.CalendarComponent;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.*;
-import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.files.DownloadActions.click;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 
 @Feature("Мероприятие")
 @Tag("web")
@@ -30,11 +28,9 @@ public class EventPage {
             saveEventButton = $(byAttribute("data-testid", "MeetingsEditor.Topbar.saveEvent")),
             joinMeetingButton = $(byText("Присоединиться к встрече")),
             vcs = $(byAttribute("data-testid", "Stream.Vcs.MyConference")),
-    meetingsEditorTopbarMenu = $(byAttribute("data-testid",  "MeetingsEditor.Topbar.menu")),
-    deleteButton=$(byText("Удалить")),
-            deleteMeetingButton=$(byText("Удалить встречу"));
-  //  firstEventInScheduledMeeting=$((".MuiList-root", 0).$$("li"));
-    CalendarComponent calendarComponent = new CalendarComponent();
+            meetingsEditorTopbarMenu = $(byAttribute("data-testid", "MeetingsEditor.Topbar.menu")),
+            deleteButton = $(byText("Удалить")),
+            deleteMeetingButton = $(byText("Удалить встречу"));
 
     @Step("Открываем страницу")
     public EventPage openPage() {
@@ -77,6 +73,7 @@ public class EventPage {
         $(".MuiList-root", 0).$$("li").findBy(Condition.text(newNameMeeting)).shouldNotBe(visible);
         return this;
     }
+
     @Step("Нажимаем кнопку Запланировать")
     public EventPage clickScheduleButton() {
         scheduleButton.click();
