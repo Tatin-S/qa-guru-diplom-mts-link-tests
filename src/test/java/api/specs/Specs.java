@@ -53,5 +53,7 @@ public class Specs {
 
     public static RequestSpecification requestSpec = with()
             .log().all()
-            .filter(withCustomTemplates());
+            .filter(withCustomTemplates())
+            .baseUri(apiConfig.authBaseURI())
+            .basePath(apiConfig.authBasePath());
 }
