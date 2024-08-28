@@ -54,7 +54,6 @@ public class EventTestsWeb extends TestBaseWeb {
     @DisplayName("Создание постоянной встречи")
     @Severity(SeverityLevel.BLOCKER)
     void createRegularMeetingTest() {
-        TestSteps testSteps = new TestSteps();
         eventPage.openPage()
                 .clickScheduleButton()
                 .clickScheduleEndlessMeetingButton()
@@ -62,10 +61,9 @@ public class EventTestsWeb extends TestBaseWeb {
                 .clickJoinMeetingButton()
                 .checkVCSVisible();
         String eventSessionId = getEventSessionIdFromUrl(getWebDriver().getCurrentUrl());
-        eventPage.clickLeaveButton();
-      //  back();
-        sleep(15000);
-        testSteps.DeleteEvent(eventSessionId);
+        eventPage.clickLeaveButton()
+                .editEventStatusApi(eventSessionId)
+                .deleteEvent(eventSessionId);
 
     }
 

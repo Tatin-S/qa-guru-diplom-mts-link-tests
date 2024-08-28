@@ -37,7 +37,7 @@ public class EventTestsApi extends TestBaseApi {
         CreateEventResponseModel responseEvent = testSteps.createEvent(responseTemplate.getEventId());
         testSteps.checkEventSessionId(responseEvent);
         testSteps.checkLinkContainsEventSessionId(responseEvent, responseTemplate);
-        testSteps.DeleteEvent(responseEvent.getEventSessionId());
+        testSteps.deleteEvent(responseEvent.getEventSessionId());
     }
 
     @Test
@@ -48,7 +48,7 @@ public class EventTestsApi extends TestBaseApi {
         CreateEventResponseModel responseEvent = testSteps.createEventWithEmptyBody(responseTemplate.getEventId());
         testSteps.checkEventSessionId(responseEvent);
         testSteps.checkLinkContainsEventSessionId(responseEvent, responseTemplate);
-        testSteps.DeleteEvent(responseEvent.getEventSessionId());
+        testSteps.deleteEvent(responseEvent.getEventSessionId());
     }
 
     @Test
@@ -66,7 +66,7 @@ public class EventTestsApi extends TestBaseApi {
     void GetEventTest(){
         CreateEventTemplateResponseModel responseTemplate = testSteps.createEventTemplate(createEventTemplateRequest);
         CreateEventResponseModel responseEvent = testSteps.createEventWithEmptyBody(responseTemplate.getEventId());
-        testSteps.GetEvent(responseEvent.getEventSessionId());
+        testSteps.getEvent(responseEvent.getEventSessionId());
     }
 
     @Test
@@ -75,6 +75,6 @@ public class EventTestsApi extends TestBaseApi {
     void DeleteEventTest(){
         CreateEventTemplateResponseModel responseTemplate = testSteps.createEventTemplate(createEventTemplateRequest);
         CreateEventResponseModel responseEvent = testSteps.createEventWithEmptyBody(responseTemplate.getEventId());
-        testSteps.DeleteEvent(responseEvent.getEventSessionId());
+        testSteps.deleteEvent(responseEvent.getEventSessionId());
     }
 }

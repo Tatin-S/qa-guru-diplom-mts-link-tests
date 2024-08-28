@@ -143,7 +143,7 @@ public class TestSteps {
     }
 
     @Step("Получаем данные мероприятия")
-    public void GetEvent(String eventSessionId) {
+    public void getEvent(String eventSessionId) {
         given(requestSpecEvent)
                 .contentType("application/json")
                 .body("{}")
@@ -154,10 +154,23 @@ public class TestSteps {
     }
 
     @Step("Удаляем мероприятие")
-    public void DeleteEvent(String eventSessionId) {
+    public void deleteEvent(String eventSessionId) {
         given(requestSpecEvent)
                 .contentType("application/json")
                 .body("{}")
+                .when()
+                .delete("/eventsessions/" + eventSessionId)
+                .then()
+                .spec(responseSpecStatusCode204);
+    }
+
+    @Step("Изменяем статус мероприятия")
+    public void editEvent(String eventSessionId) {
+        EditEventRequestModel editEventRequestModel = new EditEventRequestModel();
+        editEventRequestModel.setStatus("ACTIVE");
+        given(requestSpecEvent)
+                .contentType("application/json")
+                .body(editEventRequestModel)
                 .when()
                 .delete("/eventsessions/" + eventSessionId)
                 .then()

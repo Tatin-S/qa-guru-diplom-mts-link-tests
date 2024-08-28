@@ -141,7 +141,7 @@ public class EventPage {
 
     @Step("Удаляем встречу с помощью API")
     public void deleteEvent(String EventSessionId) {
-        testSteps.DeleteEvent(EventSessionId);
+        testSteps.deleteEvent(EventSessionId);
     }
 
     @Step("Создаем встречу с помощью API")
@@ -150,6 +150,12 @@ public class EventPage {
         CreateEventTemplateRequestModel createEventTemplateRequest = new CreateEventTemplateRequestModel(nameEvent, accessSettings);
         CreateEventTemplateResponseModel responseTemplate = testSteps.createEventTemplate(createEventTemplateRequest);
         testSteps.createEventWithEmptyBody(responseTemplate.getEventId());
+        return this;
+    }
+
+    @Step("Изменяем статус встречи с помощью API")
+    public EventPage editEventStatusApi(String EventSessionId) {
+        testSteps.editEvent(EventSessionId);
         return this;
     }
 
