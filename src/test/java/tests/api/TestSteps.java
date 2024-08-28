@@ -172,7 +172,7 @@ public class TestSteps {
                 .contentType("application/json")
                 .body(editEventRequestModel)
                 .when()
-                .put1("/eventsessions/" + eventSessionId)
+                .put("/eventsessions/" + eventSessionId)
                 .then()
                 .spec(responseSpecStatusCode204);
     }
