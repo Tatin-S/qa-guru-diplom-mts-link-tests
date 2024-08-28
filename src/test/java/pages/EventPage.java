@@ -1,9 +1,7 @@
 package pages;
 
-import api.models.event.CreateEventResponseModel;
 import api.models.event.CreateEventTemplateRequestModel;
 import api.models.event.CreateEventTemplateResponseModel;
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Step;
@@ -33,7 +31,10 @@ public class EventPage {
             leaveButton = $(byAttribute("data-testid", "LeaveButtonDropdown.LeaveButton.Button")),
             finishMeetingButton = $(byAttribute("data-testid", "LeaveButton.FinishMeeting")),
             deleteButton = $(byText("Удалить мероприятие")),
-            deleteMeetingButton = $(byText("Удалить мероприятие"));
+            deleteMeetingButton = $(byText("Удалить мероприятие")),
+            endlessMeetingCardMenu = $$(byAttribute("data-testid", "EndlessMeetingCard.menu")).first(),
+            deleteEndlessMeetingButton = $(byAttribute("data-testid", "EndlessMeetingCard.menu.delete")),
+            deleteEndlessMeetingButtonInWindow = $(byText("Удалить"));
     TestSteps testSteps = new TestSteps();
 
     @Step("Открываем страницу")
@@ -124,6 +125,24 @@ public class EventPage {
     @Step("Нажимаем кнопку Удалить мероприятие")
     public EventPage clickDeleteButton() {
         deleteButton.click();
+        return this;
+    }
+
+    @Step("Нажимаем кнопку меню мероприятия")
+    public EventPage clickEndlessMeetingCardMenu() {
+        endlessMeetingCardMenu.click();
+        return this;
+    }
+
+    @Step("Нажимаем кнопку Удалить в меню")
+    public EventPage clickEndlessMeetingButton() {
+        deleteEndlessMeetingButton.click();
+        return this;
+    }
+
+    @Step("Нажимаем кнопку Удалить в модальном окне")
+    public EventPage clickEndlessMeetingButtonInWindow() {
+        deleteEndlessMeetingButtonInWindow.click();
         return this;
     }
 

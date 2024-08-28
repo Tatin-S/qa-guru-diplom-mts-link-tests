@@ -59,11 +59,11 @@ public class EventTestsWeb extends TestBaseWeb {
                 .clickScheduleEndlessMeetingButton()
                 .clickGoToEventButton()
                 .clickJoinMeetingButton()
-                .checkVCSVisible();
-        String eventSessionId = getEventSessionIdFromUrl(getWebDriver().getCurrentUrl());
-        eventPage.clickLeaveButton()
-                .editEventStatusApi(eventSessionId)
-                .deleteEvent(eventSessionId);
+                .checkVCSVisible()
+                .clickLeaveButton()
+                .clickEndlessMeetingCardMenu()
+                .clickEndlessMeetingButton()
+                .clickEndlessMeetingButtonInWindow();
 
     }
 
