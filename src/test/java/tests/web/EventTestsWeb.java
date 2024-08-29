@@ -73,15 +73,15 @@ public class EventTestsWeb extends TestBaseWeb {
                 .clickLeaveButton();
     }
 
-/*    @WithLogin
+    @WithLogin
     @Test
     @DisplayName("Редактирование мероприятия")
     @Severity(SeverityLevel.CRITICAL)
     void editMeetingTest() {
         String newNameMeeting = "test edit name";
-        eventPage.createEventApi("Редактирование мероприятия")
-                .openPage()
-                .openNameEvent("Редактирование мероприятия")
+        eventPage.openPage()
+                .clickScheduleButton()
+                .clickScheduleMeetingButton()
                 .editNameMeeting(newNameMeeting)
                 .clickSaveEventButton();
         String eventSessionId = getEventSessionIdFromUrl(getWebDriver().getCurrentUrl());
@@ -89,23 +89,27 @@ public class EventTestsWeb extends TestBaseWeb {
         eventPage.checkEditNameMeeting(newNameMeeting)
                 .deleteEvent(eventSessionId);
 
-    }*/
+    }
 
     @WithLogin
     @Test
     @DisplayName("Удаление мероприятия")
     @Severity(SeverityLevel.CRITICAL)
     void deleteMeetingTest(){
-        eventPage.createEventApi("Удаление мероприятия")
-                .openPage()
-                .openNameEvent("Удаление мероприятия")
+        eventPage.openPage()
+                .clickScheduleButton()
+                .clickScheduleMeetingButton()
+                .editNameMeeting("Удаление мероприятия")
+                .clickSaveEventButton();
+        back();
+        eventPage.openNameEvent("Удаление мероприятия")
               //  .clickEditorTopbarMenuButton()
                 .clickDeleteButton()
                 .clickDeleteMeetingButton();
                /* .clickEndlessMeetingCardMenu()
                 .clickEndlessMeetingButton()
                 .clickEndlessMeetingButtonInWindow()*/
-                sleep(5000);
+               // sleep(5000);
         eventPage.checkDeletedNameMeetingIsNotVisisble("Удаление мероприятия");
     }
 }
