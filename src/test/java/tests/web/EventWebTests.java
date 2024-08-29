@@ -102,7 +102,7 @@ public class EventWebTests extends TestBaseWeb {
         eventPage.openNameEvent(testData.eventName)
                 .clickEditorTopbarMenuButton()
                 .clickDeleteButton()
-                .clickDeleteMeetingButton();
-        eventPage.checkDeletedNameMeetingIsNotVisisble(testData.eventName);
+                .clickDeleteMeetingButton()
+                .checkDeletedNameMeetingIsNotVisisble(testData.eventName);
     }
 }
