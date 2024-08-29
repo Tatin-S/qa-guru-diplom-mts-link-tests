@@ -8,6 +8,8 @@ import io.qameta.allure.Step;
 import org.junit.jupiter.api.Tag;
 import tests.api.TestSteps;
 
+import java.io.IOException;
+
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.*;
@@ -164,11 +166,11 @@ public class EventPage {
     }
 
     @Step("Создаем встречу с помощью API")
-    public EventPage createEventApi(String nameEvent) {
+    public EventPage createEventApi(String nameEvent) throws IOException {
         CreateEventTemplateRequestModel.AccessSettingsModel accessSettings = new CreateEventTemplateRequestModel.AccessSettingsModel(false, false, false);
         CreateEventTemplateRequestModel createEventTemplateRequest = new CreateEventTemplateRequestModel(nameEvent, accessSettings);
         CreateEventTemplateResponseModel responseTemplate = testSteps.createEventTemplate(createEventTemplateRequest);
-        testSteps.createEventWithEmptyBody(responseTemplate.getEventId());
+        testSteps.createEvent(responseTemplate.getEventId());
         return this;
     }
 

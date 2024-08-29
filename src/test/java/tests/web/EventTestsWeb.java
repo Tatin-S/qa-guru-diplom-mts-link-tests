@@ -12,6 +12,8 @@ import org.junit.jupiter.api.Test;
 import pages.AuthorizationPage;
 import tests.api.TestSteps;
 
+import java.io.IOException;
+
 import static com.codeborne.selenide.Selectors.byAttribute;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
@@ -22,7 +24,7 @@ import static common.helpers.ConverterUrl.getEventSessionIdFromUrl;
 public class EventTestsWeb extends TestBaseWeb {
     TestData testData = new TestData();
 
-  //  @WithLogin
+    @WithLogin
     @Test
     @DisplayName("Создание быстрой встречи")
     @Severity(SeverityLevel.BLOCKER)
@@ -73,7 +75,7 @@ public class EventTestsWeb extends TestBaseWeb {
     @Test
     @DisplayName("Редактирование мероприятия")
     @Severity(SeverityLevel.CRITICAL)
-    void editMeetingTest() {
+    void editMeetingTest() throws IOException {
         String newNameMeeting = "test edit name";
         eventPage.createEventApi(testData.eventName)
                 .openPage()
@@ -91,7 +93,7 @@ public class EventTestsWeb extends TestBaseWeb {
     @Test
     @DisplayName("Удаление мероприятия")
     @Severity(SeverityLevel.CRITICAL)
-    void deleteMeetingTest() {
+    void deleteMeetingTest() throws IOException{
         eventPage.createEventApi(testData.eventName)
                 .openPage()
                 .openNameEvent(testData.eventName)
