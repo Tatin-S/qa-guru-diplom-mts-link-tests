@@ -1,7 +1,5 @@
 package pages;
 
-import api.models.event.CreateEventTemplateRequestModel;
-import api.models.event.CreateEventTemplateResponseModel;
 import com.codeborne.selenide.SelenideElement;
 import common.helpers.Tools;
 import io.qameta.allure.Feature;
