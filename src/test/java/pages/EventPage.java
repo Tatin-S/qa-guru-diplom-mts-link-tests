@@ -25,18 +25,21 @@ public class EventPage {
             scheduleEndlessMeetingButton = $(byAttribute("data-testid", "Meetings.Toolbar.scheduleEndlessMeeting")),
             goToEventButton = $(byAttribute("data-testid", "MeetingsEditor.Topbar.goToEvent")),
             startMeetingButton = $(byText("Начать встречу")),
-            nameMeetingInput = $(byAttribute("data-testid", "MeetingsEditor.Hero.Body.Title.textarea")),
+           // nameMeetingInput = $(byAttribute("data-testid", "MeetingsEditor.Hero.Body.Title.textarea")),
+            nameMeetingInput = $(".name-field"),
             saveEventButton = $(byAttribute("data-testid", "MeetingsEditor.Topbar.saveEvent")),
             joinMeetingButton = $(byText("Присоединиться к встрече")),
             vcs = $(byAttribute("data-testid", "Stream.Vcs.MyConference")),
             meetingsEditorTopbarMenu = $(byAttribute("data-testid", "MeetingsEditor.Topbar.menu")),
             leaveButton = $(byAttribute("data-testid", "LeaveButtonDropdown.LeaveButton.Button")),
             finishMeetingButton = $(byAttribute("data-testid", "LeaveButton.FinishMeeting")),
-            deleteButton = $(byText("Удалить")),
-            deleteMeetingButton = $(byText("Удалить встречу")),
-            endlessMeetingCardMenu = $(byAttribute("data-testid", "EndlessMeetingCard.menu")),
-            deleteEndlessMeetingButton = $(byAttribute("data-testid", "EndlessMeetingCard.menu.delete")),
-            deleteEndlessMeetingButtonInWindow = $(byText("Удалить"));
+          //  deleteButton = $(byText("Удалить")),
+         //   deleteMeetingButton = $(byText("Удалить встречу")),
+            deleteButton = $(byText("Удалить мероприятие")),
+            deleteMeetingButton = $(byText("Удалить мероприятие"));
+           // endlessMeetingCardMenu = $(byAttribute("data-testid", "EndlessMeetingCard.menu")),
+           // deleteEndlessMeetingButton = $(byAttribute("data-testid", "EndlessMeetingCard.menu.delete")),
+          //  deleteEndlessMeetingButtonInWindow = $(byText("Удалить"));
     TestSteps testSteps = new TestSteps();
 
     @Step("Открываем страницу")
@@ -111,12 +114,17 @@ public class EventPage {
         return this;
     }
 
+/*    @Step("Редактируем название встречи")
+    public EventPage editNameMeeting(String newNameMeeting) {
+        nameMeetingInput.setValue(newNameMeeting);
+        return this;
+    }*/
+
     @Step("Редактируем название встречи")
     public EventPage editNameMeeting(String newNameMeeting) {
         nameMeetingInput.setValue(newNameMeeting);
         return this;
     }
-
     @Step("Нажимаем кнопку Сохранить")
     public EventPage clickSaveEventButton() {
         saveEventButton.click();
@@ -130,7 +138,7 @@ public class EventPage {
         return this;
     }
 
-    @Step("Нажимаем кнопку меню мероприятия")
+/*    @Step("Нажимаем кнопку меню мероприятия")
     public EventPage clickEndlessMeetingCardMenu() {
         endlessMeetingCardMenu.click();
         return this;
@@ -146,7 +154,7 @@ public class EventPage {
     public EventPage clickEndlessMeetingButtonInWindow() {
         deleteEndlessMeetingButtonInWindow.click();
         return this;
-    }
+    }*/
 
     @Step("Нажимаем кнопку меню на странице редактирования мероприятия")
     public EventPage clickEditorTopbarMenuButton() {

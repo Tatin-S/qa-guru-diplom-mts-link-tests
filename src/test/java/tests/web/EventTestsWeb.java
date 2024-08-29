@@ -98,11 +98,11 @@ public class EventTestsWeb extends TestBaseWeb {
                 .openPage()
                 .openNameEvent(testData.eventName)
               //  .clickEditorTopbarMenuButton()
-              //  .clickDeleteButton()
-               // .clickDeleteMeetingButton()
-                .clickEndlessMeetingCardMenu()
+                .clickDeleteButton()
+                .clickDeleteMeetingButton()
+               /* .clickEndlessMeetingCardMenu()
                 .clickEndlessMeetingButton()
-                .clickEndlessMeetingButtonInWindow()
+                .clickEndlessMeetingButtonInWindow()*/
                 .checkDeletedNameMeetingIsNotVisisble(testData.eventName);
     }
 }
