@@ -3,6 +3,7 @@ package pages;
 import api.models.event.CreateEventTemplateRequestModel;
 import api.models.event.CreateEventTemplateResponseModel;
 import com.codeborne.selenide.SelenideElement;
+import common.helpers.Tools;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Step;
 import org.junit.jupiter.api.Tag;
@@ -31,8 +32,10 @@ public class EventPage {
             leaveButton = $(byAttribute("data-testid", "LeaveButtonDropdown.LeaveButton.Button")),
             finishMeetingButton = $(byAttribute("data-testid", "LeaveButton.FinishMeeting")),
             deleteButton = $(byText("Удалить")),
-            deleteMeetingButton = $(byText("Удалить встречу"));
+            deleteMeetingButton = $(byText("Удалить встречу")),
+            toolBar = $(byId("notistack-snackbar"));
     TestSteps testSteps = new TestSteps();
+    Tools tools = new Tools();
 
     @Step("Открываем страницу")
     public EventPage openPage() {
@@ -108,7 +111,7 @@ public class EventPage {
 
     @Step("Редактируем название встречи")
     public EventPage editNameMeeting(String newNameMeeting) {
-        nameMeetingInput.sendKeys(Keys.BACK_SPACE);
+        tools.cleanField(nameMeetingInput);
         nameMeetingInput.setValue(newNameMeeting);
         return this;
     }
@@ -116,7 +119,7 @@ public class EventPage {
     @Step("Нажимаем кнопку Сохранить")
     public EventPage clickSaveEventButton() {
         saveEventButton.click();
-        $(byId("notistack-snackbar")).shouldHave(visible).shouldHave(text("Изменения сохранены"));
+        toolBar.shouldHave(visible).shouldHave(text("Изменения сохранены"));
         return this;
     }
 

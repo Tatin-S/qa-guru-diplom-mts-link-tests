@@ -18,8 +18,8 @@ public class AuthorizationPage {
             passwordInput = $(byName("password")),
             submitButton = $(byAttribute("data-testid", "SignIn.action.submit")),
             profileImage = $(byAttribute("data-testid", "Meetings.PageTopbar.User")),
-            errorBadEmailMessage = $(byText("Неверный адрес электронной почты")),
-            errorBadPasswordMessage = $(byText("Логин или пароль содержит ошибки"));
+            errorBadEmailMessage = $(byText("The login and password contain errors")),
+            errorBadPasswordMessage = $(byText("The login and password contain errors"));
 
     @Step("Открыаем страницу")
     public AuthorizationPage openPage() {

@@ -69,7 +69,6 @@ public class AccountWebTests extends TestBaseWeb {
                 .setPhone(testData.phone)
                 .setOrganization(testData.organization)
                 .setPosition(testData.position)
-                .setNewPhoto(testData.pictures)
                 .setDescription(testData.description)
                 .clickSave();
 

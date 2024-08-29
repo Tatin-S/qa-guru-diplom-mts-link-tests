@@ -1,6 +1,7 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
+import common.helpers.Tools;
 import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
 import tests.web.TestBaseWeb;
@@ -19,55 +20,55 @@ public class ProfilePage extends TestBaseWeb {
             organizationInput = $(byName("organization")),
             positionInput = $(byName("position")),
             descriptionInput = $(byName("description")),
-            saveButton = $(byText("Сохранить")),
-            newPhotoButton = $(byAttribute("data-testid", "ProfileForm.field.photo.newPhotoButton"));
+            saveButton = $(byText("Сохранить"));
+    Tools tools = new Tools();
 
     @Step("Указываем имя")
     public ProfilePage setName(String name) {
-        nameInput.sendKeys(Keys.BACK_SPACE);
-        nameInput.setValue(name);
+        tools.cleanField(nameInput);
+        nameInput.sendKeys(name);
         return this;
     }
 
     @Step("Указываем фамилию")
     public ProfilePage setSecondName(String secondName) {
-        secondNameInput.sendKeys(Keys.BACK_SPACE);
-        secondNameInput.setValue(secondName);
+        tools.cleanField(secondNameInput);
+        secondNameInput.sendKeys(secondName);
         return this;
     }
 
     @Step("Указываем никнейм")
     public ProfilePage setNickname(String nickname) {
-        nicknameInput.sendKeys(Keys.BACK_SPACE);
-        nicknameInput.setValue(nickname);
+        tools.cleanField(nicknameInput);
+        nicknameInput.sendKeys(nickname);
         return this;
     }
 
     @Step("Указываем телефон")
     public ProfilePage setPhone(String phone) {
-        phoneInput.sendKeys(Keys.BACK_SPACE);
-        phoneInput.setValue(phone);
+        tools.cleanField(phoneInput);
+        phoneInput.sendKeys(phone);
         return this;
     }
 
     @Step("Указываем организацию")
     public ProfilePage setOrganization(String organization) {
-        organizationInput.sendKeys(Keys.BACK_SPACE);
-        organizationInput.setValue(organization);
+        tools.cleanField(organizationInput);
+        organizationInput.sendKeys(organization);
         return this;
     }
 
     @Step("Указываем должность")
     public ProfilePage setPosition(String position) {
-        positionInput.sendKeys(Keys.BACK_SPACE);
-        positionInput.setValue(position);
+        tools.cleanField(positionInput);
+        positionInput.sendKeys(position);
         return this;
     }
 
     @Step("Указываем информацию о себе")
     public ProfilePage setDescription(String description) {
-        descriptionInput.sendKeys(Keys.BACK_SPACE);
-        descriptionInput.setValue(description);
+        tools.cleanField(descriptionInput);
+        descriptionInput.sendKeys(description);
         return this;
     }
 
@@ -115,12 +116,6 @@ public class ProfilePage extends TestBaseWeb {
     @Step("Проверяем описание о себе")
     public ProfilePage checkDescription(String description) {
         descriptionInput.shouldHave(value(description));
-        return this;
-    }
-
-    @Step("Загружаем фотографию пользователя")
-    public ProfilePage setNewPhoto(String newPhoto) {
-        newPhotoButton.uploadFromClasspath(newPhoto);
         return this;
     }
 }

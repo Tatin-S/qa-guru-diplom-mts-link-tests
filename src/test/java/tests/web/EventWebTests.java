@@ -12,8 +12,8 @@ import pages.EventPage;
 
 import static com.codeborne.selenide.Selenide.back;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static common.helpers.ConverterUrl.getEventSessionIdFromUrl;
-import static common.helpers.ConverterUrl.getEventSessionIdFromUrlForEdit;
+import static common.helpers.Tools.getEventSessionIdFromUrl;
+import static common.helpers.Tools.getEventSessionIdFromUrlForEdit;
 
 @Tag("web")
 @Feature("Мероприятие")
