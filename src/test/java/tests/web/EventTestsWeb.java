@@ -18,6 +18,7 @@ import static com.codeborne.selenide.Selectors.byAttribute;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static common.helpers.ConverterUrl.getEventSessionIdFromUrl;
+import static common.helpers.ConverterUrl.getEventSessionIdFromUrlForEdit;
 
 @Tag("web")
 @Feature("Мероприятие")
@@ -84,7 +85,7 @@ public class EventTestsWeb extends TestBaseWeb {
                 .clickScheduleMeetingButton()
                 .editNameMeeting(newNameMeeting)
                 .clickSaveEventButton();
-        String eventSessionId = getEventSessionIdFromUrl(getWebDriver().getCurrentUrl());
+        String eventSessionId = getEventSessionIdFromUrlForEdit(getWebDriver().getCurrentUrl());
         back();
         eventPage.checkEditNameMeeting(newNameMeeting)
                 .deleteEvent(eventSessionId);
@@ -103,7 +104,7 @@ public class EventTestsWeb extends TestBaseWeb {
                 .clickSaveEventButton();
         back();
         eventPage.openNameEvent("Удаление мероприятия")
-              //  .clickEditorTopbarMenuButton()
+                .clickEditorTopbarMenuButton()
                 .clickDeleteButton()
                 .clickDeleteMeetingButton();
                /* .clickEndlessMeetingCardMenu()
