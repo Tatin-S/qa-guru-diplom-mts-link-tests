@@ -16,7 +16,7 @@ import java.io.IOException;
 
 @Tag("api")
 @Feature("Мероприятие")
-public class EventTestsApi extends TestBaseApi {
+public class EventApiTestsBase extends TestApiBase {
     TestData testData = new TestData();
     CreateEventTemplateRequestModel.AccessSettingsModel accessSettings = new CreateEventTemplateRequestModel.AccessSettingsModel(false, false, false);
     CreateEventTemplateRequestModel createEventTemplateRequest = new CreateEventTemplateRequestModel(testData.eventName, accessSettings);

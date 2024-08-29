@@ -17,7 +17,7 @@ import static common.helpers.ConverterUrl.getEventSessionIdFromUrlForEdit;
 
 @Tag("web")
 @Feature("Мероприятие")
-public class EventTestsWeb extends TestBaseWeb {
+public class EventWebTests extends TestBaseWeb {
     TestData testData = new TestData();
     EventPage eventPage = new EventPage();
 

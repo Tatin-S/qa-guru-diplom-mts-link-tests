@@ -5,7 +5,7 @@ import common.data.TestData;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.BeforeEach;
 
-public class TestBaseApi {
+public class TestApiBase {
     TestSteps testSteps = new TestSteps();
     TestData testData = new TestData();
 

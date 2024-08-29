@@ -15,7 +15,7 @@ import pages.TopbarPage;
 
 @Feature("Авторизация пользователя")
 @Tag("web")
-public class AccountTestsWeb extends TestBaseWeb {
+public class AccountWebTests extends TestBaseWeb {
     TestData testData = new TestData();
     EventPage eventPage = new EventPage();
     AuthorizationPage authorizationPage = new AuthorizationPage();
