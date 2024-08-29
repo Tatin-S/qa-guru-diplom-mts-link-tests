@@ -75,7 +75,7 @@ public class EventTestsWeb extends TestBaseWeb {
     @Test
     @DisplayName("Редактирование мероприятия")
     @Severity(SeverityLevel.CRITICAL)
-    void editMeetingTest() throws IOException {
+    void editMeetingTest() {
         String newNameMeeting = "test edit name";
         eventPage.createEventApi(testData.eventName)
                 .openPage()
@@ -93,13 +93,16 @@ public class EventTestsWeb extends TestBaseWeb {
     @Test
     @DisplayName("Удаление мероприятия")
     @Severity(SeverityLevel.CRITICAL)
-    void deleteMeetingTest() throws IOException{
+    void deleteMeetingTest(){
         eventPage.createEventApi(testData.eventName)
                 .openPage()
                 .openNameEvent(testData.eventName)
-                .clickEditorTopbarMenuButton()
-                .clickDeleteButton()
-                .clickDeleteMeetingButton()
+              //  .clickEditorTopbarMenuButton()
+              //  .clickDeleteButton()
+               // .clickDeleteMeetingButton()
+                .clickEndlessMeetingCardMenu()
+                .clickEndlessMeetingButton()
+                .clickEndlessMeetingButtonInWindow()
                 .checkDeletedNameMeetingIsNotVisisble(testData.eventName);
     }
 }

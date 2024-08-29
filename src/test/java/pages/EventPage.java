@@ -33,10 +33,10 @@ public class EventPage {
             leaveButton = $(byAttribute("data-testid", "LeaveButtonDropdown.LeaveButton.Button")),
             finishMeetingButton = $(byAttribute("data-testid", "LeaveButton.FinishMeeting")),
             deleteButton = $(byText("Удалить")),
-            deleteMeetingButton = $(byText("Удалить встречу"));
-          //  endlessMeetingCardMenu = $(byAttribute("data-testid", "EndlessMeetingCard.menu")),
-          //  deleteEndlessMeetingButton = $(byAttribute("data-testid", "EndlessMeetingCard.menu.delete")),
-         //   deleteEndlessMeetingButtonInWindow = $(byText("Удалить"));
+            deleteMeetingButton = $(byText("Удалить встречу")),
+            endlessMeetingCardMenu = $(byAttribute("data-testid", "EndlessMeetingCard.menu")),
+            deleteEndlessMeetingButton = $(byAttribute("data-testid", "EndlessMeetingCard.menu.delete")),
+            deleteEndlessMeetingButtonInWindow = $(byText("Удалить"));
     TestSteps testSteps = new TestSteps();
 
     @Step("Открываем страницу")
@@ -129,13 +129,13 @@ public class EventPage {
         deleteButton.click();
         return this;
     }
-/*
+
     @Step("Нажимаем кнопку меню мероприятия")
     public EventPage clickEndlessMeetingCardMenu() {
         endlessMeetingCardMenu.click();
         return this;
-    }*/
-/*
+    }
+
     @Step("Нажимаем кнопку Удалить в меню")
     public EventPage clickEndlessMeetingButton() {
         deleteEndlessMeetingButton.click();
@@ -146,7 +146,7 @@ public class EventPage {
     public EventPage clickEndlessMeetingButtonInWindow() {
         deleteEndlessMeetingButtonInWindow.click();
         return this;
-    }*/
+    }
 
     @Step("Нажимаем кнопку меню на странице редактирования мероприятия")
     public EventPage clickEditorTopbarMenuButton() {
@@ -166,11 +166,11 @@ public class EventPage {
     }
 
     @Step("Создаем встречу с помощью API")
-    public EventPage createEventApi(String nameEvent) throws IOException {
+    public EventPage createEventApi(String nameEvent){
         CreateEventTemplateRequestModel.AccessSettingsModel accessSettings = new CreateEventTemplateRequestModel.AccessSettingsModel(false, false, false);
         CreateEventTemplateRequestModel createEventTemplateRequest = new CreateEventTemplateRequestModel(nameEvent, accessSettings);
         CreateEventTemplateResponseModel responseTemplate = testSteps.createEventTemplate(createEventTemplateRequest);
-        testSteps.createEvent(responseTemplate.getEventId());
+        testSteps.createEventWithEmptyBody(responseTemplate.getEventId());
         return this;
     }
 
