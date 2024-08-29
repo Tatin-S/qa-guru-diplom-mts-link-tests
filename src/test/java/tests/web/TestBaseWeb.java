@@ -1,31 +1,34 @@
 package tests.web;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.logevents.SelenideLogger;
 import com.codeborne.selenide.Selenide;
-import common.config.AuthDataConfig;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import common.config.WebConfig;
+import common.data.TestData;
 import common.helpers.Attachments;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import pages.AuthorizationPage;
 import pages.EventPage;
-import tests.api.TestSteps;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.junit.jupiter.api.BeforeEach;
+import pages.ProfilePage;
+import pages.TopbarPage;
 
 import java.util.Map;
 
 public class TestBaseWeb {
     EventPage eventPage = new EventPage();
     AuthorizationPage authorizationPage = new AuthorizationPage();
+    TopbarPage topbarPage = new TopbarPage();
+    ProfilePage profilePage = new ProfilePage();
+    TestData testData = new TestData();
 
     @BeforeAll
     static void beforeAll() {
-        AuthDataConfig authConfig = ConfigFactory.create(AuthDataConfig.class, System.getProperties());
         WebConfig webConfig = ConfigFactory.create(WebConfig.class, System.getProperties());
         SelenideLogger.addListener("allure", new AllureSelenide());
         Configuration.baseUrl = webConfig.baseUrl();
@@ -46,15 +49,15 @@ public class TestBaseWeb {
                     + "/wd/hub";
         }
 
-            Configuration.pageLoadStrategy = "eager";
-            DesiredCapabilities capabilities = new DesiredCapabilities();
-            capabilities.setCapability(ChromeOptions.CAPABILITY, options);
-            Configuration.browserCapabilities = capabilities;
-            capabilities.setCapability("selenoid:options", Map.<String, Object>of(
-                    "enableVNC", true,
-                    "enableVideo", true
-            ));
-            Configuration.browserCapabilities = capabilities;
+        Configuration.pageLoadStrategy = "eager";
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+        Configuration.browserCapabilities = capabilities;
+        capabilities.setCapability("selenoid:options", Map.<String, Object>of(
+                "enableVNC", true,
+                "enableVideo", true
+        ));
+        Configuration.browserCapabilities = capabilities;
     }
 
     @BeforeEach

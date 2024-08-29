@@ -1,21 +1,14 @@
 package tests.web;
 
 import api.extensions.WithLogin;
-import com.codeborne.selenide.SelenideElement;
-import common.data.TestData;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import pages.AuthorizationPage;
-import tests.api.TestSteps;
 
-import java.io.IOException;
-
-import static com.codeborne.selenide.Selectors.byAttribute;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.back;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static common.helpers.ConverterUrl.getEventSessionIdFromUrl;
 import static common.helpers.ConverterUrl.getEventSessionIdFromUrlForEdit;
@@ -23,9 +16,8 @@ import static common.helpers.ConverterUrl.getEventSessionIdFromUrlForEdit;
 @Tag("web")
 @Feature("Мероприятие")
 public class EventTestsWeb extends TestBaseWeb {
-    TestData testData = new TestData();
 
-/*    @WithLogin
+    @WithLogin
     @Test
     @DisplayName("Создание быстрой встречи")
     @Severity(SeverityLevel.BLOCKER)
@@ -48,7 +40,7 @@ public class EventTestsWeb extends TestBaseWeb {
         eventPage.openPage()
                 .clickScheduleButton()
                 .clickScheduleMeetingButton()
-                .editNameMeeting("Создание запланированной встречи")
+                .editNameMeeting(testData.eventName)
                 .clickGoToEventButton()
                 .clickStartMeetingButton()
                 .clickJoinMeetingButton()
@@ -67,12 +59,12 @@ public class EventTestsWeb extends TestBaseWeb {
         eventPage.openPage()
                 .clickScheduleButton()
                 .clickScheduleEndlessMeetingButton()
-                .editNameMeeting("Создание постоянной встречи")
+                .editNameMeeting(testData.eventName)
                 .clickGoToEventButton()
                 .clickJoinMeetingButton()
                 .checkVCSVisible()
                 .clickLeaveButton();
-    }*/
+    }
 
     @WithLogin
     @Test
@@ -96,21 +88,17 @@ public class EventTestsWeb extends TestBaseWeb {
     @Test
     @DisplayName("Удаление мероприятия")
     @Severity(SeverityLevel.CRITICAL)
-    void deleteMeetingTest(){
+    void deleteMeetingTest() {
         eventPage.openPage()
                 .clickScheduleButton()
                 .clickScheduleMeetingButton()
-                .editNameMeeting("Удаление мероприятия")
+                .editNameMeeting(testData.eventName)
                 .clickSaveEventButton();
         back();
-        eventPage.openNameEvent("Удаление мероприятия")
+        eventPage.openNameEvent(testData.eventName)
                 .clickEditorTopbarMenuButton()
                 .clickDeleteButton()
                 .clickDeleteMeetingButton();
-               /* .clickEndlessMeetingCardMenu()
-                .clickEndlessMeetingButton()
-                .clickEndlessMeetingButtonInWindow()*/
-               // sleep(5000);
-        eventPage.checkDeletedNameMeetingIsNotVisisble("Удаление мероприятия");
+        eventPage.checkDeletedNameMeetingIsNotVisisble(testData.eventName);
     }
 }

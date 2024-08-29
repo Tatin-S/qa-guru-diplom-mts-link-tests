@@ -1,19 +1,19 @@
 package api.authorization;
 
+import api.models.account.LoginRequestModel;
 import common.config.AuthDataConfig;
 import io.qameta.allure.Step;
-import api.models.account.LoginRequestModel;
 import org.aeonbits.owner.ConfigFactory;
 
-import static api.specs.Specs.*;
-import static io.qameta.allure.Allure.step;
+import static api.specs.Specs.requestSpec;
+import static api.specs.Specs.responseSpecStatusCode200;
 import static io.restassured.RestAssured.given;
 
 public class AuthorizationApi {
     static final AuthDataConfig AUTH_DATA_CONFIG = ConfigFactory.create(AuthDataConfig.class, System.getProperties());
 
     @Step("Авторизация на сайте")
-    public String getSessionId(LoginRequestModel loginRequest) {
+    public String getSessionId() {
         LoginRequestModel loginData = new LoginRequestModel();
         loginData.setEmail(AUTH_DATA_CONFIG.email());
         loginData.setPassword(AUTH_DATA_CONFIG.password());

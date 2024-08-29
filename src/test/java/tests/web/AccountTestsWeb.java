@@ -1,12 +1,16 @@
-/*
 package tests.web;
 
-import org.junit.jupiter.api.*;
-import io.qameta.allure.*;
+import api.extensions.WithLogin;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 
 @Feature("Авторизация пользователя")
 @Tag("web")
-public class AccountTestsWeb extends TestBaseWeb{
+public class AccountTestsWeb extends TestBaseWeb {
     @Test
     @DisplayName("Успешная авторизация пользователя по почте и паролю")
     @Severity(SeverityLevel.BLOCKER)
@@ -39,5 +43,35 @@ public class AccountTestsWeb extends TestBaseWeb{
                 .clickSubmit()
                 .checkWrongPassword();
     }
+
+    @WithLogin
+    @Test
+    @DisplayName("Редактирование профиля пользователя")
+    @Severity(SeverityLevel.CRITICAL)
+    void editProfileUserTest() {
+        eventPage.openPage();
+        topbarPage.clickPageTopbarUser()
+                .clickPageTopbarUserProfile();
+        profilePage.setName(testData.name)
+                .setSecondName(testData.secondName)
+                .setNickname(testData.nickname)
+                .setPhone(testData.phone)
+                .setOrganization(testData.organization)
+                .setPosition(testData.position)
+                .setNewPhoto(testData.pictures)
+                .setDescription(testData.description)
+                .clickSave();
+
+        topbarPage.clickPageTopbarUser()
+                .clickPageTopbarUserProfile();
+
+        profilePage.checkName(testData.name)
+                .checkSecondName(testData.secondName)
+                .checkNickname(testData.nickname)
+                .checkPhone(testData.phone)
+                .checkOrganization(testData.organization)
+                .checkPosition(testData.position)
+                .checkDescription(testData.description);
+    }
 }
-*/
+

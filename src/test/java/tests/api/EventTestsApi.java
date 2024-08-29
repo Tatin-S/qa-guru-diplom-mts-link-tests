@@ -20,6 +20,7 @@ public class EventTestsApi extends TestBaseApi {
     TestData testData = new TestData();
     CreateEventTemplateRequestModel.AccessSettingsModel accessSettings = new CreateEventTemplateRequestModel.AccessSettingsModel(false, false, false);
     CreateEventTemplateRequestModel createEventTemplateRequest = new CreateEventTemplateRequestModel(testData.eventName, accessSettings);
+
     @Test
     @DisplayName("Создание шаблона для мероприятия")
     @Severity(SeverityLevel.BLOCKER)
@@ -43,7 +44,7 @@ public class EventTestsApi extends TestBaseApi {
     @Test
     @DisplayName("Создание мероприятия по шаблону без параметров")
     @Severity(SeverityLevel.CRITICAL)
-    void createEventWithEmptyBodyTest(){
+    void createEventWithEmptyBodyTest() {
         CreateEventTemplateResponseModel responseTemplate = testSteps.createEventTemplate(createEventTemplateRequest);
         CreateEventResponseModel responseEvent = testSteps.createEventWithEmptyBody(responseTemplate.getEventId());
         testSteps.checkEventSessionId(responseEvent);
@@ -54,7 +55,7 @@ public class EventTestsApi extends TestBaseApi {
     @Test
     @DisplayName("Создание мероприятия по шаблону c невалидным запросом")
     @Severity(SeverityLevel.NORMAL)
-    void createEventWithInvalidBodyTest(){
+    void createEventWithInvalidBodyTest() {
         CreateEventTemplateResponseModel responseTemplate = testSteps.createEventTemplate(createEventTemplateRequest);
         ErrorResponseModel responseErrorEvent = testSteps.createEventWithInvalidBody(responseTemplate.getEventId());
         testSteps.checkJsonIsNotValid(responseErrorEvent);
@@ -63,7 +64,7 @@ public class EventTestsApi extends TestBaseApi {
     @Test
     @DisplayName("Получение данных мероприятия")
     @Severity(SeverityLevel.CRITICAL)
-    void GetEventTest(){
+    void GetEventTest() {
         CreateEventTemplateResponseModel responseTemplate = testSteps.createEventTemplate(createEventTemplateRequest);
         CreateEventResponseModel responseEvent = testSteps.createEventWithEmptyBody(responseTemplate.getEventId());
         testSteps.getEvent(responseEvent.getEventSessionId());
@@ -72,7 +73,7 @@ public class EventTestsApi extends TestBaseApi {
     @Test
     @DisplayName("Удаление мероприятия")
     @Severity(SeverityLevel.CRITICAL)
-    void DeleteEventTest(){
+    void DeleteEventTest() {
         CreateEventTemplateResponseModel responseTemplate = testSteps.createEventTemplate(createEventTemplateRequest);
         CreateEventResponseModel responseEvent = testSteps.createEventWithEmptyBody(responseTemplate.getEventId());
         testSteps.deleteEvent(responseEvent.getEventSessionId());

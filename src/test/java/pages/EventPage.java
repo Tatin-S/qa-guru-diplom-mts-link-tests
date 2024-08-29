@@ -9,8 +9,6 @@ import org.junit.jupiter.api.Tag;
 import org.openqa.selenium.Keys;
 import tests.api.TestSteps;
 
-import java.io.IOException;
-
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
@@ -26,20 +24,14 @@ public class EventPage {
             goToEventButton = $(byAttribute("data-testid", "MeetingsEditor.Topbar.goToEvent")),
             startMeetingButton = $(byText("Начать встречу")),
             nameMeetingInput = $(byAttribute("data-testid", "MeetingsEditor.Hero.Body.Title.textarea")),
-           // nameMeetingInput = $(".name-field.textarea"),
             saveEventButton = $(byAttribute("data-testid", "MeetingsEditor.Topbar.saveEvent")),
             joinMeetingButton = $(byText("Присоединиться к встрече")),
             vcs = $(byAttribute("data-testid", "Stream.Vcs.MyConference")),
             meetingsEditorTopbarMenu = $(byAttribute("data-testid", "MeetingsEditor.Topbar.menu")),
             leaveButton = $(byAttribute("data-testid", "LeaveButtonDropdown.LeaveButton.Button")),
             finishMeetingButton = $(byAttribute("data-testid", "LeaveButton.FinishMeeting")),
-          //  deleteButton = $(byText("Удалить")),
-         //   deleteMeetingButton = $(byText("Удалить встречу")),
             deleteButton = $(byText("Удалить")),
             deleteMeetingButton = $(byText("Удалить встречу"));
-           // endlessMeetingCardMenu = $(byAttribute("data-testid", "EndlessMeetingCard.menu")),
-           // deleteEndlessMeetingButton = $(byAttribute("data-testid", "EndlessMeetingCard.menu.delete")),
-          //  deleteEndlessMeetingButtonInWindow = $(byText("Удалить"));
     TestSteps testSteps = new TestSteps();
 
     @Step("Открываем страницу")
@@ -128,29 +120,11 @@ public class EventPage {
         return this;
     }
 
-    @Step("Нажимаем кнопку Удалить мероприятие")
+    @Step("Нажимаем кнопку Удалить")
     public EventPage clickDeleteButton() {
         deleteButton.click();
         return this;
     }
-
-/*    @Step("Нажимаем кнопку меню мероприятия")
-    public EventPage clickEndlessMeetingCardMenu() {
-        endlessMeetingCardMenu.click();
-        return this;
-    }
-
-    @Step("Нажимаем кнопку Удалить в меню")
-    public EventPage clickEndlessMeetingButton() {
-        deleteEndlessMeetingButton.click();
-        return this;
-    }
-
-    @Step("Нажимаем кнопку Удалить в модальном окне")
-    public EventPage clickEndlessMeetingButtonInWindow() {
-        deleteEndlessMeetingButtonInWindow.click();
-        return this;
-    }*/
 
     @Step("Нажимаем кнопку меню на странице редактирования мероприятия")
     public EventPage clickEditorTopbarMenuButton() {
@@ -158,7 +132,7 @@ public class EventPage {
         return this;
     }
 
-    @Step("Нажимаем кнопку Удалить мероприятие")
+    @Step("Нажимаем кнопку Удалить встречу")
     public EventPage clickDeleteMeetingButton() {
         deleteMeetingButton.click();
         return this;
@@ -170,19 +144,13 @@ public class EventPage {
     }
 
     @Step("Создаем встречу с помощью API")
-    public EventPage createEventApi(String nameEvent){
+    public EventPage createEventApi(String nameEvent) {
         CreateEventTemplateRequestModel.AccessSettingsModel accessSettings = new CreateEventTemplateRequestModel.AccessSettingsModel(false, false, false);
         CreateEventTemplateRequestModel createEventTemplateRequest = new CreateEventTemplateRequestModel(nameEvent, accessSettings);
         CreateEventTemplateResponseModel responseTemplate = testSteps.createEventTemplate(createEventTemplateRequest);
         testSteps.createEventWithEmptyBody(responseTemplate.getEventId());
         return this;
     }
-
-/*    @Step("Изменяем статус встречи с помощью API")
-    public EventPage editEventStatusApi(String eventSessionId) {
-        testSteps.editEvent(eventSessionId);
-        return this;
-    }*/
 
     @Step("Нажимаем кнопку Завершить встречу")
     public EventPage clickLeaveButton() {
@@ -195,5 +163,4 @@ public class EventPage {
         finishMeetingButton.click();
         return this;
     }
-
 }

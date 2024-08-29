@@ -1,28 +1,26 @@
 package tests.api;
 
-import api.models.account.*;
-import api.models.event.*;
-import com.github.javafaker.Faker;
+import api.models.account.ErrorResponseModel;
+import api.models.account.LoginRequestModel;
+import api.models.event.CreateEventRequestModel;
+import api.models.event.CreateEventResponseModel;
+import api.models.event.CreateEventTemplateRequestModel;
+import api.models.event.CreateEventTemplateResponseModel;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import common.config.AuthDataConfig;
-import common.data.TestData;
 import io.qameta.allure.Step;
 import org.aeonbits.owner.ConfigFactory;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.IOException;
 import java.io.File;
+import java.io.IOException;
 
 import static api.specs.Specs.*;
-import static api.specs.Specs.responseSpecStatusCode200;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class TestSteps {
+public class TestSteps extends TestBaseApi {
     static final AuthDataConfig AUTH_DATA_CONFIG = ConfigFactory.create(AuthDataConfig.class, System.getProperties());
-    Faker faker = new Faker();
-    String testEmail = faker.internet().emailAddress();
-    String testPassword = faker.internet().password(6, 10, true, true, true);
 
     @Step("Создаем шаблон для мероприятия")
     public CreateEventTemplateResponseModel createEventTemplate(CreateEventTemplateRequestModel createEventTemplateRequest) {
@@ -66,8 +64,8 @@ public class TestSteps {
     @Step("Авторизуемся c невалидными почтой и паролем")
     public ErrorResponseModel getBadAuthorization() {
         LoginRequestModel loginData = new LoginRequestModel();
-        loginData.setEmail(testEmail);
-        loginData.setPassword(testPassword);
+        loginData.setEmail(testData.testEmail);
+        loginData.setPassword(testData.testPassword);
         loginData.setRememberMe(AUTH_DATA_CONFIG.rememberMe());
         return given(requestSpecAuth)
                 .contentType("application/json")
@@ -160,19 +158,6 @@ public class TestSteps {
                 .body("{}")
                 .when()
                 .delete("/eventsessions/" + eventSessionId)
-                .then()
-                .spec(responseSpecStatusCode204);
-    }
-
-    @Step("Изменяем статус мероприятия")
-    public void editEvent(String eventSessionId) {
-        EditEventRequestModel editEventRequestModel = new EditEventRequestModel();
-        editEventRequestModel.setStatus("IDLE");
-        given(requestSpecEvent)
-                .contentType("application/json")
-                .body(editEventRequestModel)
-                .when()
-                .put("/eventsessions/" + eventSessionId)
                 .then()
                 .spec(responseSpecStatusCode204);
     }

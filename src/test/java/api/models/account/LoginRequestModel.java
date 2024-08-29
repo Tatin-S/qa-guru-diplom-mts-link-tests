@@ -1,11 +1,13 @@
 package api.models.account;
-import lombok.Data;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
+
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class LoginRequestModel {
-    private String email, password;
     Boolean rememberMe;
+    private String email, password;
 
     public String loginBodyModel() {
         return "email=" + email + "&password=" + password + "&rememberMe=" + rememberMe;

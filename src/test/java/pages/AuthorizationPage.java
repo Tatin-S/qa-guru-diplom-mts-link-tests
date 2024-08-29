@@ -2,17 +2,17 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import common.config.AuthDataConfig;
-import common.data.TestData;
 import io.qameta.allure.Step;
 import org.aeonbits.owner.ConfigFactory;
 
-import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.*;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 
 public class AuthorizationPage {
 
+    static final AuthDataConfig AUTH_DATA_CONFIG = ConfigFactory.create(AuthDataConfig.class, System.getProperties());
     private final SelenideElement
             emailInput = $(byName("email")),
             passwordInput = $(byName("password")),
@@ -20,7 +20,6 @@ public class AuthorizationPage {
             profileImage = $(byAttribute("data-testid", "Meetings.PageTopbar.User")),
             errorBadEmailMessage = $(byText("Неверный адрес электронной почты")),
             errorBadPasswordMessage = $(byText("Логин или пароль содержит ошибки"));
-    static final AuthDataConfig AUTH_DATA_CONFIG = ConfigFactory.create(AuthDataConfig.class, System.getProperties());
 
     @Step("Открыаем страницу")
     public AuthorizationPage openPage() {
@@ -33,21 +32,25 @@ public class AuthorizationPage {
         emailInput.sendKeys(AUTH_DATA_CONFIG.email());
         return this;
     }
+
     @Step("Вводим некорректный email пользователя")
     public AuthorizationPage setBadEmail() {
         emailInput.sendKeys("test");
         return this;
     }
+
     @Step("Вводим некорректный пароль пользователя")
     public AuthorizationPage setBadPassword() {
         passwordInput.sendKeys("test");
         return this;
     }
+
     @Step("Вводим пароль пользователя")
     public AuthorizationPage setPassword() {
         passwordInput.sendKeys(AUTH_DATA_CONFIG.password());
         return this;
     }
+
     @Step("Нажимаем кнопку Войти")
     public AuthorizationPage clickSubmit() {
         submitButton.click();
@@ -59,12 +62,13 @@ public class AuthorizationPage {
         profileImage.shouldHave(visible);
     }
 
-    @Step("Проверяем, что отображается ошибка \"Неверный адрес электронной почты\"")
+    @Step("Проверяем, что отображается ошибка Неверный адрес электронной почты")
     public void checkWrongEmail() {
+
         errorBadEmailMessage.shouldHave(visible);
     }
 
-    @Step("Проверяем, что отображается ошибка \"Логин или пароль содержит ошибки\"")
+    @Step("Проверяем, что отображается ошибка Логин или пароль содержит ошибки")
     public void checkWrongPassword() {
         errorBadPasswordMessage.shouldHave(visible);
     }

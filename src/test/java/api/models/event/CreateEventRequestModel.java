@@ -1,4 +1,5 @@
 package api.models.event;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
@@ -17,25 +18,25 @@ public class CreateEventRequestModel {
 
     @Data
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static class Chat{
+    public static class Chat {
         private Boolean show;
     }
 
     @Data
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static class Question{
+    public static class Question {
         private Boolean show;
     }
 
     @Data
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static class Eventsession{
+    public static class Eventsession {
         private Boolean allowScreensharing;
     }
 
     @Data
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static class Conference{
+    public static class Conference {
         private Boolean show;
         private String mode;
         private Integer maxConferences;

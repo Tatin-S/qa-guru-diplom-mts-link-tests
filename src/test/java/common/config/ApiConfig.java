@@ -9,6 +9,7 @@ public interface ApiConfig extends Config {
 
     @DefaultValue("/v3")
     String basePath();
+
     @DefaultValue("https://my.mts-link.ru")
     String authBaseURI();
 
