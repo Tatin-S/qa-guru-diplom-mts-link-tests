@@ -17,11 +17,11 @@ public class AuthorizationPage {
             emailInput = $(byName("email")),
             passwordInput = $(byName("password")),
             submitButton = $(byAttribute("data-testid", "SignIn.action.submit")),
-            profileImage = $(byAttribute("data-testid", "Meetings.PageTopbar.User")),
-            errorBadEmailMessage = $(byText("The login and password contain errors")),
+            pageTopbarUser = $(byAttribute("data-testid", "Meetings.PageTopbar.User")),
+            errorBadEmailMessage = $(byText("Wrong email address")),
             errorBadPasswordMessage = $(byText("The login and password contain errors"));
 
-    @Step("Открыаем страницу")
+    @Step("Открываем страницу")
     public AuthorizationPage openPage() {
         open("/signin");
         return this;
@@ -59,16 +59,15 @@ public class AuthorizationPage {
 
     @Step("Проверяем, что пользователь авторизован")
     public void checkSuccessfulAuthorization() {
-        profileImage.shouldHave(visible);
+        pageTopbarUser.shouldHave(visible);
     }
 
-    @Step("Проверяем, что отображается ошибка Неверный адрес электронной почты")
+    @Step("Проверяем, что отображается ошибка Wrong email address")
     public void checkWrongEmail() {
-
         errorBadEmailMessage.shouldHave(visible);
     }
 
-    @Step("Проверяем, что отображается ошибка Логин или пароль содержит ошибки")
+    @Step("Проверяем, что отображается ошибка The login and password contain errors")
     public void checkWrongPassword() {
         errorBadPasswordMessage.shouldHave(visible);
     }
