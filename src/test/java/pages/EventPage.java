@@ -26,7 +26,7 @@ public class EventPage {
             goToEventButton = $(byAttribute("data-testid", "MeetingsEditor.Topbar.goToEvent")),
             startMeetingButton = $(byText("Начать встречу")),
            // nameMeetingInput = $(byAttribute("data-testid", "MeetingsEditor.Hero.Body.Title.textarea")),
-            nameMeetingInput = $(".name-field"),
+            nameMeetingInput = $(".name-field.textarea"),
             saveEventButton = $(byAttribute("data-testid", "MeetingsEditor.Topbar.saveEvent")),
             joinMeetingButton = $(byText("Присоединиться к встрече")),
             vcs = $(byAttribute("data-testid", "Stream.Vcs.MyConference")),
