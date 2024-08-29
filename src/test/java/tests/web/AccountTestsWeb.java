@@ -1,16 +1,27 @@
 package tests.web;
 
 import api.extensions.WithLogin;
+import common.data.TestData;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import pages.AuthorizationPage;
+import pages.EventPage;
+import pages.ProfilePage;
+import pages.TopbarPage;
 
 @Feature("Авторизация пользователя")
 @Tag("web")
 public class AccountTestsWeb extends TestBaseWeb {
+    TestData testData = new TestData();
+    EventPage eventPage = new EventPage();
+    AuthorizationPage authorizationPage = new AuthorizationPage();
+    TopbarPage topbarPage = new TopbarPage();
+    ProfilePage profilePage = new ProfilePage();
+
     @Test
     @DisplayName("Успешная авторизация пользователя по почте и паролю")
     @Severity(SeverityLevel.BLOCKER)

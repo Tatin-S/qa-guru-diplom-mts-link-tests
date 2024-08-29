@@ -4,7 +4,6 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import common.config.WebConfig;
-import common.data.TestData;
 import common.helpers.Attachments;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.aeonbits.owner.ConfigFactory;
@@ -13,20 +12,10 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import pages.AuthorizationPage;
-import pages.EventPage;
-import pages.ProfilePage;
-import pages.TopbarPage;
 
 import java.util.Map;
 
 public class TestBaseWeb {
-    EventPage eventPage = new EventPage();
-    AuthorizationPage authorizationPage = new AuthorizationPage();
-    TopbarPage topbarPage = new TopbarPage();
-    ProfilePage profilePage = new ProfilePage();
-    TestData testData = new TestData();
-
     @BeforeAll
     static void beforeAll() {
         WebConfig webConfig = ConfigFactory.create(WebConfig.class, System.getProperties());

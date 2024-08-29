@@ -1,12 +1,14 @@
 package tests.web;
 
 import api.extensions.WithLogin;
+import common.data.TestData;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import pages.EventPage;
 
 import static com.codeborne.selenide.Selenide.back;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
@@ -16,6 +18,8 @@ import static common.helpers.ConverterUrl.getEventSessionIdFromUrlForEdit;
 @Tag("web")
 @Feature("Мероприятие")
 public class EventTestsWeb extends TestBaseWeb {
+    TestData testData = new TestData();
+    EventPage eventPage = new EventPage();
 
     @WithLogin
     @Test
