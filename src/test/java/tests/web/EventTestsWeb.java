@@ -47,6 +47,7 @@ public class EventTestsWeb extends TestBaseWeb {
         eventPage.openPage()
                 .clickScheduleButton()
                 .clickScheduleMeetingButton()
+                .editNameMeeting("Создание запланированной встречи")
                 .clickGoToEventButton()
                 .clickStartMeetingButton()
                 .clickJoinMeetingButton()
@@ -65,6 +66,7 @@ public class EventTestsWeb extends TestBaseWeb {
         eventPage.openPage()
                 .clickScheduleButton()
                 .clickScheduleEndlessMeetingButton()
+                .editNameMeeting("Создание постоянной встречи")
                 .clickGoToEventButton()
                 .clickJoinMeetingButton()
                 .checkVCSVisible()
@@ -77,9 +79,9 @@ public class EventTestsWeb extends TestBaseWeb {
     @Severity(SeverityLevel.CRITICAL)
     void editMeetingTest() {
         String newNameMeeting = "test edit name";
-        eventPage.createEventApi(testData.eventName)
+        eventPage.createEventApi("Редактирование мероприятия")
                 .openPage()
-                .openNameEvent(testData.eventName)
+                .openNameEvent("Редактирование мероприятия")
                 .editNameMeeting(newNameMeeting)
                 .clickSaveEventButton();
         String eventSessionId = getEventSessionIdFromUrl(getWebDriver().getCurrentUrl());
@@ -94,7 +96,7 @@ public class EventTestsWeb extends TestBaseWeb {
     @DisplayName("Удаление мероприятия")
     @Severity(SeverityLevel.CRITICAL)
     void deleteMeetingTest(){
-        eventPage.createEventApi(testData.eventName)
+        eventPage.createEventApi("Удаление мероприятия")
                 .openPage()
                 .openNameEvent(testData.eventName)
               //  .clickEditorTopbarMenuButton()
@@ -103,6 +105,6 @@ public class EventTestsWeb extends TestBaseWeb {
                /* .clickEndlessMeetingCardMenu()
                 .clickEndlessMeetingButton()
                 .clickEndlessMeetingButtonInWindow()*/
-                .checkDeletedNameMeetingIsNotVisisble(testData.eventName);
+                .checkDeletedNameMeetingIsNotVisisble("Удаление мероприятия");
     }
 }
