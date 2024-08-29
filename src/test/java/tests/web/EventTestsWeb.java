@@ -35,8 +35,9 @@ public class EventTestsWeb extends TestBaseWeb {
                 .checkVCSVisible();
         String eventSessionId = getEventSessionIdFromUrl(getWebDriver().getCurrentUrl());
         eventPage.clickLeaveButton()
-                .clickFinishMeetingButton()
-                .deleteEvent(eventSessionId);
+                .clickFinishMeetingButton();
+        authorizationPage.checkSuccessfulAuthorization();
+        eventPage.deleteEvent(eventSessionId);
     }
 
     @WithLogin
@@ -54,8 +55,9 @@ public class EventTestsWeb extends TestBaseWeb {
                 .checkVCSVisible();
         String eventSessionId = getEventSessionIdFromUrl(getWebDriver().getCurrentUrl());
         eventPage.clickLeaveButton()
-                .clickFinishMeetingButton()
-                .deleteEvent(eventSessionId);
+                .clickFinishMeetingButton();
+        authorizationPage.checkSuccessfulAuthorization();
+        eventPage.deleteEvent(eventSessionId);
     }
 
     @WithLogin
@@ -69,8 +71,11 @@ public class EventTestsWeb extends TestBaseWeb {
                 .editNameMeeting("Создание постоянной встречи")
                 .clickGoToEventButton()
                 .clickJoinMeetingButton()
-                .checkVCSVisible()
-                .clickLeaveButton();
+                .checkVCSVisible();
+        String eventSessionId = getEventSessionIdFromUrl(getWebDriver().getCurrentUrl());
+        eventPage.clickLeaveButton();
+        authorizationPage.checkSuccessfulAuthorization();
+        eventPage.deleteEvent(eventSessionId);
     }
 
     @WithLogin
@@ -98,14 +103,17 @@ public class EventTestsWeb extends TestBaseWeb {
     void deleteMeetingTest(){
         eventPage.createEventApi("Удаление мероприятия")
                 .openPage()
-                .openNameEvent("Удаление мероприятия")
+                .openNameEvent("Удаление мероприятия");
+        String eventSessionId = getEventSessionIdFromUrl(getWebDriver().getCurrentUrl());
               //  .clickEditorTopbarMenuButton()
-                .clickDeleteButton()
+        eventPage.clickDeleteButton()
                 .clickDeleteMeetingButton();
                /* .clickEndlessMeetingCardMenu()
                 .clickEndlessMeetingButton()
                 .clickEndlessMeetingButtonInWindow()*/
                 sleep(5000);
+        authorizationPage.checkSuccessfulAuthorization();
         eventPage.checkDeletedNameMeetingIsNotVisisble("Удаление мероприятия");
+        eventPage.deleteEvent(eventSessionId);
     }
 }

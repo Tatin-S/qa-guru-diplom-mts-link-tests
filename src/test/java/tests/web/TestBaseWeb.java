@@ -21,6 +21,7 @@ import java.util.Map;
 
 public class TestBaseWeb {
     EventPage eventPage = new EventPage();
+    AuthorizationPage authorizationPage = new AuthorizationPage();
 
     @BeforeAll
     static void beforeAll() {

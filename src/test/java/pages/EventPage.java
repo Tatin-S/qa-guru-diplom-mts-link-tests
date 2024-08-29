@@ -10,8 +10,7 @@ import tests.api.TestSteps;
 
 import java.io.IOException;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -80,7 +79,7 @@ public class EventPage {
 
     @Step("Проверяем, что удаленное мероприятие не отображается в списке запланированных")
     public EventPage checkDeletedNameMeetingIsNotVisisble(String newNameMeeting) {
-        $$(byText(newNameMeeting)).first().shouldNotBe(visible);
+        $(byText(newNameMeeting)).shouldNotBe(visible).shouldNotBe(enabled);
         return this;
     }
 
@@ -132,7 +131,7 @@ public class EventPage {
         return this;
     }
 
-    @Step("Нажимаем кнопку Удалить")
+    @Step("Нажимаем кнопку Удалить мероприятие")
     public EventPage clickDeleteButton() {
         deleteButton.click();
         return this;
@@ -162,7 +161,7 @@ public class EventPage {
         return this;
     }
 
-    @Step("Нажимаем кнопку Удалить встречу")
+    @Step("Нажимаем кнопку Удалить мероприятие")
     public EventPage clickDeleteMeetingButton() {
         deleteMeetingButton.click();
         return this;
