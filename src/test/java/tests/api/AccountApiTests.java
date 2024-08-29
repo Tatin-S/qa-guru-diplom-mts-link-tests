@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 @Feature("Авторизация пользователя")
 @Tag("api")
-public class AccountApiTestsBase extends TestApiBase {
+public class AccountApiTests extends TestApiBase {
     @Test
     @DisplayName("Успешная авторизация по почте и паролю")
     @Severity(SeverityLevel.BLOCKER)

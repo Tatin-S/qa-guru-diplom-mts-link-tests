@@ -7,7 +7,6 @@ import org.junit.jupiter.api.BeforeEach;
 
 public class TestApiBase {
     TestSteps testSteps = new TestSteps();
-    TestData testData = new TestData();
 
     @BeforeEach
     void setUp() {
