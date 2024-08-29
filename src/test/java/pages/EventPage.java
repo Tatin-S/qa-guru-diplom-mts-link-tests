@@ -35,7 +35,7 @@ public class EventPage {
           //  deleteButton = $(byText("Удалить")),
          //   deleteMeetingButton = $(byText("Удалить встречу")),
             deleteButton = $(byText("Удалить мероприятие")),
-            deleteMeetingButton = $(byText("Удалить мероприятие"));
+            deleteMeetingButton = $(".popover delete open");
            // endlessMeetingCardMenu = $(byAttribute("data-testid", "EndlessMeetingCard.menu")),
            // deleteEndlessMeetingButton = $(byAttribute("data-testid", "EndlessMeetingCard.menu.delete")),
           //  deleteEndlessMeetingButtonInWindow = $(byText("Удалить"));
@@ -79,7 +79,7 @@ public class EventPage {
 
     @Step("Проверяем, что удаленное мероприятие не отображается в списке запланированных")
     public EventPage checkDeletedNameMeetingIsNotVisisble(String newNameMeeting) {
-        $(byText(newNameMeeting)).shouldNotBe(visible).shouldNotBe(enabled);
+        $(byText(newNameMeeting)).shouldBe(disappear);
         return this;
     }
 
