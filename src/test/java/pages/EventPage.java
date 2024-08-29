@@ -34,8 +34,8 @@ public class EventPage {
             finishMeetingButton = $(byAttribute("data-testid", "LeaveButton.FinishMeeting")),
           //  deleteButton = $(byText("Удалить")),
          //   deleteMeetingButton = $(byText("Удалить встречу")),
-            deleteButton = $(byText("Удалить мероприятие")),
-            deleteMeetingButton = $(".wbt2 fail wbt2-default");
+            deleteButton = $(byText("Удалить")),
+            deleteMeetingButton = $(byText("Удалить встречу"));
            // endlessMeetingCardMenu = $(byAttribute("data-testid", "EndlessMeetingCard.menu")),
            // deleteEndlessMeetingButton = $(byAttribute("data-testid", "EndlessMeetingCard.menu.delete")),
           //  deleteEndlessMeetingButtonInWindow = $(byText("Удалить"));
@@ -113,17 +113,13 @@ public class EventPage {
         return this;
     }
 
-/*    @Step("Редактируем название встречи")
-    public EventPage editNameMeeting(String newNameMeeting) {
-        nameMeetingInput.setValue(newNameMeeting);
-        return this;
-    }*/
-
     @Step("Редактируем название встречи")
     public EventPage editNameMeeting(String newNameMeeting) {
+        nameMeetingInput.clear();
         nameMeetingInput.setValue(newNameMeeting);
         return this;
     }
+
     @Step("Нажимаем кнопку Сохранить")
     public EventPage clickSaveEventButton() {
         saveEventButton.click();
