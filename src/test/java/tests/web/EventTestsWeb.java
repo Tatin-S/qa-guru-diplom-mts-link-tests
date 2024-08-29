@@ -101,10 +101,11 @@ public class EventTestsWeb extends TestBaseWeb {
                 .openNameEvent("Удаление мероприятия")
               //  .clickEditorTopbarMenuButton()
                 .clickDeleteButton()
-                .clickDeleteMeetingButton()
+                .clickDeleteMeetingButton();
                /* .clickEndlessMeetingCardMenu()
                 .clickEndlessMeetingButton()
                 .clickEndlessMeetingButtonInWindow()*/
-                .checkDeletedNameMeetingIsNotVisisble("Удаление мероприятия");
+                sleep(5000);
+        eventPage.checkDeletedNameMeetingIsNotVisisble("Удаление мероприятия");
     }
 }
