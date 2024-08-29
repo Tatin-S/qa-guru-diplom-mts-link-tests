@@ -35,7 +35,7 @@ public class EventPage {
           //  deleteButton = $(byText("Удалить")),
          //   deleteMeetingButton = $(byText("Удалить встречу")),
             deleteButton = $(byText("Удалить мероприятие")),
-            deleteMeetingButton = $(".popover delete open");
+            deleteMeetingButton = $(".wbt2 fail wbt2-default");
            // endlessMeetingCardMenu = $(byAttribute("data-testid", "EndlessMeetingCard.menu")),
            // deleteEndlessMeetingButton = $(byAttribute("data-testid", "EndlessMeetingCard.menu.delete")),
           //  deleteEndlessMeetingButtonInWindow = $(byText("Удалить"));
