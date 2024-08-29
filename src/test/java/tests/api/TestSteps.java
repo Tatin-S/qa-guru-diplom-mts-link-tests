@@ -27,7 +27,6 @@ public class TestSteps {
     @Step("Создаем шаблон для мероприятия")
     public CreateEventTemplateResponseModel createEventTemplate(CreateEventTemplateRequestModel createEventTemplateRequest) {
         return given(requestSpecEvent)
-                .contentType("application/json")
                 .body(createEventTemplateRequest)
                 .when()
                 .post("/events")
@@ -55,7 +54,6 @@ public class TestSteps {
         loginData.setRememberMe(AUTH_DATA_CONFIG.rememberMe());
         step("Авторизуемся по почте и паролю", () ->
                 given(requestSpecAuth)
-                        .contentType("application/json")
                         .body(loginData)
                         .when()
                         .post("/login")
@@ -70,18 +68,17 @@ public class TestSteps {
         loginData.setPassword(testData.testPassword);
         loginData.setRememberMe(AUTH_DATA_CONFIG.rememberMe());
         return given(requestSpecAuth)
-                .contentType("application/json")
                 .body(loginData)
                 .when()
                 .post("/login")
                 .then()
-                .spec(responseSpecStatusCode404)
+                .spec(responseSpecStatusCode400)
                 .extract().as(ErrorResponseModel.class);
     }
 
-    @Step("Проверяем текст об ошибке Wrong credentials")
+    @Step("Проверяем текст об ошибке Email is invalid")
     public void checkWrongCredentials(ErrorResponseModel response) {
-        assertThat(response.getError().getMessage()).isEqualTo("Wrong credentials");
+        assertThat(response.getError().getMessage()).isEqualTo("Email is invalid");
     }
 
     @Step("Создаем мероприятие по шаблону")
@@ -92,7 +89,6 @@ public class TestSteps {
                 CreateEventRequestModel.class
         );
         return given(requestSpecEvent)
-                .contentType("application/json")
                 .body(request)
                 .when()
                 .post("/events/" + eventId + "/sessions")
@@ -116,7 +112,6 @@ public class TestSteps {
     @Step("Создаем мероприятие по шаблону без параметров")
     public CreateEventResponseModel createEventWithEmptyBody(String eventId) {
         return given(requestSpecEvent)
-                .contentType("application/json")
                 .body("{}")
                 .when()
                 .post("/events/" + eventId + "/sessions")
@@ -128,7 +123,6 @@ public class TestSteps {
     @Step("Создаем мероприятие по шаблону с невалидным телом")
     public ErrorResponseModel createEventWithInvalidBody(String eventId) {
         return given(requestSpecEvent)
-                .contentType("application/json")
                 .body("")
                 .when()
                 .post("/events/" + eventId + "/sessions")
@@ -145,7 +139,6 @@ public class TestSteps {
     @Step("Получаем данные мероприятия")
     public void getEvent(String eventSessionId) {
         given(requestSpecEvent)
-                .contentType("application/json")
                 .body("{}")
                 .when()
                 .get("/eventsessions/" + eventSessionId)
@@ -156,7 +149,6 @@ public class TestSteps {
     @Step("Удаляем мероприятие")
     public void deleteEvent(String eventSessionId) {
         given(requestSpecEvent)
-                .contentType("application/json")
                 .body("{}")
                 .when()
                 .delete("/eventsessions/" + eventSessionId)
