@@ -7,7 +7,6 @@ import common.helpers.Tools;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Step;
 import org.junit.jupiter.api.Tag;
-import org.openqa.selenium.Keys;
 import tests.api.TestSteps;
 
 import static com.codeborne.selenide.Condition.*;
@@ -144,15 +143,6 @@ public class EventPage {
     @Step("Удаляем встречу с помощью API")
     public void deleteEvent(String eventSessionId) {
         testSteps.deleteEvent(eventSessionId);
-    }
-
-    @Step("Создаем встречу с помощью API")
-    public EventPage createEventApi(String nameEvent) {
-        CreateEventTemplateRequestModel.AccessSettingsModel accessSettings = new CreateEventTemplateRequestModel.AccessSettingsModel(false, false, false);
-        CreateEventTemplateRequestModel createEventTemplateRequest = new CreateEventTemplateRequestModel(nameEvent, accessSettings);
-        CreateEventTemplateResponseModel responseTemplate = testSteps.createEventTemplate(createEventTemplateRequest);
-        testSteps.createEventWithEmptyBody(responseTemplate.getEventId());
-        return this;
     }
 
     @Step("Нажимаем кнопку Завершить встречу")

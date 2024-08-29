@@ -27,7 +27,6 @@ public class TestData {
         return array[index];
     }    public String gender = getRandomItemFromArray(genders),
             hobby = getRandomItemFromArray(hobbies),
-            pictures = "picture.jpg",
             description =
                     "1. Gender - " + gender +
                             " 2. Address - " + currentAddress +

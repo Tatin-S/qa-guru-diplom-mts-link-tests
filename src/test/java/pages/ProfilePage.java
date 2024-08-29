@@ -3,7 +3,6 @@ package pages;
 import com.codeborne.selenide.SelenideElement;
 import common.helpers.Tools;
 import io.qameta.allure.Step;
-import org.openqa.selenium.Keys;
 import tests.web.TestBaseWeb;
 
 import static com.codeborne.selenide.Condition.value;
