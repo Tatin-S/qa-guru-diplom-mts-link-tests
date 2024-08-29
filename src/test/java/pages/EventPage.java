@@ -6,6 +6,7 @@ import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Step;
 import org.junit.jupiter.api.Tag;
+import org.openqa.selenium.Keys;
 import tests.api.TestSteps;
 
 import java.io.IOException;
@@ -115,7 +116,7 @@ public class EventPage {
 
     @Step("Редактируем название встречи")
     public EventPage editNameMeeting(String newNameMeeting) {
-        nameMeetingInput.clear();
+        nameMeetingInput.sendKeys(Keys.BACK_SPACE);
         nameMeetingInput.setValue(newNameMeeting);
         return this;
     }
