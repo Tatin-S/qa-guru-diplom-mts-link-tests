@@ -113,13 +113,12 @@ public class AccountWebTests extends TestBaseWeb {
 
     @MethodSource("fieldsAuthorization")
     @ParameterizedTest(name = "Для языка {0} должны отображаться кнопки на соответствующем языке")
-    @Test
     @DisplayName("Проверка отображения полей авторизации на языке {0}")
     @Severity(SeverityLevel.CRITICAL)
     void checkFieldsAuthorizationOnLanguage(Language language, List<String> listFieldsAuthorization) {
         authorizationPage.openPage();
         $x("//div[contains(@class, 'AuthLayout_lang')]").click();
-        if (language.language == "RU") {
+        if (language.language.equals("RU")) {
             $(byAttribute("data-testid", "AuthLayout.language.ru")).click();
             $$x("//div[contains(@class, 'AuthContent_root')]").filter(visible).shouldHave(texts(listFieldsAuthorization));
         } else {
