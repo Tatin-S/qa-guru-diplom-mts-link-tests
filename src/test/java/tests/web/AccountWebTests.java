@@ -52,7 +52,7 @@ public class AccountWebTests extends TestBaseWeb {
     @Test
     @DisplayName("Успешная авторизация пользователя по почте и паролю")
     @Severity(SeverityLevel.BLOCKER)
-    void authorizationTest() {
+    void authorizationTest() throws InterruptedException {
         authorizationPage.openPage()
                 .setEmail()
                 .setPassword()

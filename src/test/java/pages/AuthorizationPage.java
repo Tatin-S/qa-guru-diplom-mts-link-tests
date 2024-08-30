@@ -58,7 +58,8 @@ public class AuthorizationPage {
     }
 
     @Step("Проверяем, что пользователь авторизован")
-    public void checkSuccessfulAuthorization() {
+    public void checkSuccessfulAuthorization() throws InterruptedException {
+        pageTopbarUser.wait();
         pageTopbarUser.shouldHave(visible);
     }
 

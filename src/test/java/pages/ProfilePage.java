@@ -6,7 +6,8 @@ import io.qameta.allure.Step;
 import tests.web.TestBaseWeb;
 
 import static com.codeborne.selenide.Condition.value;
-import static com.codeborne.selenide.Selectors.*;
+import static com.codeborne.selenide.Selectors.byName;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 
 public class ProfilePage extends TestBaseWeb {
