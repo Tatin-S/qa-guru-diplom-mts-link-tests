@@ -6,10 +6,11 @@ import io.qameta.allure.Step;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byAttribute;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 
 public class TopbarPage {
     private final SelenideElement
-            pageTopbarUser = $(byAttribute("data-testid", "Meetings.PageTopbar.User")),
+            pageTopbarUser = $x("//div[contains(@class, 'MuiAvatar-root UserAvatar_root')]"),
             pageTopbarUserProfile = $(byAttribute("data-testid", "Meetings.PageTopbar.User.profile"));
 
     @Step("Нажимаем на аватар пользователя")

@@ -7,8 +7,7 @@ import org.aeonbits.owner.ConfigFactory;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.*;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class AuthorizationPage {
 
@@ -17,7 +16,7 @@ public class AuthorizationPage {
             emailInput = $(byName("email")),
             passwordInput = $(byName("password")),
             submitButton = $(byAttribute("data-testid", "SignIn.action.submit")),
-            pageTopbarUser = $(byAttribute("data-testid", "Meetings.PageTopbar.User")),
+            pageTopbarUser = $x("//div[contains(@class, 'MuiAvatar-root UserAvatar_root')]"),
             errorBadEmailMessage = $(byText("Wrong email address")),
             errorBadPasswordMessage = $(byText("The login and password contain errors"));
 
