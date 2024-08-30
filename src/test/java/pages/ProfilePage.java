@@ -114,8 +114,7 @@ public class ProfilePage extends TestBaseWeb {
     }
 
     @Step("Проверяем описание о себе")
-    public ProfilePage checkDescription(String description) {
+    public void checkDescription(String description) {
         descriptionInput.shouldHave(value(description));
-        return this;
     }
 }
