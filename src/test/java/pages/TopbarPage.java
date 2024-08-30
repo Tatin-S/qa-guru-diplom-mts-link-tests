@@ -19,8 +19,7 @@ public class TopbarPage {
     }
 
     @Step("Нажимаем на кнопку Профиль")
-    public TopbarPage clickPageTopbarUserProfile() {
+    public void clickPageTopbarUserProfile() {
         pageTopbarUserProfile.click();
-        return this;
     }
 }
