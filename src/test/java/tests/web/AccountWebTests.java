@@ -86,7 +86,7 @@ public class AccountWebTests extends TestBaseWeb {
     @Test
     @DisplayName("Редактирование профиля пользователя")
     @Severity(SeverityLevel.CRITICAL)
-    void editProfileUserTest() {
+    void editProfileUserTest() throws InterruptedException{
         eventPage.openPage();
         topbarPage.clickPageTopbarUser()
                 .clickPageTopbarUserProfile();

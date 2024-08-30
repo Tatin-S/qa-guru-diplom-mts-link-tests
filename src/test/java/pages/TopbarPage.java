@@ -12,7 +12,8 @@ public class TopbarPage {
             pageTopbarUserProfile = $(byAttribute("data-testid", "Meetings.PageTopbar.User.profile"));
 
     @Step("Нажимаем на аватар пользователя")
-    public TopbarPage clickPageTopbarUser() {
+    public TopbarPage clickPageTopbarUser() throws InterruptedException {
+        pageTopbarUser.wait();
         pageTopbarUser.click();
         return this;
     }
