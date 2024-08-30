@@ -87,9 +87,9 @@
 <img src="images/Jenkins.svg" width="25" height="25" alt="Jenkins"/>  <a name="Jenkins"><i>Запуск тестов в Jenkins</i></a>
 </h1>
 
-<a target="_blank" href="https://jenkins.autotests.cloud/job/qa-guru-diplom-mobile-tests/">**Сборка в Jenkins**</a>
+<a target="_blank" href="https://jenkins.autotests.cloud/job/qa-guru-diplom-mts-link-tests/">**Сборка в Jenkins**</a>
 <p align="center">  
-<a href="https://jenkins.autotests.cloud/job/qa-guru-diplom-mobile-tests/"><img src="images/JenkinsJobMobile.jpg" alt="Jenkins"/></a>  
+<a href="https://jenkins.autotests.cloud/job/qa-guru-diplom-mts-link-tests/"><img src="images/jenkins.jpg" alt="Jenkins"/></a>  
 </p>
 
 <h1 align="left">
@@ -98,18 +98,15 @@
 
 
 ***Локальный запуск:***
-> Для работы со своей учетной записью на https://www.browserstack.com/ следует отредактировать файл - authData.properties
-> Если требуется изменить устройство следует отредактировать файл - browserstack.properties
-> Для работы со своим мобильным устройством - заменить параметры в файле real.properties  
-> Для работы с отличным от проектного эмулятором стоит изменить параметры в файле - emulation.properties
+> Для работы со своей учетной записью на https://mts-link.ru/products/meetings/ следует отредактировать файл - authData.properties
 
 ```bash  
-gradle test -DdeviceHost=emulation
+gradle test -Denv=remote
 ```
 
 ***Удаленный запуск (через browserstack):***
 ```bash  
-gradle test -DdeviceHost=browserstack
+gradle test -Denv=local
 ```
 
 
@@ -117,7 +114,7 @@ gradle test -DdeviceHost=browserstack
 <img src="images/Allure_Report.svg" width="25" height="25" alt="Allure_Report"/>  <a name="AllureReport"><i>Отчет о результатах тестирования в Allure</i></a>
 </h1>
 
-<a target="_blank" href="https://jenkins.autotests.cloud/job/qa-guru-diplom-mobile-tests/allure/">**Отчёт в Allure**</a>
+<a target="_blank" href="https://jenkins.autotests.cloud/job/qa-guru-diplom-mts-link-tests/allure/">**Отчёт в Allure**</a>
 <p align="center">  
 
 
@@ -164,7 +161,7 @@ gradle test -DdeviceHost=browserstack
 <img src="images/Jira.svg" width="25" height="25" alt="Jira"/> <a name="Jira"><i>Интеграция с Jira</i></a>
 </h1>
 
-<a target="_blank" href="https://jira.autotests.cloud/browse/HOMEWORK-1310">**Тикет в Jira**</a>
+<a target="_blank" href="https://jira.autotests.cloud/browse/HOMEWORK-1338">**Тикет в Jira**</a>
 <p align="center">  
 
 
@@ -181,11 +178,11 @@ gradle test -DdeviceHost=browserstack
 </p>
 
 <h1 align="left">
-<img src="images/Browserstack.svg" width="25" height="25" alt="Browserstack"/> <a name="Browserstack"><i>Пример видео выполнения теста на BrowserStack</i></a>
+<a name="Browserstack"><i>Пример видео выполнения теста</i></a>
 </h1>
 
 <p align="center"> 
-<img title="Browserstack Video" src="images/BrowserStackVideoShort.gif" width="450" height="450"  alt="video">   
+<img title="Video" src="images/video.gif" width="450" height="450"  alt="video">   
 </p>
 
 [Наверх ⬆](#наверх)
