@@ -71,9 +71,8 @@ public class EventPage {
     }
 
     @Step("Проверяем, что удаленное мероприятие не отображается в списке запланированных")
-    public EventPage checkDeletedNameMeetingIsNotVisisble(String newNameMeeting) {
+    public void checkDeletedNameMeetingIsNotVisisble(String newNameMeeting) {
         $(byText(newNameMeeting)).shouldBe(disappear);
-        return this;
     }
 
     @Step("Нажимаем кнопку Запланировать")
@@ -114,10 +113,9 @@ public class EventPage {
     }
 
     @Step("Нажимаем кнопку Сохранить")
-    public EventPage clickSaveEventButton() {
+    public void clickSaveEventButton() {
         saveEventButton.click();
         toolBar.shouldHave(visible).shouldHave(text("Изменения сохранены"));
-        return this;
     }
 
     @Step("Нажимаем кнопку Удалить")
