@@ -53,8 +53,7 @@ public class EventWebTests extends TestBaseWeb {
                 .checkVCSVisible();
         String eventSessionId = getEventSessionIdFromUrl(getWebDriver().getCurrentUrl());
         eventPage.clickLeaveButton()
-                .clickFinishMeetingButton()
-                .deleteEvent(eventSessionId);
+                .clickFinishMeetingButton();
     }
 
     @WithLogin
