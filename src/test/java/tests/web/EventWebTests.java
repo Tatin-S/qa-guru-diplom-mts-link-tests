@@ -3,6 +3,7 @@ package tests.web;
 import api.extensions.WithLogin;
 import common.data.TestData;
 import io.qameta.allure.Feature;
+import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import org.junit.jupiter.api.DisplayName;
@@ -10,11 +11,11 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.EventPage;
 
-import static com.codeborne.selenide.Selenide.back;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static common.helpers.Tools.getEventSessionIdFromUrl;
 import static common.helpers.Tools.getEventSessionIdFromUrlForEdit;
 
+@Owner("Stulova Tatiana")
 @Tag("web")
 @Feature("Мероприятие")
 public class EventWebTests extends TestBaseWeb {
@@ -82,10 +83,9 @@ public class EventWebTests extends TestBaseWeb {
                 .editNameMeeting(newNameMeeting)
                 .clickSaveEventButton();
         String eventSessionId = getEventSessionIdFromUrlForEdit(getWebDriver().getCurrentUrl());
-        back();
-        eventPage.checkEditNameMeeting(newNameMeeting)
+        eventPage.back()
+                .checkEditNameMeeting(newNameMeeting)
                 .deleteEvent(eventSessionId);
-
     }
 
     @WithLogin
@@ -98,8 +98,8 @@ public class EventWebTests extends TestBaseWeb {
                 .clickScheduleMeetingButton()
                 .editNameMeeting(testData.eventName)
                 .clickSaveEventButton();
-        back();
-        eventPage.openNameEvent(testData.eventName)
+        eventPage.back()
+                .openNameEvent(testData.eventName)
                 .clickEditorTopbarMenuButton()
                 .clickDeleteButton()
                 .clickDeleteMeetingButton()

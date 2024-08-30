@@ -9,6 +9,7 @@ import api.models.event.CreateEventTemplateResponseModel;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import common.config.AuthDataConfig;
 import common.data.TestData;
+import io.qameta.allure.Owner;
 import io.qameta.allure.Step;
 import org.aeonbits.owner.ConfigFactory;
 
@@ -20,9 +21,10 @@ import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Owner("Stulova Tatiana")
 public class TestSteps {
-    TestData testData = new TestData();
     static final AuthDataConfig AUTH_DATA_CONFIG = ConfigFactory.create(AuthDataConfig.class, System.getProperties());
+    TestData testData = new TestData();
 
     @Step("Создаем шаблон для мероприятия")
     public CreateEventTemplateResponseModel createEventTemplate(CreateEventTemplateRequestModel createEventTemplateRequest) {

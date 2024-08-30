@@ -1,26 +1,53 @@
 package tests.web;
 
 import api.extensions.WithLogin;
+import common.data.Language;
 import common.data.TestData;
 import io.qameta.allure.Feature;
+import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import pages.AuthorizationPage;
 import pages.EventPage;
 import pages.ProfilePage;
 import pages.TopbarPage;
 
+import java.util.List;
+import java.util.stream.Stream;
+
+import static com.codeborne.selenide.CollectionCondition.texts;
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selectors.byAttribute;
+import static com.codeborne.selenide.Selenide.*;
+
+@Owner("Stulova Tatiana")
 @Feature("Авторизация пользователя")
 @Tag("web")
 public class AccountWebTests extends TestBaseWeb {
-    TestData testData = new TestData();
+    static TestData testData = new TestData();
     EventPage eventPage = new EventPage();
     AuthorizationPage authorizationPage = new AuthorizationPage();
     TopbarPage topbarPage = new TopbarPage();
     ProfilePage profilePage = new ProfilePage();
+
+    static Stream<Arguments> fieldsAuthorization() {
+        return Stream.of(
+                Arguments.of(
+                        Language.RU,
+                        testData.listFieldsAuthorizationRu
+                ),
+                Arguments.of(
+                        Language.EN,
+                        testData.listFieldsAuthorizationEn
+                )
+        );
+    }
 
     @Test
     @DisplayName("Успешная авторизация пользователя по почте и паролю")
@@ -82,6 +109,23 @@ public class AccountWebTests extends TestBaseWeb {
                 .checkOrganization(testData.organization)
                 .checkPosition(testData.position)
                 .checkDescription(testData.description);
+    }
+
+    @MethodSource("fieldsAuthorization")
+    @ParameterizedTest(name = "Для языка {0} должны отображаться кнопки на соответствующем языке")
+    @Test
+    @DisplayName("Проверка отображения полей авторизации на языке {0}")
+    @Severity(SeverityLevel.CRITICAL)
+    void checkFieldsAuthorizationOnLanguage(Language language, List<String> listFieldsAuthorization) {
+        authorizationPage.openPage();
+        $x("//div[contains(@class, 'AuthLayout_lang')]").click();
+        if (language.language == "RU") {
+            $(byAttribute("data-testid", "AuthLayout.language.ru")).click();
+            $$x("//div[contains(@class, 'AuthContent_root')]").filter(visible).shouldHave(texts(listFieldsAuthorization));
+        } else {
+            $(byAttribute("data-testid", "AuthLayout.language.en")).click();
+            $$x("//div[contains(@class, 'AuthContent_root')]").filter(visible).shouldHave(texts(listFieldsAuthorization));
+        }
     }
 }
 
