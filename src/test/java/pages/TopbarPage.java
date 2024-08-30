@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selenide.$x;
 public class TopbarPage {
     private final SelenideElement
             pageTopbarUser = $x("//div[contains(@class, 'MuiAvatar-root UserAvatar_root')]"),
-            pageTopbarUserProfile = $(byAttribute("data-testid", "Meetings.PageTopbar.User.profile"));
+            pageTopbarUserProfile = $x("//li[contains(@class, 'MuiButtonBase-root MuiListItem-roo')][text()='Профиль']");
 
     @Step("Нажимаем на аватар пользователя")
     public TopbarPage clickPageTopbarUser(){

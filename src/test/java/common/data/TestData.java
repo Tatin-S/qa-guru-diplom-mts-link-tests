@@ -56,8 +56,8 @@ public class TestData {
             hobby = getRandomItemFromArray(hobbies),
             description =
                     "1. Gender - " + gender +
-                            "\n2. Address - " + currentAddress +
-                            "\n3. Hobbies - " + hobby;
+                            " 2. Address - " + currentAddress +
+                            " 3. Hobbies - " + hobby;
 
 
 }
