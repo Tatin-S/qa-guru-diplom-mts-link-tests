@@ -6,6 +6,7 @@ import io.qameta.allure.Step;
 import tests.web.TestBaseWeb;
 
 import static com.codeborne.selenide.Condition.value;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byName;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
@@ -74,47 +75,47 @@ public class ProfilePage extends TestBaseWeb {
 
     @Step("Нажимаем кнопку Сохранить")
     public void clickSave() {
-        saveButton.click();
+        saveButton.shouldBe(visible).click();
     }
 
     @Step("Проверяем имя")
     public ProfilePage checkName(String name) {
-        nameInput.shouldHave(value(name));
+        nameInput.shouldBe(visible).shouldHave(value(name));
         return this;
     }
 
     @Step("Проверяем фамилию")
     public ProfilePage checkSecondName(String secondName) {
-        secondNameInput.shouldHave(value(secondName));
+        secondNameInput.shouldBe(visible).shouldHave(value(secondName));
         return this;
     }
 
     @Step("Проверяем никнейм")
     public ProfilePage checkNickname(String nickname) {
-        nicknameInput.shouldHave(value(nickname));
+        nicknameInput.shouldBe(visible).shouldHave(value(nickname));
         return this;
     }
 
     @Step("Проверяем телефон")
     public ProfilePage checkPhone(String phone) {
-        phoneInput.shouldHave(value(phone));
+        phoneInput.shouldBe(visible).shouldHave(value(phone));
         return this;
     }
 
     @Step("Проверяем организацию")
     public ProfilePage checkOrganization(String organization) {
-        organizationInput.shouldHave(value(organization));
+        organizationInput.shouldBe(visible).shouldHave(value(organization));
         return this;
     }
 
     @Step("Проверяем должность")
     public ProfilePage checkPosition(String position) {
-        positionInput.shouldHave(value(position));
+        positionInput.shouldBe(visible).shouldHave(value(position));
         return this;
     }
 
     @Step("Проверяем описание о себе")
     public void checkDescription(String description) {
-        descriptionInput.shouldHave(value(description));
+        descriptionInput.shouldBe(visible).shouldHave(value(description));
     }
 }

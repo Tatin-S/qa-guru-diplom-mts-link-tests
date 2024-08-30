@@ -53,23 +53,22 @@ public class AuthorizationPage {
 
     @Step("Нажимаем кнопку Войти")
     public AuthorizationPage clickSubmit() {
-        submitButton.click();
+        submitButton.shouldBe(visible).click();
         return this;
     }
 
     @Step("Проверяем, что пользователь авторизован")
     public void checkSuccessfulAuthorization() throws InterruptedException {
-        pageTopbarUser.wait();
-        pageTopbarUser.shouldHave(visible);
+        pageTopbarUser.shouldBe(visible).shouldBe(visible);
     }
 
     @Step("Проверяем, что отображается ошибка Wrong email address")
     public void checkWrongEmail() {
-        errorBadEmailMessage.shouldHave(visible);
+        errorBadEmailMessage.shouldBe(visible);
     }
 
     @Step("Проверяем, что отображается ошибка The login and password contain errors")
     public void checkWrongPassword() {
-        errorBadPasswordMessage.shouldHave(visible);
+        errorBadPasswordMessage.shouldBe(visible);
     }
 }

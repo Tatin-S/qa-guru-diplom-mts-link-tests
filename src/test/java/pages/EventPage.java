@@ -42,25 +42,25 @@ public class EventPage {
 
     @Step("Нажимаем кнопку Быстрая встреча")
     public EventPage clickStartFastMeetingButton() {
-        startFastMeetingButton.click();
+        startFastMeetingButton.shouldBe(visible).click();
         return this;
     }
 
     @Step("Нажимаем кнопку Присоединиться к встрече")
     public EventPage clickJoinMeetingButton() {
-        joinMeetingButton.click();
+        joinMeetingButton.shouldBe(visible).click();
         return this;
     }
 
     @Step("Проверяем отображение ВКС пользователя")
     public EventPage checkVCSVisible() {
-        vcs.shouldHave(visible);
+        vcs.shouldBe(visible);
         return this;
     }
 
     @Step("Открываем мероприятие по названию в списке запланированных")
     public EventPage openNameEvent(String eventName) {
-        $$(byText(eventName)).first().click();
+        $$(byText(eventName)).first().shouldBe(visible).click();
         return this;
     }
 
@@ -77,31 +77,31 @@ public class EventPage {
 
     @Step("Нажимаем кнопку Запланировать")
     public EventPage clickScheduleButton() {
-        scheduleButton.click();
+        scheduleButton.shouldBe(visible).click();
         return this;
     }
 
     @Step("Нажимаем кнопку Встречу")
     public EventPage clickScheduleMeetingButton() {
-        scheduleMeetingButton.click();
+        scheduleMeetingButton.shouldBe(visible).click();
         return this;
     }
 
     @Step("Нажимаем кнопку Перейти к встрече")
     public EventPage clickGoToEventButton() {
-        goToEventButton.click();
+        goToEventButton.shouldBe(visible).click();
         return this;
     }
 
     @Step("Нажимаем кнопку Начать встречу")
     public EventPage clickStartMeetingButton() {
-        startMeetingButton.click();
+        startMeetingButton.shouldBe(visible).click();
         return this;
     }
 
     @Step("Нажимаем кнопку Постоянную встречу")
     public EventPage clickScheduleEndlessMeetingButton() {
-        scheduleEndlessMeetingButton.click();
+        scheduleEndlessMeetingButton.shouldBe(visible).click();
         return this;
     }
 
@@ -114,25 +114,25 @@ public class EventPage {
 
     @Step("Нажимаем кнопку Сохранить")
     public void clickSaveEventButton() {
-        saveEventButton.click();
-        toolBar.shouldHave(visible).shouldHave(text("Изменения сохранены"));
+        saveEventButton.shouldBe(visible).click();
+        toolBar.shouldBe(visible).shouldHave(text("Изменения сохранены"));
     }
 
     @Step("Нажимаем кнопку Удалить")
     public EventPage clickDeleteButton() {
-        deleteButton.click();
+        deleteButton.shouldBe(visible).click();
         return this;
     }
 
     @Step("Нажимаем кнопку меню на странице редактирования мероприятия")
     public EventPage clickEditorTopbarMenuButton() {
-        meetingsEditorTopbarMenu.click();
+        meetingsEditorTopbarMenu.shouldBe(visible).click();
         return this;
     }
 
     @Step("Нажимаем кнопку Удалить встречу")
     public EventPage clickDeleteMeetingButton() {
-        deleteMeetingButton.click();
+        deleteMeetingButton.shouldBe(visible).click();
         return this;
     }
 
@@ -143,13 +143,13 @@ public class EventPage {
 
     @Step("Нажимаем кнопку Завершить встречу")
     public EventPage clickLeaveButton() {
-        leaveButton.click();
+        leaveButton.shouldBe(visible).click();
         return this;
     }
 
     @Step("Нажимаем кнопку Завершить встречу для всех")
     public EventPage clickFinishMeetingButton() {
-        finishMeetingButton.click();
+        finishMeetingButton.shouldBe(visible).click();
         return this;
     }
 
