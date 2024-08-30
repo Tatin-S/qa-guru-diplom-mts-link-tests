@@ -52,7 +52,7 @@ public class AccountWebTests extends TestBaseWeb {
     @Test
     @DisplayName("Успешная авторизация пользователя по почте и паролю")
     @Severity(SeverityLevel.BLOCKER)
-    void authorizationTest() throws InterruptedException {
+    void authorizationTest(){
         authorizationPage.openPage()
                 .setEmail()
                 .setPassword()
@@ -86,7 +86,7 @@ public class AccountWebTests extends TestBaseWeb {
     @Test
     @DisplayName("Редактирование профиля пользователя")
     @Severity(SeverityLevel.CRITICAL)
-    void editProfileUserTest() throws InterruptedException{
+    void editProfileUserTest(){
         eventPage.openPage();
         topbarPage.clickPageTopbarUser()
                 .clickPageTopbarUserProfile();
