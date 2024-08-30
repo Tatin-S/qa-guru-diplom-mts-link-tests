@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.EventPage;
 
+import static com.codeborne.selenide.Selenide.back;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static common.helpers.Tools.getEventSessionIdFromUrl;
 import static common.helpers.Tools.getEventSessionIdFromUrlForEdit;
@@ -83,8 +84,8 @@ public class EventWebTests extends TestBaseWeb {
                 .editNameMeeting(newNameMeeting)
                 .clickSaveEventButton();
         String eventSessionId = getEventSessionIdFromUrlForEdit(getWebDriver().getCurrentUrl());
-        eventPage.back()
-                .checkEditNameMeeting(newNameMeeting)
+        back();
+        eventPage.checkEditNameMeeting(newNameMeeting)
                 .deleteEvent(eventSessionId);
     }
 
@@ -98,8 +99,8 @@ public class EventWebTests extends TestBaseWeb {
                 .clickScheduleMeetingButton()
                 .editNameMeeting(testData.eventName)
                 .clickSaveEventButton();
-        eventPage.back()
-                .openNameEvent(testData.eventName)
+        back();
+        eventPage.openNameEvent(testData.eventName)
                 .clickEditorTopbarMenuButton()
                 .clickDeleteButton()
                 .clickDeleteMeetingButton()

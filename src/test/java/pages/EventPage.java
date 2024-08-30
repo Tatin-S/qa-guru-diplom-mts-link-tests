@@ -152,10 +152,4 @@ public class EventPage {
         finishMeetingButton.shouldBe(visible).click();
         return this;
     }
-
-    @Step("Возвращаемся на предыдущую страницу")
-    public EventPage back() {
-        back();
-        return this;
-    }
 }
