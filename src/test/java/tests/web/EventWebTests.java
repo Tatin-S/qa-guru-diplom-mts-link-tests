@@ -16,7 +16,7 @@ import static common.helpers.Tools.getEventSessionIdFromUrl;
 import static common.helpers.Tools.getEventSessionIdFromUrlForEdit;
 
 @Owner("Stulova Tatiana")
-@Tag("web")
+@Tag("webEvents")
 @Feature("Мероприятие")
 public class EventWebTests extends TestBaseWeb {
     TestData testData = new TestData();

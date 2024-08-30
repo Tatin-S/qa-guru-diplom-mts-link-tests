@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 
 @Owner("Stulova Tatiana")
-@Tag("api")
+@Tag("apiEvents")
 @Feature("Мероприятие")
 public class EventApiTests extends TestApiBase {
     TestData testData = new TestData();

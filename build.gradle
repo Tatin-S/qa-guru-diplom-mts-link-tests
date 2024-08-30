@@ -70,13 +70,36 @@ tasks.withType(Test) {
         }
     }
 }
-tasks.register("web", Test) {
+tasks.register("webEvents", Test) {
     useJUnitPlatform {
-        includeTags("web")
+        includeTags("webEvents")
     }
 }
-tasks.register("api", Test) {
+tasks.register("apiAccount", Test) {
     useJUnitPlatform {
-        includeTags("api")
+        includeTags("apiAccount")
+    }
+}
+
+tasks.register("webAccount", Test) {
+    useJUnitPlatform {
+        includeTags("webAccount")
+    }
+}
+tasks.register("apiEvents", Test) {
+    useJUnitPlatform {
+        includeTags("apiEvents")
+    }
+}
+
+tasks.register("apiAll", Test) {
+    useJUnitPlatform {
+        includeTags("apiEvents", "apiAccount")
+    }
+}
+
+tasks.register("webAll", Test) {
+    useJUnitPlatform {
+        includeTags("webEvents", "webAccount")
     }
 }

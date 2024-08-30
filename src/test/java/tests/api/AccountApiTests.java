@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 @Owner("Stulova Tatiana")
 @Feature("Авторизация пользователя")
-@Tag("api")
+@Tag("apiAccount")
 public class AccountApiTests extends TestApiBase {
     @Test
     @DisplayName("Успешная авторизация по почте и паролю")

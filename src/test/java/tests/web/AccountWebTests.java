@@ -28,7 +28,7 @@ import static com.codeborne.selenide.Selenide.*;
 
 @Owner("Stulova Tatiana")
 @Feature("Авторизация пользователя")
-@Tag("web")
+@Tag("webAccount")
 public class AccountWebTests extends TestBaseWeb {
     static TestData testData = new TestData();
     EventPage eventPage = new EventPage();
