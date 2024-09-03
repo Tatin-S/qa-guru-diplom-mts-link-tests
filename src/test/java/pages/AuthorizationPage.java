@@ -13,6 +13,7 @@ import static com.codeborne.selenide.CollectionCondition.texts;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
+import static io.qameta.allure.Allure.step;
 
 public class AuthorizationPage {
 
@@ -80,14 +81,28 @@ public class AuthorizationPage {
         errorBadPasswordMessage.shouldBe(visible);
     }
 
+    @Step("Нажимаем кнопку выбора языка в меню для отображения страницы авторизации в нужной локализации")
     public void checkFieldsAuthorizationOnLanguage(Language language, List<String> listFieldsAuthorization) {
-        languageMenuButton.click();
         if (language.language.equals("RU")) {
-            languageRuButton.click();
-            fieldsAuthorizationText.filter(visible).shouldHave(texts(listFieldsAuthorization));
+            step("Нажимаем на кнопку RU", () -> {
+                languageRuButton.click();
+            });
+            step("Проверяем, что названия полей на странице авторизации, отображаются на русском языке ", () -> {
+                fieldsAuthorizationText.filter(visible).shouldHave(texts(listFieldsAuthorization));
+            });
         } else {
-            languageEnButton.click();
-            fieldsAuthorizationText.filter(visible).shouldHave(texts(listFieldsAuthorization));
+            step("Нажимаем на кнопку ENG", () -> {
+                languageEnButton.click();
+            });
+            step("Проверяем, что названия полей на странице авторизации, отображаются на английском языке ", () -> {
+                fieldsAuthorizationText.filter(visible).shouldHave(texts(listFieldsAuthorization));
+            });
         }
+    }
+
+    @Step("Нажимаем кнопку меню выбора языка отображения страницы авторизации")
+    public AuthorizationPage clickMenuLanguages() {
+        languageMenuButton.click();
+        return this;
     }
 }

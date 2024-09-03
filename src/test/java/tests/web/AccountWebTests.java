@@ -112,6 +112,7 @@ public class AccountWebTests extends TestBaseWeb {
     @Severity(SeverityLevel.CRITICAL)
     void checkFieldsAuthorizationOnLanguageTests(Language language, List<String> listFieldsAuthorization) {
         authorizationPage.openPage()
+                .clickMenuLanguages()
                 .checkFieldsAuthorizationOnLanguage(language, listFieldsAuthorization);
     }
 }
