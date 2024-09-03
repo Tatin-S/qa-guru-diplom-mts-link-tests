@@ -115,14 +115,6 @@ flowchart LR
     F --> K[ApiAll]
     F --> L[ApiEvents]
     F --> M[ApiAccount]
-    G --> N[-Denv=remote]
-    G --> P[-Denv=local]
-    H --> Q[-Denv=remote]
-    H --> R[-Denv=local]
-    J --> S[-Denv=remote]
-    J --> T[-Denv=local]
-    E --> V[-Denv=remote]
-    E --> W[-Denv=local]
 ```
 
 ***Локальный запуск:***
