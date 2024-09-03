@@ -96,6 +96,34 @@
 <a name="SystemProperty"><i>Команды для запуска из терминала</i></a>
 </h1>
 
+<h1 align="left">
+<a name="Run Tests"><i>Запуск тестов</i></a>
+</h1>
+
+### Допустимые комбинации
+
+```mermaid 
+flowchart LR
+    A(gradle) --> B(clean)
+    B --> C{Выбрать тег}
+    C --> D[test]
+    C --> E[web]
+    C --> F[api]
+    E --> G[webAll]
+    E --> H[webEvents]
+    E --> J[webAccount]
+    F --> K[ApiAll]
+    F --> L[ApiEvents]
+    F --> M[ApiAccount]
+    G --> N[-Denv=remote]
+    G --> P[-Denv=local]
+    H --> Q[-Denv=remote]
+    H --> R[-Denv=local]
+    J --> S[-Denv=remote]
+    J --> T[-Denv=local]
+    E --> V[-Denv=remote]
+    E --> W[-Denv=local]
+```
 
 ***Локальный запуск:***
 > Для работы со своей учетной записью на https://mts-link.ru/products/meetings/ следует отредактировать файл - authData.properties
