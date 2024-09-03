@@ -27,7 +27,7 @@ public class AuthorizationPage {
             languageMenuButton = $x("//div[contains(@class, 'AuthLayout_lang')]"),
             languageRuButton = $(byAttribute("data-testid", "AuthLayout.language.ru")),
             languageEnButton = $(byAttribute("data-testid", "AuthLayout.language.en"));
-    private ElementsCollection fieldsAuthorizationText = $$x("//div[contains(@class, 'AuthContent_root')]");
+    private final ElementsCollection fieldsAuthorizationText = $$x("//div[contains(@class, 'AuthContent_root')]");
 
     @Step("Открываем страницу")
     public AuthorizationPage openPage() {
