@@ -96,10 +96,6 @@
 <a name="SystemProperty"><i>Команды для запуска из терминала</i></a>
 </h1>
 
-<h1 align="left">
-<a name="Run Tests"><i>Запуск тестов</i></a>
-</h1>
-
 ### Допустимые комбинации
 
 ```mermaid 
