@@ -14,14 +14,14 @@ import org.junit.jupiter.api.Test;
 @Tag("apiAccount")
 public class AccountApiTests extends TestApiBase {
     @Test
-    @DisplayName("Успешная авторизация по почте и паролю")
+    @DisplayName("Проверка успешной авторизации по почте и паролю")
     @Severity(SeverityLevel.BLOCKER)
-    void authorizationTest() {
+    void checkSuccessfullyAuthorizationTest() {
         testSteps.getSuccessfulAuthorization();
     }
 
     @Test
-    @DisplayName("Авторизация по некорректным почте и паролю")
+    @DisplayName("Проверка несупешной вторизации по некорректным почте и паролю")
     @Severity(SeverityLevel.BLOCKER)
     void checkWrongLoginTest() {
         ErrorResponseModel response = testSteps.getBadAuthorization();

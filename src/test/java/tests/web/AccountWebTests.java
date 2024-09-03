@@ -21,11 +21,6 @@ import pages.TopbarPage;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static com.codeborne.selenide.CollectionCondition.texts;
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selectors.byAttribute;
-import static com.codeborne.selenide.Selenide.*;
-
 @Owner("Stulova Tatiana")
 @Feature("Авторизация пользователя")
 @Tag("webAccount")
@@ -50,9 +45,9 @@ public class AccountWebTests extends TestBaseWeb {
     }
 
     @Test
-    @DisplayName("Успешная авторизация пользователя по почте и паролю")
+    @DisplayName("Проверка успешной авторизации пользователя по почте и паролю")
     @Severity(SeverityLevel.BLOCKER)
-    void authorizationTest(){
+    void checkSuccessfullyAuthorizationTest() {
         authorizationPage.openPage()
                 .setEmail()
                 .setPassword()
@@ -61,9 +56,9 @@ public class AccountWebTests extends TestBaseWeb {
     }
 
     @Test
-    @DisplayName("Неуспешная авторизация пользователя с некорректной почтой")
+    @DisplayName("Проверка неуспешной авторизации пользователя с некорректной почтой")
     @Severity(SeverityLevel.CRITICAL)
-    void authorizationBadEmailTest() {
+    void checkAuthorizationBadEmailTest() {
         authorizationPage.openPage()
                 .setBadEmail()
                 .setPassword()
@@ -72,9 +67,9 @@ public class AccountWebTests extends TestBaseWeb {
     }
 
     @Test
-    @DisplayName("Неуспешная авторизация пользователя с некорректным паролем")
+    @DisplayName("Проверка неуспешной авторизации пользователя с некорректным паролем")
     @Severity(SeverityLevel.CRITICAL)
-    void authorizationBadPasswordTest() {
+    void checkAuthorizationBadPasswordTest() {
         authorizationPage.openPage()
                 .setEmail()
                 .setBadPassword()
@@ -84,9 +79,9 @@ public class AccountWebTests extends TestBaseWeb {
 
     @WithLogin
     @Test
-    @DisplayName("Редактирование профиля пользователя")
+    @DisplayName("Проверка успешного редактирования профиля пользователя")
     @Severity(SeverityLevel.CRITICAL)
-    void editProfileUserTest(){
+    void checkEditProfileUserTest() {
         eventPage.openPage();
         topbarPage.clickPageTopbarUser()
                 .clickPageTopbarUserProfile();
@@ -113,18 +108,11 @@ public class AccountWebTests extends TestBaseWeb {
 
     @MethodSource("fieldsAuthorization")
     @ParameterizedTest(name = "Для языка {0} должны отображаться кнопки на соответствующем языке")
-    @DisplayName("Проверка отображения полей авторизации на языке {0}")
+    @DisplayName("Проверка отображения полей авторизации на разных языках")
     @Severity(SeverityLevel.CRITICAL)
-    void checkFieldsAuthorizationOnLanguage(Language language, List<String> listFieldsAuthorization) {
-        authorizationPage.openPage();
-        $x("//div[contains(@class, 'AuthLayout_lang')]").click();
-        if (language.language.equals("RU")) {
-            $(byAttribute("data-testid", "AuthLayout.language.ru")).click();
-            $$x("//div[contains(@class, 'AuthContent_root')]").filter(visible).shouldHave(texts(listFieldsAuthorization));
-        } else {
-            $(byAttribute("data-testid", "AuthLayout.language.en")).click();
-            $$x("//div[contains(@class, 'AuthContent_root')]").filter(visible).shouldHave(texts(listFieldsAuthorization));
-        }
+    void checkFieldsAuthorizationOnLanguageTests(Language language, List<String> listFieldsAuthorization) {
+        authorizationPage.openPage()
+                .checkFieldsAuthorizationOnLanguage(language, listFieldsAuthorization);
     }
 }
 

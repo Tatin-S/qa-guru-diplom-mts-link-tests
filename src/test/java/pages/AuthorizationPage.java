@@ -1,10 +1,15 @@
 package pages;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import common.config.AuthDataConfig;
+import common.data.Language;
 import io.qameta.allure.Step;
 import org.aeonbits.owner.ConfigFactory;
 
+import java.util.List;
+
+import static com.codeborne.selenide.CollectionCondition.texts;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
@@ -18,7 +23,11 @@ public class AuthorizationPage {
             submitButton = $(byAttribute("data-testid", "SignIn.action.submit")),
             pageTopbarUser = $x("//div[contains(@class, 'MuiAvatar-root UserAvatar_root')]"),
             errorBadEmailMessage = $(byText("Wrong email address")),
-            errorBadPasswordMessage = $(byText("The login and password contain errors"));
+            errorBadPasswordMessage = $(byText("The login and password contain errors")),
+            languageMenuButton = $x("//div[contains(@class, 'AuthLayout_lang')]"),
+            languageRuButton = $(byAttribute("data-testid", "AuthLayout.language.ru")),
+            languageEnButton = $(byAttribute("data-testid", "AuthLayout.language.en"));
+    private ElementsCollection fieldsAuthorizationText = $$x("//div[contains(@class, 'AuthContent_root')]");
 
     @Step("Открываем страницу")
     public AuthorizationPage openPage() {
@@ -57,7 +66,7 @@ public class AuthorizationPage {
     }
 
     @Step("Проверяем, что пользователь авторизован")
-    public void checkSuccessfulAuthorization(){
+    public void checkSuccessfulAuthorization() {
         pageTopbarUser.shouldBe(visible).shouldBe(visible);
     }
 
@@ -69,5 +78,16 @@ public class AuthorizationPage {
     @Step("Проверяем, что отображается ошибка The login and password contain errors")
     public void checkWrongPassword() {
         errorBadPasswordMessage.shouldBe(visible);
+    }
+
+    public void checkFieldsAuthorizationOnLanguage(Language language, List<String> listFieldsAuthorization) {
+        languageMenuButton.click();
+        if (language.language.equals("RU")) {
+            languageRuButton.click();
+            fieldsAuthorizationText.filter(visible).shouldHave(texts(listFieldsAuthorization));
+        } else {
+            languageEnButton.click();
+            fieldsAuthorizationText.filter(visible).shouldHave(texts(listFieldsAuthorization));
+        }
     }
 }

@@ -25,9 +25,9 @@ public class EventWebTests extends TestBaseWeb {
 
     @WithLogin
     @Test
-    @DisplayName("Создание быстрой встречи")
+    @DisplayName("Проверка успешного создания быстрой встречи")
     @Severity(SeverityLevel.BLOCKER)
-    void createFastMeetingTest() {
+    void checkSuccessfullyCreatedFastMeetingTest() {
         eventPage.openPage()
                 .clickStartFastMeetingButton()
                 .clickJoinMeetingButton()
@@ -40,9 +40,9 @@ public class EventWebTests extends TestBaseWeb {
 
     @WithLogin
     @Test
-    @DisplayName("Создание запланированной встречи")
+    @DisplayName("Проверка успешного создания запланированной встречи")
     @Severity(SeverityLevel.BLOCKER)
-    void createScheduleMeetingTest() {
+    void checkSuccessfullyCreatedScheduleMeetingTest() {
         eventPage.openPage()
                 .clickScheduleButton()
                 .clickScheduleMeetingButton()
@@ -57,9 +57,9 @@ public class EventWebTests extends TestBaseWeb {
 
     @WithLogin
     @Test
-    @DisplayName("Создание постоянной встречи")
+    @DisplayName("Проверка успешного создания постоянной встречи")
     @Severity(SeverityLevel.BLOCKER)
-    void createRegularMeetingTest() {
+    void checkSuccessfullyCreateRegularMeetingTest() {
         eventPage.openPage()
                 .clickScheduleButton()
                 .clickScheduleEndlessMeetingButton()
@@ -72,9 +72,9 @@ public class EventWebTests extends TestBaseWeb {
 
     @WithLogin
     @Test
-    @DisplayName("Редактирование мероприятия")
+    @DisplayName("Проверка успешного редактирования мероприятия")
     @Severity(SeverityLevel.CRITICAL)
-    void editMeetingTest() {
+    void checkSuccessfullyEditedMeetingTest() {
         String newNameMeeting = "test edit name";
         eventPage.openPage()
                 .clickScheduleButton()
@@ -89,9 +89,9 @@ public class EventWebTests extends TestBaseWeb {
 
     @WithLogin
     @Test
-    @DisplayName("Удаление мероприятия")
+    @DisplayName("Проверка успешного удаления мероприятия")
     @Severity(SeverityLevel.CRITICAL)
-    void deleteMeetingTest() {
+    void checkSuccessfullyDeletedMeetingTest() {
         eventPage.openPage()
                 .clickScheduleButton()
                 .clickScheduleMeetingButton()

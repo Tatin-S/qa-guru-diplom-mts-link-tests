@@ -24,18 +24,18 @@ public class EventApiTests extends TestApiBase {
     CreateEventTemplateRequestModel createEventTemplateRequest = new CreateEventTemplateRequestModel(testData.eventName, accessSettings);
 
     @Test
-    @DisplayName("Создание шаблона для мероприятия")
+    @DisplayName("Проверка успешного создания шаблона для мероприятия")
     @Severity(SeverityLevel.BLOCKER)
-    void createEventTemplateTest() {
+    void checkSuccessfullyCreatedEventTemplateTest() {
         CreateEventTemplateResponseModel response = testSteps.createEventTemplate(createEventTemplateRequest);
         testSteps.checkEventId(response);
         testSteps.checkLinkContainsEventId(response);
     }
 
     @Test
-    @DisplayName("Создание мероприятия по шаблону")
+    @DisplayName("Проверка успешного создания мероприятия по шаблону")
     @Severity(SeverityLevel.BLOCKER)
-    void createEventTest() throws IOException {
+    void checkSuccessfullyCreatedEventTest() throws IOException {
         CreateEventTemplateResponseModel responseTemplate = testSteps.createEventTemplate(createEventTemplateRequest);
         CreateEventResponseModel responseEvent = testSteps.createEvent(responseTemplate.getEventId());
         testSteps.checkEventSessionId(responseEvent);
@@ -44,9 +44,9 @@ public class EventApiTests extends TestApiBase {
     }
 
     @Test
-    @DisplayName("Создание мероприятия по шаблону без параметров")
+    @DisplayName("Проверка успешного создания мероприятия по шаблону без параметров")
     @Severity(SeverityLevel.CRITICAL)
-    void createEventWithEmptyBodyTest() {
+    void checkSuccessfullyCreatedEventWithEmptyBodyTest() {
         CreateEventTemplateResponseModel responseTemplate = testSteps.createEventTemplate(createEventTemplateRequest);
         CreateEventResponseModel responseEvent = testSteps.createEventWithEmptyBody(responseTemplate.getEventId());
         testSteps.checkEventSessionId(responseEvent);
@@ -55,27 +55,27 @@ public class EventApiTests extends TestApiBase {
     }
 
     @Test
-    @DisplayName("Создание мероприятия по шаблону c невалидным запросом")
+    @DisplayName("Проверка неуспешного создания мероприятия по шаблону c невалидным запросом")
     @Severity(SeverityLevel.NORMAL)
-    void createEventWithInvalidBodyTest() {
+    void checkCreatedEventWithInvalidBodyTest() {
         CreateEventTemplateResponseModel responseTemplate = testSteps.createEventTemplate(createEventTemplateRequest);
         ErrorResponseModel responseErrorEvent = testSteps.createEventWithInvalidBody(responseTemplate.getEventId());
         testSteps.checkJsonIsNotValid(responseErrorEvent);
     }
 
     @Test
-    @DisplayName("Получение данных мероприятия")
+    @DisplayName("Проверка успешного получения данных мероприятия")
     @Severity(SeverityLevel.CRITICAL)
-    void GetEventTest() {
+    void checkSuccessfullyGetEventTest() {
         CreateEventTemplateResponseModel responseTemplate = testSteps.createEventTemplate(createEventTemplateRequest);
         CreateEventResponseModel responseEvent = testSteps.createEventWithEmptyBody(responseTemplate.getEventId());
         testSteps.getEvent(responseEvent.getEventSessionId());
     }
 
     @Test
-    @DisplayName("Удаление мероприятия")
+    @DisplayName("Проверка успешного удаления мероприятия")
     @Severity(SeverityLevel.CRITICAL)
-    void DeleteEventTest() {
+    void checkSuccessfullyDeletedEventTest() {
         CreateEventTemplateResponseModel responseTemplate = testSteps.createEventTemplate(createEventTemplateRequest);
         CreateEventResponseModel responseEvent = testSteps.createEventWithEmptyBody(responseTemplate.getEventId());
         testSteps.deleteEvent(responseEvent.getEventSessionId());
